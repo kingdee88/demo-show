@@ -19,142 +19,177 @@
             </div>
 
             <Card>
-                <Row type="flex" justify="space-between" :gutter="32">
-                    <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
-                        <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
-                            <h4 class="h4-title">申请基本信息</h4>
-                            <Row :gutter="32">
-                                <Col span="24">
-                                    <FormItem label="关联行政申请" prop="name">
-                                        <Input v-model="form.name" style="width: 320px">
-                                            <Button slot="append" icon="ios-bookmarks"></Button>
-                                        </Input>
-                                    </FormItem>
-                                </Col>
-                                <Col span="12">
-                                    <FormItem label="申请人" prop="name">
-                                        <Input v-model="form.name" style="width: 320px">
-                                            <Button slot="append" icon="ios-person"></Button>
-                                        </Input>
-                                    </FormItem>
-                                </Col>
-                                <Col span="12">
-                                    <FormItem label="申请部门" prop="name">
-                                        <Select
-                                                v-model="form.type"
-                                                placeholder="请选择"
-                                        >
-                                            <Option :value="0">普通外科病区</Option>
-                                            <Option :value="1">呼吸科</Option>
-                                            <Option :value="2">泌尿科</Option>
-                                        </Select>
-                                    </FormItem>
-                                </Col>
-                                <Col span="24">
-                                    <FormItem label="申请人电话" prop="name">
-                                        <Input v-model="form.name" style="width: 320px"/>
-                                    </FormItem>
-                                </Col>
-                                <Col span="24">
-                                    <FormItem label="预算指标" prop="name">
-                                        <Input v-model="form.name" style="width: 320px">
-                                            <Button slot="append" icon="ios-pricetag"></Button>
-                                        </Input>
-                                    </FormItem>
-                                </Col>
-                                <Col span="24">
-                                    <FormItem label="指标可用金额" prop="name">
-                                        <Input v-model="form.name" style="width: 320px"/>
-                                    </FormItem>
-                                </Col>
-                                <Col span="12">
-                                    <FormItem label="拟安排时间" prop="name">
-                                        <DatePicker
-                                                v-model="form.date"
-                                                type="daterange"
-                                                format="yyyy-MM-dd"
-                                                clearable
-                                                placeholder="选择安排时间"
-                                                style="width: 320px"
-                                        ></DatePicker>
-                                    </FormItem>
-                                </Col>
-                                <Col span="12">
-                                    <FormItem label="拟参与人数" prop="name">
-                                        <Input v-model="form.name" style="width: 320px"/>
-                                    </FormItem>
-                                </Col>
-                                <Col span="24">
-                                    <FormItem label="是否需借款" prop="name">
-                                        <RadioGroup v-model="form.money">
-                                            <Radio  :label="0">否</Radio>
-                                            <Radio  :label="1">是</Radio>
-                                        </RadioGroup>
-                                    </FormItem>
-                                </Col>
-                                <Col span="24">
-                                    <FormItem label="事由摘要" prop="name">
-                                        <Input v-model="form.name" style="width: 320px" placeholder="请输入至少5个字符"/>
-                                    </FormItem>
-                                </Col>
-                                <Col span="24">
-                                    <FormItem label="申请事务" prop="name">
-                                        <Input
-                                                type="textarea"
-                                                v-model="form.description"
-                                                :rows="4"
-                                        />
-                                    </FormItem>
-                                </Col>
-                            </Row>
-                            <h4 class="h4-title">费用预算</h4>
-                            <Table
-                                    border
-                                    :columns="columns"
-                                    :data="data"
-                                    sortable="custom"
-                                    ref="table"
-                            ></Table>
-                            <div class="sum-text">
-                                申请金额：零元整 0.00
-                            </div>
-                            <h4 class="h4-title">附件上传</h4>
-                            <Table
-                                    style="margin-bottom: 20px"
-                                    border
-                                    :columns="columns2"
-                                    :data="data"
-                                    sortable="custom"
-                                    ref="table"
-                            ></Table>
-                            <Form-item class="br">
-                                <Button
-                                        @click="handleSubmit"
-                                        :loading="submitLoading"
-                                        type="primary"
-                                >送审
-                                </Button>
-                                <Button @click="handleReset">重置</Button>
-                                <Button type="dashed" @click="close">关闭</Button>
-                            </Form-item>
-                        </Form>
-                    </Col>
-                    <Col span="8">
-                        <div class="operation">
-                            <div class="s-modal">
-                                <h4 class="h4-title">风险提示</h4>
-                                <div class="content">无</div>
-                            </div>
-                            <div class="s-modal">
-                                <h4 class="h4-title">相关制度</h4>
-                                <div class="content">无</div>
-                            </div>
-                            <div class="s-modal">
-                                <h4 class="h4-title">预算指标情况</h4>
-                                <div class="content">无</div>
-                            </div>
-                        </div>
-                    </Col>
+                <Row class="operation">
+                    <Button
+                            @click="delAll"
+                            icon="ios-checkmark-circle"
+                    >批量同意</Button>
+                    <Button
+                            @click="delAll"
+                            icon="md-close-circle"
+                    >批量不同意</Button>
+                    <Button icon="md-refresh">刷新</Button>
+                    <Button
+                            type="dashed"
+                            @click="openSearch=!openSearch"
+                    >{{openSearch ? "关闭搜索" : "开启搜索"}}</Button>
+                </Row>
+                <Row class="operation">
+                <Row
+                        v-show="openSearch"
+                        @keydown.enter.native="handleSearch"
+                >
+
+                    <Form
+                            ref="searchForm"
+                            :model="searchForm"
+                            inline
+                            :label-width="70"
+                    >
+                        <Form-item
+                                label="申请单号"
+                                prop="nickname"
+                        >
+                            <Input
+                                    type="text"
+                                    v-model="searchForm.nickname"
+                                    clearable
+                                    placeholder="请输入用户名"
+                                    style="width: 200px"
+                            />
+                        </Form-item>
+
+                        <Form-item
+                                label="预算指标"
+                                prop="mobile"
+                        >
+                            <Input
+                                    type="text"
+                                    v-model="searchForm.mobile"
+                                    clearable
+                                    placeholder=""
+                                    style="width: 200px"
+                            />
+                        </Form-item>
+                        <Form-item
+                                label="支出事项"
+                                prop="email"
+                        >
+                            <Input
+                                    type="text"
+                                    v-model="searchForm.email"
+                                    clearable
+                                    placeholder=""
+                                    style="width: 200px"
+                            />
+                        </Form-item>
+                        <span v-if="drop">
+           <Form-item
+                   label="申请类型"
+                   prop="sex"
+           >
+              <Select
+                      v-model="searchForm.sex"
+                      placeholder="申请类型"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+                      <Option value="1">一般经费</Option>
+                      <Option value="2">差旅费</Option>
+                      <Option value="3">国内接待费</Option>
+                      <Option value="4">会议费</Option>
+                      <Option value="5">培训费</Option>
+                      <Option value="6">出国费</Option>
+                      <Option value="10">劳务费</Option>
+                      <Option value="13">外宾接待费</Option>
+              </Select>
+            </Form-item>
+                         <Form-item
+                                 label="申请人"
+                                 prop="username"
+                         >
+              <Input
+                      type="text"
+                      v-model="searchForm.username"
+                      clearable
+                      placeholder=""
+                      style="width: 200px"
+              />
+            </Form-item>
+                              <Form-item
+                                      label="申请金额"
+                                      prop="sex"
+                              >
+             <Input
+                     type="text"
+                     v-model="searchForm.username"
+                     clearable
+                     placeholder=""
+                     style="width: 100px"
+             />~<Input
+                                      type="text"
+                                      v-model="searchForm.username"
+                                      clearable
+                                      placeholder=""
+                                      style="width: 100px"
+                              />
+            </Form-item>
+                        </span>
+                        <Form-item
+                                style="margin-left:-35px;"
+                                class="br"
+                        >
+                            <Button
+                                    @click="handleSearch"
+                                    type="primary"
+                                    icon="ios-search"
+                            >搜索
+                            </Button>
+                            <Button @click="handleReset">重置</Button>
+                        </Form-item>
+
+                        <Form-item
+                                style="margin-left:-35px;"
+                                class="br"
+                        >
+                            <a
+                                    class="drop-down"
+                                    @click="dropDown"
+                            >
+                                {{dropDownContent}}
+                                <Icon :type="dropDownIcon"></Icon>
+                            </a>
+                        </Form-item>
+
+                    </Form>
+                </Row>
+                <Row>
+                    <Table
+                            :loading="loading"
+                            border
+                            :columns="columns"
+                            :data="data"
+                            ref="table"
+                            sortable="custom"
+                            @on-sort-change="changeSort"
+                            @on-selection-change="changeSelect"
+                    ></Table>
+                </Row>
+                <Row type="flex" justify="end" class="page">
+                    <Page
+                            :current="searchForm.pageNumber"
+                            :total="total"
+                            :page-size="searchForm.pageSize"
+                            @on-change="changePage"
+                            @on-page-size-change="changePageSize"
+                            :page-size-opts="[10,20,50]"
+                            size="small"
+                            show-total
+                            show-elevator
+                            show-sizer
+                    ></Page>
+                </Row>
                 </Row>
             </Card>
         </Card>
@@ -171,6 +206,29 @@
                     id: "",
                     name: ""
                 },
+                openSearch: true,
+                drop: false,
+                dropDownContent: "展开查询",
+                dropDownIcon: "ios-arrow-down",
+                formData: {},
+                searchForm: {
+                    id: "",
+                    nickname: "",
+                    username: "",
+                    departmentId: "",
+                    mobile: "",
+                    email: "",
+                    sex: "",
+                    type: "",
+                    status: "",
+                    pageNumber: 1,
+                    pageSize: 10,
+                    sort: "createTime",
+                    order: "desc",
+                    startDate: "",
+                    endDate: ""
+                },
+                currView: "index",
                 // 表单验证规则
                 formValidate: {
                     name: [{required: true, message: "不能为空", trigger: "blur"}]
@@ -178,38 +236,79 @@
                 data: [],
                 columns: [
                     {
-                        title: "费用明细",
+                        type: "selection",
+                        width: 60,
+                        align: "center",
+                        fixed: "left"
+                    },
+                    {
+                        title: "申请单号",
                         key: "title",
                         minWidth: 150
                     },
                     {
-                        title: "开支标准",
+                        title: "预算指标",
                         key: "value",
                         width: 150
                     },
                     {
-                        title: "申请金额(元)",
+                        title: "支出事项",
                         key: "value",
                         width: 150
                     },
                     {
-                        title: "备注",
-                        key: "description"
-                    }
-                ],
-                columns2: [
-                    {
-                        title: "附件类型",
-                        key: "title",
-                        minWidth: 150
+                        title: "申请金额",
+                        key: "description",
+                        width: 150
                     },
                     {
-                        title: "文件名",
-                        key: "value"
+                        title: "申请类型",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请部门",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请人",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "经办人",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请事由",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请日期",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请状态",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "当前操作环节",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "当前操作人",
+                        key: "description",
+                        width: 150
                     },
                     {
                         title: "操作",
-                        key: "value",
+                        key: "description",
                         width: 150
                     }
                 ]
@@ -217,6 +316,24 @@
         },
         methods: {
             init() {
+            },
+            handleSelectDep (v) {
+                this.searchForm.departmentId = v;
+            },
+            dropDown () {
+                if (this.drop) {
+                    this.dropDownContent = "展开查询";
+                    this.dropDownIcon = "ios-arrow-down";
+                } else {
+                    this.dropDownContent = "收起";
+                    this.dropDownIcon = "ios-arrow-up";
+                }
+                this.drop = !this.drop;
+            },
+            handleSearch () {
+                this.searchForm.pageNumber = 1;
+                this.searchForm.pageSize = 10;
+                // this.getUserList();
             },
             handleReset() {
                 this.$refs.form.resetFields();

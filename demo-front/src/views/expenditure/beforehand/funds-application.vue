@@ -85,7 +85,7 @@
               />
             </Form-item>
            <Form-item
-                   label="性别"
+                   label="申请类型"
                    prop="sex"
            >
               <Select
@@ -910,7 +910,7 @@
                 this.$Modal.confirm({
                     title: "确认删除",
                     // 记得确认修改此处
-                    content: "您确认要删除 " + v.name + " ?",
+                    content: "您确认要删除 " + v.APPLY_FORM_NO + " ?",
                     loading: true,
                     onOk: () => {
                         // 删除

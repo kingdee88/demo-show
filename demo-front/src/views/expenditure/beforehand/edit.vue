@@ -225,7 +225,7 @@ export default {
       this.datas = [{
         a: this.form.ITEM_PAY_ITEM_NAME,
         b: '据实列支',
-        c: 12,
+        c: this.form.APPLY_AMOUNT,
         d: ''
       }]
     },
