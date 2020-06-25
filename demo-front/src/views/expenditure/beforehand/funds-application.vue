@@ -33,10 +33,7 @@
                         :model="searchForm"
                         inline
                         :label-width="70"
-                        class="no-drop-item"
-                        :class="{'open-item': drop}"
                 >
-                    <span v-if="drop">
                     <Form-item
                             label="申请单号"
                             prop="nickname"
@@ -50,42 +47,95 @@
                         />
                     </Form-item>
 
+                    <Form-item
+                            label="预算指标"
+                            prop="mobile"
+                    >
+                        <Input
+                                type="text"
+                                v-model="searchForm.mobile"
+                                clearable
+                                placeholder=""
+                                style="width: 200px"
+                        />
+                    </Form-item>
+                    <Form-item
+                            label="支出事项"
+                            prop="email"
+                    >
+                        <Input
+                                type="text"
+                                v-model="searchForm.email"
+                                clearable
+                                placeholder=""
+                                style="width: 200px"
+                        />
+                    </Form-item>
+                    <span v-if="drop">
             <Form-item
-                    label="手机号"
-                    prop="mobile"
-            >
-              <Input
-                      type="text"
-                      v-model="searchForm.mobile"
-                      clearable
-                      placeholder="请输入手机号"
-                      style="width: 200px"
-              />
-            </Form-item>
-            <Form-item
-                    label="邮箱"
-                    prop="email"
-            >
-              <Input
-                      type="text"
-                      v-model="searchForm.email"
-                      clearable
-                      placeholder="请输入邮箱"
-                      style="width: 200px"
-              />
-            </Form-item>
-            <Form-item
-                    label="登录账号"
+                    label="事由摘要"
                     prop="username"
             >
               <Input
                       type="text"
                       v-model="searchForm.username"
                       clearable
-                      placeholder="请输入登录账号"
+                      placeholder=""
                       style="width: 200px"
               />
             </Form-item>
+           <Form-item
+                   label="性别"
+                   prop="sex"
+           >
+              <Select
+                      v-model="searchForm.sex"
+                      placeholder="申请类型"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+                      <Option value="1">一般经费</Option>
+                      <Option value="2">差旅费</Option>
+                      <Option value="3">国内接待费</Option>
+                      <Option value="4">会议费</Option>
+                      <Option value="5">培训费</Option>
+                      <Option value="6">出国费</Option>
+                      <Option value="10">劳务费</Option>
+                      <Option value="13">外宾接待费</Option>
+              </Select>
+            </Form-item>
+                         <Form-item
+                                 label="申请人"
+                                 prop="username"
+                         >
+              <Input
+                      type="text"
+                      v-model="searchForm.username"
+                      clearable
+                      placeholder=""
+                      style="width: 200px"
+              />
+            </Form-item>
+                              <Form-item
+                                      label="审核状态"
+                                      prop="sex"
+                              >
+              <Select
+                      v-model="searchForm.sex"
+                      placeholder="审核状态"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+                      <Option value="0">草稿</Option>
+                      <Option value="1">待审批</Option>
+                      <Option value="2">已审批</Option>
+                      <Option value="3">已驳回</Option>
+                      <Option value="4">已终止</Option>
+              </Select>
+            </Form-item>
+                        </span>
                     <Form-item
                             style="margin-left:-35px;"
                             class="br"
@@ -94,10 +144,11 @@
                                 @click="handleSearch"
                                 type="primary"
                                 icon="ios-search"
-                        >搜索</Button>
+                        >搜索
+                        </Button>
                         <Button @click="handleReset">重置</Button>
                     </Form-item>
-                         </span>
+
                     <Form-item
                             style="margin-left:-35px;"
                             class="br"
@@ -177,84 +228,86 @@
                 selectCount: 0, // 多选计数
                 columns: [
                     // 表头
-                    {
-                        type: "selection",
-                        width: 60,
-                        align: "center"
-                    },
-                    {
-                        type: "index",
-                        width: 60,
-                        align: "center"
-                    },
+                    // {
+                    //     type: "selection",
+                    //     width: 60,
+                    //     align: "center"
+                    // },
+                    // {
+                    //     type: "index",
+                    //     width: 60,
+                    //     align: "center"
+                    // },
                     {
                         title: "申请单号",
-                        key: "name",
+                        key: "APPLY_FORM_NO",
                         sortable: true
                     },
                     {
                         title: "预算指标",
-                        key: "name",
+                        key: "ITEM_PAY_ITEM_NAME",
                         sortable: true
                     },
                     {
                         title: "指标来源",
                         key: "name",
-                        sortable: false
+                        sortable: false,
+                        render: (h, params) => {
+                            return h("div", ['年初预算'])}
                     },
                     {
                         title: "支出事项",
-                        key: "name",
+                        key: "INDEX_NAME",
                         sortable: false
                     },
                     {
                         title: "申请时间",
-                        key: "createTime",
+                        key: "TIME_CREATE",
                         sortable: true,
                         width: 200,
                         sortType: "desc"
                     },
                     {
                         title: "事由摘要",
-                        key: "name",
+                        key: "REASON_DIGEST",
                         sortable: false
                     },
                     {
                         title: "申请金额",
-                        key: "name",
+                        key: "APPLY_AMOUNT",
                         sortable: false
                     },
                     {
                         title: "申请部门",
-                        key: "name",
+                        key: "APPLY_DEPT_NAME",
                         sortable: false
                     },
                     {
                         title: "操作",
                         key: "action",
                         align: "center",
-                        width: 250,
+                        width: 200,
                         render: (h, params) => {
                             return h("div", [
-                                // h(
-                                //     "Button",
-                                //     {
-                                //         props: {
-                                //             type: "primary",
-                                //             size: "small",
-                                //             icon: "ios-create-outline"
-                                //         },
-                                //         style: {
-                                //             marginRight: "5px"
-                                //         },
-                                //         on: {
-                                //             click: () => {
-                                //                 this.edit(params.row);
-                                //             }
-                                //         }
-                                //     },
-                                //     "动态组件编辑"
-                                // ),
+                                h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "primary",
+                                            size: "small",
+                                            icon: "ios-create-outline"
+                                        },
+                                        style: {
+                                            marginRight: "5px"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.edit(params.row);
+                                            }
+                                        }
+                                    },
+                                    "编辑"
+                                ),
                                 h(
                                     "Button",
                                     {
@@ -341,21 +394,494 @@
             },
             getDataList() {
                 this.loading = true;
-                // 以下为模拟数据
-                this.data = [
+
+                this.data = [{
+                    "ID": "000000000000000000000000000000202005182003051658531v8n1u5kbo",
+                    "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                    "USER_CREATE_NAME": "kwj",
+                    "TIME_CREATE": "2020-05-18 20:03:05",
+                    "USER_UPDATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                    "USER_UPDATE_NAME": "kwj",
+                    "TIME_UPDATE": "2020-06-09 17:43:30",
+                    "ORG_CREATE_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                    "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                    "BUDGET_YEAR": 2018,
+                    "APPLY_DATE": "2020-05-18 20:03:05",
+                    "APPLY_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                    "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                    "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                    "AGENT_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                    "FORM_TYPE": "1",
+                    "APPLY_REASON": null,
+                    "INDEX_ID": "000000000000000000000000000000201711301720339756hhnimoba2nnl",
+                    "APPLY_AMOUNT": 10.0,
+                    "PAY_STANDARD": -1.0,
+                    "IS_ABOVE_STANDARD": "0",
+                    "APPROVAL_DATE": null,
+                    "APPROVAL_RESULT": "3",
+                    "EXPENSE_AMOUNT": 0.0,
+                    "CLOSE_DATE": null,
+                    "APPLY_FORM_NO": "SQSQ-000260",
+                    "PROCESS_ID": "00000000000000000000000000000020200518200305486657boloqrbe8o",
+                    "PAY_ITEM_CODE": "10010103",
+                    "APPEND_AMOUNT": 0.0,
+                    "BUSI_FORM_NO": null,
+                    "INDEX_NAME": "特殊岗位津贴",
+                    "IS_OVER_BUDGET": "0",
+                    "INDEX_TYPE": "1",
+                    "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                    "TAX_TYPE": "0",
+                    "REASON_DIGEST": "特殊岗位津特殊岗位津特殊岗位津",
+                    "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                    "ATTEND_ACOUNT": null,
+                    "ARRANGE_TIME": null,
+                    "MOBILE": null,
+                    "IS_CHANGE": null,
+                    "CHANGE_APPLY_ID": null,
+                    "OLD_APPLY_ID": null,
+                    "CHANGE_REASON": null,
+                    "SERVICE_FEE_TYPE": "0",
+                    "IS_LOAN": null,
+                    "FUND_SOURCE": null,
+                    "SETTLE_CODE": null,
+                    "ITEM_PAY_ITEM_NAME": "特殊岗位津贴",
+                    "PAY_STANDARD_ID": null,
+                    "APPROVAL_TYPE": "2",
+                    "AGENT_USER_NAME": "kwj",
+                    "APPLY_USER_NAME": "kwj",
+                    "APPLY_DEPT_NAME": "普通外科病区",
+                    "PROCESS_STATE": "6",
+                    "PROCESS_ACTIVE_NAME": "任务",
+                    "PROCESS_EXC_NAME": "kwj"
+                },
                     {
-                        id: "1",
-                        name: "XBoot",
-                        createTime: "2018-08-08 00:08:00",
-                        updateTime: "2018-08-08 00:08:00"
+                        "ID": "000000000000000000000000000000201811271817482837888ur1nwhplj",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2018-11-28 08:17:48",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:50",
+                        "ORG_CREATE_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2018-11-28 08:17:59",
+                        "APPLY_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "FORM_TYPE": "1",
+                        "APPLY_REASON": "1",
+                        "INDEX_ID": "00000000000000000000000000000020171130172033900ph3nae4jwl1in",
+                        "APPLY_AMOUNT": 1010101.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": "2018-11-28 08:45:43",
+                        "APPROVAL_RESULT": "2",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000228",
+                        "PROCESS_ID": "000000000000000000000000000000201811271817494514316avh0htrhl",
+                        "PAY_ITEM_CODE": "1001010101",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "岗位工资",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "1",
+                        "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "1",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": 0,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": "0",
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "岗位工资",
+                        "PAY_STANDARD_ID": null,
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "院办",
+                        "PROCESS_STATE": "4",
+                        "PROCESS_ACTIVE_NAME": null,
+                        "PROCESS_EXC_NAME": ""
                     },
                     {
-                        id: "2",
-                        name: "Exrick",
-                        createTime: "2018-08-08 00:08:00",
-                        updateTime: "2018-08-08 00:08:00"
-                    }
-                ];
+                        "ID": "00000000000000000000000000000020190929150225005853swr8w9i8qn",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2019-09-30 04:02:25",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:48",
+                        "ORG_CREATE_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2019-09-30 04:02:25",
+                        "APPLY_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "FORM_TYPE": "1",
+                        "APPLY_REASON": null,
+                        "INDEX_ID": "00000000000000000000000000000020181217114449300340ted101lajh",
+                        "APPLY_AMOUNT": 89.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": null,
+                        "APPROVAL_RESULT": "3",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000251",
+                        "PROCESS_ID": "00000000000000000000000000000020190929150225169383j4llia79fl",
+                        "PAY_ITEM_CODE": "1001010101",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "人员经费",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "哦哦哦哦哦哦哦",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": null,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": null,
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "岗位工资",
+                        "PAY_STANDARD_ID": null,
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "普通外科病区",
+                        "PROCESS_STATE": "6",
+                        "PROCESS_ACTIVE_NAME": "任务",
+                        "PROCESS_EXC_NAME": "kwj"
+                    },
+                    {
+                        "ID": "00000000000000000000000000000020191112170318034732qd6jfhquko",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2019-11-13 07:03:18",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:48",
+                        "ORG_CREATE_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2019-11-13 07:03:18",
+                        "APPLY_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "FORM_TYPE": "1",
+                        "APPLY_REASON": null,
+                        "INDEX_ID": "00000000000000000000000000000020191112170044179645r26vimku7o",
+                        "APPLY_AMOUNT": 11.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": null,
+                        "APPROVAL_RESULT": "3",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000252",
+                        "PROCESS_ID": "00000000000000000000000000000020191112170318208913r0jainqp9h",
+                        "PAY_ITEM_CODE": "2004",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "xx项目",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "2",
+                        "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183917374fk7a39wf3b21o",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "由摘要由摘要",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": null,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": null,
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "产前检查产后防视",
+                        "PAY_STANDARD_ID": null,
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "普通外科病区",
+                        "PROCESS_STATE": "6",
+                        "PROCESS_ACTIVE_NAME": "任务",
+                        "PROCESS_EXC_NAME": "kwj"
+                    },
+                    {
+                        "ID": "00000000000000000000000000000020191112170340936216hbsphq305n",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2019-11-13 07:03:41",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:48",
+                        "ORG_CREATE_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2019-11-13 07:03:41",
+                        "APPLY_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "FORM_TYPE": "1",
+                        "APPLY_REASON": null,
+                        "INDEX_ID": "00000000000000000000000000000020191112170044179645r26vimku7o",
+                        "APPLY_AMOUNT": 22.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": null,
+                        "APPROVAL_RESULT": "3",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000253",
+                        "PROCESS_ID": "000000000000000000000000000000201911121703410542318alt3o1rdl",
+                        "PAY_ITEM_CODE": "2005",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "xx项目",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "2",
+                        "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183917374fk7a39wf3b21o",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "由摘要由摘要",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": null,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": null,
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "两癌筛查",
+                        "PAY_STANDARD_ID": null,
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "普通外科病区",
+                        "PROCESS_STATE": "6",
+                        "PROCESS_ACTIVE_NAME": "任务",
+                        "PROCESS_EXC_NAME": "kwj"
+                    },
+                    {
+                        "ID": "0000000000000000000000000000002019111217052306413810lstwj7un",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2019-11-13 07:05:23",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:48",
+                        "ORG_CREATE_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2019-11-13 07:05:39",
+                        "APPLY_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "FORM_TYPE": "1",
+                        "APPLY_REASON": null,
+                        "INDEX_ID": "00000000000000000000000000000020191112170044179645r26vimku7o",
+                        "APPLY_AMOUNT": 12.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": null,
+                        "APPROVAL_RESULT": "3",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000255",
+                        "PROCESS_ID": "00000000000000000000000000000020191112170539231077n2j584flil",
+                        "PAY_ITEM_CODE": "2003",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "xx项目",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "2",
+                        "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183917374fk7a39wf3b21o",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "由摘要由摘要由摘要",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": null,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": null,
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "三大公共卫生",
+                        "PAY_STANDARD_ID": null,
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "普通外科病区",
+                        "PROCESS_STATE": "6",
+                        "PROCESS_ACTIVE_NAME": "任务",
+                        "PROCESS_EXC_NAME": "kwj"
+                    },
+                    {
+                        "ID": "00000000000000000000000000000020190531200551747695hbkfalp65m",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2019-06-01 09:05:52",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:47",
+                        "ORG_CREATE_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2019-06-01 09:05:52",
+                        "APPLY_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "0000000000000000000000000000002017112018391787987fwp711ns2ih",
+                        "FORM_TYPE": "3",
+                        "APPLY_REASON": null,
+                        "INDEX_ID": "0000000000000000000000000000002017113017203479405j7okqeqesej",
+                        "APPLY_AMOUNT": 400.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": null,
+                        "APPROVAL_RESULT": "3",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000246",
+                        "PROCESS_ID": "00000000000000000000000000000020190531200553027042va5poo2mpn",
+                        "PAY_ITEM_CODE": "100717",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "公务接待费",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "1",
+                        "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "呃呃呃呃呃",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": null,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": "0",
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "公务接待费",
+                        "PAY_STANDARD_ID": "00000000000000000000000000000020170801155826021h58innpdaj64j",
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "普通外科病区",
+                        "PROCESS_STATE": "6",
+                        "PROCESS_ACTIVE_NAME": "任务",
+                        "PROCESS_EXC_NAME": "kwj"
+                    },
+                    {
+                        "ID": "00000000000000000000000000000020181206212054757832vc1f0cm60k",
+                        "USER_CREATE_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "USER_CREATE_NAME": "kwj",
+                        "TIME_CREATE": "2018-12-07 11:20:55",
+                        "USER_UPDATE_ID": "00000000000000000000000000000020190312102854290724h8250nt7li",
+                        "USER_UPDATE_NAME": "dibconfig",
+                        "TIME_UPDATE": "2020-05-28 11:03:46",
+                        "ORG_CREATE_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
+                        "BUDGET_YEAR": 2018,
+                        "APPLY_DATE": "2018-12-07 11:20:55",
+                        "APPLY_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "APPLY_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_USER_ID": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
+                        "AGENT_DEPT_ID": "00000000000000000000000000000020171120183919183429h0hkmadbll",
+                        "FORM_TYPE": "1",
+                        "APPLY_REASON": null,
+                        "INDEX_ID": "00000000000000000000000000000020180702163007105h2tjutvqj7e3m",
+                        "APPLY_AMOUNT": 312.0,
+                        "PAY_STANDARD": -1.0,
+                        "IS_ABOVE_STANDARD": "0",
+                        "APPROVAL_DATE": null,
+                        "APPROVAL_RESULT": "3",
+                        "EXPENSE_AMOUNT": 0.0,
+                        "CLOSE_DATE": null,
+                        "APPLY_FORM_NO": "SQSQ-000234",
+                        "PROCESS_ID": "00000000000000000000000000000020181206212055137262khlt66cpno",
+                        "PAY_ITEM_CODE": "2003",
+                        "APPEND_AMOUNT": 0.0,
+                        "BUSI_FORM_NO": null,
+                        "INDEX_NAME": "测试02",
+                        "IS_OVER_BUDGET": "0",
+                        "INDEX_TYPE": "2",
+                        "MANAGE_DEPT_ID": "00000000000000000000000000000020171120183919675akkpj0e2p664k",
+                        "TAX_TYPE": "0",
+                        "REASON_DIGEST": "123",
+                        "IS_MERGE_PAY_ITEM_EXPENSE": "0",
+                        "ATTEND_ACOUNT": 0,
+                        "ARRANGE_TIME": null,
+                        "MOBILE": null,
+                        "IS_CHANGE": "0",
+                        "CHANGE_APPLY_ID": null,
+                        "OLD_APPLY_ID": null,
+                        "CHANGE_REASON": null,
+                        "SERVICE_FEE_TYPE": null,
+                        "IS_LOAN": "0",
+                        "FUND_SOURCE": null,
+                        "SETTLE_CODE": null,
+                        "ITEM_PAY_ITEM_NAME": "三大公共卫生",
+                        "PAY_STANDARD_ID": null,
+                        "APPROVAL_TYPE": "2",
+                        "AGENT_USER_NAME": "kwj",
+                        "APPLY_USER_NAME": "kwj",
+                        "APPLY_DEPT_NAME": "院办",
+                        "PROCESS_STATE": "6",
+                        "PROCESS_ACTIVE_NAME": "任务",
+                        "PROCESS_EXC_NAME": "kwj"
+                    }];
+                // 以下为模拟数据
+                // this.data = [
+                //     {
+                //         id: "1",
+                //         name: "XBoot",
+                //         createTime: "2018-08-08 00:08:00",
+                //         updateTime: "2018-08-08 00:08:00"
+                //     },
+                //     {
+                //         id: "2",
+                //         name: "Exrick",
+                //         createTime: "2018-08-08 00:08:00",
+                //         updateTime: "2018-08-08 00:08:00"
+                //     }
+                // ];
                 this.total = this.data.length;
                 this.loading = false;
             },
