@@ -5,7 +5,7 @@ export const loginRouter = {
     path: '/login',
     name: 'login',
     meta: {
-        title: '登录 - X-Boot前后端分离开发平台 '
+        title: '内控平台'
     },
     component: () => import('@/views/login.vue')
 };
@@ -14,7 +14,7 @@ export const registRouter = {
     path: '/regist',
     name: 'regist',
     meta: {
-        title: '注册 - X-Boot前后端分离开发平台'
+        title: '内控平台'
     },
     component: () => import('@/views/regist.vue')
 };
@@ -23,7 +23,7 @@ export const registResult = {
     path: '/regist-result',
     name: 'regist-result',
     meta: {
-        title: '注册结果 - X-Boot前后端分离开发平台'
+        title: '注册结果 - 内控平台'
     },
     component: () => import('@/views/regist-result.vue')
 };
@@ -32,7 +32,7 @@ export const authorizeRouter = {
     path: '/authorize',
     name: 'authorize',
     meta: {
-        title: 'XBoot统一认证平台 - XBoot前后端分离开发平台 '
+        title: '内控平台 '
     },
     component: () => import('@/views/authorize.vue')
 };
