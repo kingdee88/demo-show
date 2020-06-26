@@ -17,8 +17,8 @@
         </div>
       </div>
       <Card>
+        <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：{{form.APPLY_FORM_NO}}</p>
         <Row type="flex" justify="space-between" :gutter="32">
-          <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：{{form.APPLY_FORM_NO}}</p>
           <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
             <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
               <h4 class="h4-title">申请基本信息</h4>
