@@ -1308,7 +1308,7 @@
         "type": 0,
         "title": "合同拟定",
         "path": "contract-preparation",
-        "component": "contract/conclude/contract-preparation",
+        "component": "contract/conclude/1/contract-preparation",
         "icon": "ios-menu",
         "url": "",
         "buttonType": "",
