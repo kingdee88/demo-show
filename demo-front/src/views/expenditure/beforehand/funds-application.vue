@@ -5,6 +5,7 @@
     <div class="search">
         <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
         <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
         <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
@@ -199,13 +200,15 @@
     import edit from "./edit.vue";
     import audit from "./audit";
     import change from "./change";
+    import detail from "./detail";
     export default {
         name: "single-window",
         components: {
             add,
             edit,
             audit,
-            change
+            change,
+            detail
         },
         data() {
             return {
@@ -241,12 +244,23 @@
                     {
                         title: "申请单号",
                         key: "APPLY_FORM_NO",
-                        sortable: true
+                        render: (h, params) => {
+                            return h(
+                                "a",
+                                {
+                                    on: {
+                                        click: () => {
+                                            this.showDetail(params.row);
+                                        }
+                                    }
+                                },
+                                params.row.APPLY_FORM_NO
+                            );
+                        }
                     },
                     {
                         title: "预算指标",
-                        key: "ITEM_PAY_ITEM_NAME",
-                        sortable: true
+                        key: "ITEM_PAY_ITEM_NAME"
                     },
                     {
                         title: "指标来源",
@@ -867,21 +881,6 @@
                         "PROCESS_ACTIVE_NAME": "任务",
                         "PROCESS_EXC_NAME": "kwj"
                     }];
-                // 以下为模拟数据
-                // this.data = [
-                //     {
-                //         id: "1",
-                //         name: "XBoot",
-                //         createTime: "2018-08-08 00:08:00",
-                //         updateTime: "2018-08-08 00:08:00"
-                //     },
-                //     {
-                //         id: "2",
-                //         name: "Exrick",
-                //         createTime: "2018-08-08 00:08:00",
-                //         updateTime: "2018-08-08 00:08:00"
-                //     }
-                // ];
                 this.total = this.data.length;
                 this.loading = false;
             },
@@ -905,6 +904,18 @@
                 let data = JSON.parse(str);
                 this.formData = data;
                 this.currView = "edit";
+            },
+            showDetail(v) {
+                // 转换null为""
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
+                this.currView = "detail";
             },
             remove(v) {
                 this.$Modal.confirm({
