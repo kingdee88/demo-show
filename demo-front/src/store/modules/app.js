@@ -44,7 +44,6 @@ const app = {
         // 动态添加主界面路由，需要缓存
         updateAppRouter(state, routes) {
             state.routers.push(...routes);
-            console.log(routes);
             router.addRoutes(routes);
         },
         // 动态添加全局路由404、500等页面，不需要缓存

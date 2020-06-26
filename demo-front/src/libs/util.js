@@ -4726,7 +4726,6 @@ util.initRouter = function (vm) {
             if (!menuData) {
                 return;
             }
-            console.log(menuData);
             util.initAllMenuData(constRoutes, menuData);
             util.initRouterNode(otherRoutes, otherRouter);
             // 添加所有主界面路由
