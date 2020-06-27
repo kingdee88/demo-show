@@ -1,6 +1,5 @@
 // 统一请求路径前缀在libs/axios.js中修改
 import { getRequest, postRequest, putRequest, getNoAuthRequest, postNoAuthRequest } from '@/libs/axios';
-import { resolve, reject } from 'core-js/fn/promise';
 
 
 
