@@ -150,12 +150,6 @@
                         >搜索
                         </Button>
                         <Button @click="handleReset">重置</Button>
-                    </Form-item>
-
-                    <Form-item
-                            style="margin-left:-35px;"
-                            class="br"
-                    >
                         <a
                                 class="drop-down"
                                 @click="dropDown"
@@ -164,7 +158,6 @@
                             <Icon :type="dropDownIcon"></Icon>
                         </a>
                     </Form-item>
-
                 </Form>
             </Row>
             <Row>
