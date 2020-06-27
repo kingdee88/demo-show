@@ -3124,7 +3124,7 @@
         "type": 0,
         "title": "项目计划申报",
         "path": "project-plan-declaration-index",
-        "component": "project-library-manage/declaration/project-plan-declaration-index",
+        "component": "t1/xiangmushenbaojihua",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",
