@@ -2,11 +2,11 @@
   <div class="visit">
     <Card>
       <p slot="title" class="card-title">
-        <Icon type="md-map" style="margin-right:5px"></Icon>每日来访量统计
+        <Icon type="md-map" style="margin-right:5px"></Icon>本年度预算使用情况
       </p>
-      <div slot="extra">
-        <DatePicker type="daterange" placeholder="选择日期范围" style="width: 250px"></DatePicker>
-      </div>
+<!--      <div slot="extra">-->
+<!--        <DatePicker type="daterange" placeholder="选择日期范围" style="width: 250px"></DatePicker>-->
+<!--      </div>-->
       <div style="height:273px;">
         <apexchart type="bar" height="280" :options="chartOptions" :series="series" />
       </div>
@@ -48,14 +48,6 @@ export default {
           }
         },
         xaxis: {
-          type: "datetime",
-          labels: {
-            datetimeFormatter: {
-              year: "yyyy年",
-              month: "yyyy年MMM",
-              day: "MMMdd日"
-            }
-          },
           categories: []
         },
         legend: {
@@ -78,23 +70,19 @@ export default {
     init() {
       this.series = [
         {
-          name: "登录次数",
-          data: [44, 55, 41, 67, 22, 43, 27, 45, 15, 44, 30, 44, 30, 15]
+          name: "预算",
+          data: [98, 69, 88, 108, 146, 129, 110, 140, 112, 95, 87, 115]
         },
         {
-          name: "浏览量",
-          data: [13, 23, 20, 8, 13, 27, 23, 20, 8, 13, 27, 13, 27, 50]
-        },
-        {
-          name: "注册用户",
-          data: [11, 17, 15, 15, 21, 14, 17, 15, 15, 21, 14, 21, 14, 35]
+          name: "使用",
+          data: [95, 73, 90, 103, 158, 101, 0, 20, 8, 13, 27, 13, 27]
         }
       ];
       let categories = [];
-      let num = 14;
+      let num = 13;
       let start = subDays(new Date(), num);
-      for (let i = 0; i < num; i++) {
-        categories.push(addDays(start, i).getTime());
+      for (let i = 1; i < num; i++) {
+        categories.push(i+ '月');
       }
       this.chartOptions.xaxis.categories = categories;
     }

@@ -54,12 +54,13 @@ export default {
       type: Number,
       default: 500
     },
+    decimalPlaces: Number,
     options: {
       type: Object,
-      default: () => {
+      default: function () {
         return {
           startVal: 0,
-          decimalPlaces: 0,
+          decimalPlaces: this.decimalPlaces,
           duration: 2,
           useEasing: true,
           useGrouping: true,

@@ -12,7 +12,8 @@
   <meta name="description"
     content="内控系统">
   <!-- 部署CDN优化 -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_977455_vl5pftbsjgd.css">
+   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuex@3.1.2/dist/vuex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-i18n@8.15.1/dist/vue-i18n.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-router@3.1.3/dist/vue-router.min.js"></script>
@@ -23,25 +24,32 @@
   <script src="https://cdn.jsdelivr.net/npm/echarts@4.7.0/dist/echarts.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.19.0/dist/apexcharts.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-apexcharts@1.5.3/dist/vue-apexcharts.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dplayer@1.25.1/dist/DPlayer.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/print-js@1.0.63/dist/print.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>
+<!--  <script src="https://cdn.jsdelivr.net/npm/dplayer@1.25.1/dist/DPlayer.min.js"></script>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/print-js@1.0.63/dist/print.min.js"></script>-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>-->
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css">-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuedraggable@2.23.2/dist/vuedraggable.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/viewerjs@1.5.0/dist/viewer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script> -->
-  <!-- <script>
-    var _hmt = _hmt || [];
-    (function () {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?64e52d9ed8f5acc3eb7d60058e2fb7ab";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script> -->
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+  <script src="https://unpkg.com/vue-amap/dist/index.js"></script>
+  <script>
+    // 初始化高德地图的 key 和插件
+    window.VueAMap.initAMapApiLoader({
+      key: 'e7abb9777d44c27860102c112b8ee47a',
+      plugin: [
+        'DistrictSearch',
+        'Geolocation',
+        'Geocoder',
+        'MarkerClusterer',
+        'StyleObject'
+      ],
+      v: '1.4.15',
+      uiVersion: '1.0.11' // 版本号
+    });
+  </script>
   <style>
     .page-loading-wrap {
       padding: 120px;

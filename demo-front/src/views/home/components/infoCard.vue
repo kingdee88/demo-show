@@ -3,7 +3,8 @@
     <div class="info-card-con">
       <Col class="info-card-icon-con" :style="{backgroundColor: color, color: 'white'}" span="8">
         <Row class="height-100" type="flex" align="middle" justify="center">
-          <Icon :type="iconType" :size="iconSize"></Icon>
+          <Icon :type="iconType" :size="iconSize" v-if="!isCustom"></Icon>
+          <Icon :size="iconSize" :custom="iconType" v-else></Icon>
         </Row>
       </Col>
       <Col span="16" class="height-100">
@@ -15,6 +16,7 @@
             :color="color"
             :countSize="countSize"
             :countWeight="countWeight"
+            :decimalPlaces="decimalPlaces"
           >
             <p class="info-intro-text" slot="intro">{{ introText }}</p>
           </count-up>
@@ -38,6 +40,14 @@ export default {
     color: String,
     iconType: String,
     introText: String,
+    isCustom: {
+      type: Boolean,
+      default: false
+    },
+    decimalPlaces: {
+      type: Number,
+      default: 0
+    },
     countSize: {
       type: String,
       default: "30px"

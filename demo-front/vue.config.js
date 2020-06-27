@@ -19,25 +19,25 @@ module.exports = {
     // 部署优化
     configureWebpack: {
         // 使用CDN
-        // externals: {
-        //     vue: 'Vue',
-        //     'vue-i18n': 'VueI18n',
-        //     axios: 'axios',
-        //     'vue-router': 'VueRouter',
-        //     vuex: 'Vuex',
-        //     'view-design': 'iview',
-        //     echarts: 'echarts',
-        //     apexcharts: 'ApexCharts',
-        //     'vue-apexcharts': 'VueApexCharts',
-        //     dplayer: 'DPlayer',
-        //     'print-js': 'printJS',
-        //     html2canvas: 'html2canvas',
-        //     'vue-lazyload': 'VueLazyload',
-        //     gitalk: 'Gitalk',
-        //     'js-cookie': 'Cookies',
-        //     vuedraggable: 'vuedraggable',
-        //     viewerjs: 'Viewer'
-        // },
+        externals: {
+            vue: 'Vue',
+            'vue-i18n': 'VueI18n',
+            axios: 'axios',
+            'vue-router': 'VueRouter',
+            vuex: 'Vuex',
+            'view-design': 'iview',
+            echarts: 'echarts',
+            apexcharts: 'ApexCharts',
+            'vue-apexcharts': 'VueApexCharts',
+            dplayer: 'DPlayer',
+            'print-js': 'printJS',
+            html2canvas: 'html2canvas',
+            'vue-lazyload': 'VueLazyload',
+            gitalk: 'Gitalk',
+            'js-cookie': 'Cookies',
+            vuedraggable: 'vuedraggable',
+            viewerjs: 'Viewer'
+        },
         // GZIP压缩
         plugins: [
             new CompressionPlugin({

@@ -2,7 +2,7 @@
   <div>
     <Card>
       <p slot="title" class="card-title">
-        <Icon type="md-locate" style="margin-right:5px"></Icon>访问用户分布
+        <Icon type="md-locate" style="margin-right:5px"></Icon>预算使用分析
       </p>
       <Row type="flex" justify="center" align="middle" style="height:273px;">
         <apexchart type="donut" width="350" :options="chartOptions" :series="series" />
@@ -19,7 +19,7 @@ export default {
     return {
       series: [],
       chartOptions: {
-        labels: ["移动端", "PC", "平板", "IOS", "其他"],
+        labels: ["差旅", "劳务", "培训", "采购", "用车"],
         plotOptions: {
           pie: {
             donut: {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     init() {
-      this.series = [45, 18, 27, 15, 13];
+      this.series = [8, 10, 5, 60, 17];
     }
   },
   mounted() {
