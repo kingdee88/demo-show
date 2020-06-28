@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import VueAMap, {lazyAMapApiLoaderInstance} from 'vue-amap';
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css';
 import '@/styles/main.less';
@@ -35,6 +36,26 @@ Vue.use(VueLazyload, {
 Vue.use(ViewUI, {
     i18n: (key, value) => i18n.t(key, value)
 });
+VueAMap.initAMapApiLoader({
+    key: 'e7abb9777d44c27860102c112b8ee47a',
+    plugin: [
+        'DistrictSearch',
+        'Geolocation',
+        'Geocoder',
+        'MarkerClusterer',
+        'StyleObject'
+    ],
+    v: '1.4.15',
+    uiVersion: '1.0.11' // 版本号
+});
+const amapKeys = Object.keys(localStorage).filter(key => key.match(/^_AMap_/));
+
+amapKeys.forEach(key => {
+    // console.log(key)
+    localStorage.removeItem(key);
+});
+
+Vue.use(VueAMap);
 Vue.use(iviewArea);
 Vue.use(VueClipboard);
 Vue.component('icon', Icon);
