@@ -5,26 +5,13 @@
     <div class="search">
         <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
         <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
-        <!-- <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/> -->
-        <!-- <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/> -->
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">因公出国申请</Button>
-                <Button type="primary" icon="ios-checkbox-outline">因公出国申请审核</Button>
-                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
-                <!-- <Button @click="delAll" icon="md-trash">批量删除</Button> -->
-                <!-- <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button> -->
-                <!-- <Button icon="md-cloud-upload">导入</Button> -->
+                <Button @click="add" type="primary" icon="md-add">新增</Button>
                 <Button @click="getDataList" icon="md-refresh">刷新</Button>
-                <!--                <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
-            </Row>
-            <Row v-show="openTip">
-                <Alert show-icon>
-                    已选择
-                    <span class="select-count">{{selectCount}}</span> 项
-                    <a class="select-clear" @click="clearSelectAll">清空</a>
-                </Alert>
             </Row>
             <Row
                     v-show="openSearch"
@@ -38,20 +25,19 @@
                         :label-width="70"
                 >
                     <Form-item
-                            label="申请单号"
+                            label="采购验收单号"
                             prop="nickname"
                     >
                         <Input
                                 type="text"
                                 v-model="searchForm.nickname"
                                 clearable
-                                placeholder="请输入用户名"
                                 style="width: 200px"
                         />
                     </Form-item>
 
                     <Form-item
-                            label="预算指标"
+                            label="采购订单号"
                             prop="mobile"
                     >
                         <Input
@@ -62,82 +48,20 @@
                                 style="width: 200px"
                         />
                     </Form-item>
-                    <Form-item
-                            label="支出事项"
-                            prop="email"
-                    >
-                        <Input
-                                type="text"
-                                v-model="searchForm.email"
-                                clearable
-                                placeholder=""
-                                style="width: 200px"
-                        />
-                    </Form-item>
                     <span v-if="drop">
-            <Form-item
-                    label="事由摘要"
-                    prop="username"
-            >
-              <Input
-                      type="text"
-                      v-model="searchForm.username"
-                      clearable
-                      placeholder=""
-                      style="width: 200px"
-              />
-            </Form-item>
            <Form-item
-                   label="申请类型"
+                   label="审核状态"
                    prop="sex"
            >
               <Select
                       v-model="searchForm.sex"
-                      placeholder="申请类型"
                       clearable
                       style="width: 200px"
               >
                   <Option value="">-请选择-</Option>
-                      <Option value="1">一般经费</Option>
-                      <Option value="2">差旅费</Option>
-                      <Option value="3">国内接待费</Option>
-                      <Option value="4">会议费</Option>
-                      <Option value="5">培训费</Option>
-                      <Option value="6">出国费</Option>
-                      <Option value="10">劳务费</Option>
-                      <Option value="13">外宾接待费</Option>
               </Select>
             </Form-item>
-                         <Form-item
-                                 label="申请人"
-                                 prop="username"
-                         >
-              <Input
-                      type="text"
-                      v-model="searchForm.username"
-                      clearable
-                      placeholder=""
-                      style="width: 200px"
-              />
-            </Form-item>
-                              <Form-item
-                                      label="审核状态"
-                                      prop="sex"
-                              >
-              <Select
-                      v-model="searchForm.sex"
-                      placeholder="审核状态"
-                      clearable
-                      style="width: 200px"
-              >
-                  <Option value="">-请选择-</Option>
-                      <Option value="0">草稿</Option>
-                      <Option value="1">待审批</Option>
-                      <Option value="2">已审批</Option>
-                      <Option value="3">已驳回</Option>
-                      <Option value="4">已终止</Option>
-              </Select>
-            </Form-item>
+                    
                         </span>
                     <Form-item
                             style="margin-left:-35px;"
@@ -194,17 +118,17 @@
     import axios from 'axios';
     import add from "./add.vue";
     import edit from "./edit.vue";
-    // import audit from "./audit";
+    import audit from "./audit";
     import change from "./change";
-    // import detail from "./detail";
+    import detail from "./detail";
     export default {
         name: "xiangmushenbaojihua",
         components: {
             add,
             edit,
-            // audit,
-            change
-            // detail
+            audit,
+            change,
+            detail
         },
         data() {
             return {
