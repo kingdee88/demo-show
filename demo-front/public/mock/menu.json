@@ -312,7 +312,7 @@
             "type": 0,
             "title": "支出指标管理",
             "path": "expenditure-i-manage",
-            "component": "budget/i-manage/expenditure-i-manage",
+            "component": "zhichuzhibiaoguanli/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
