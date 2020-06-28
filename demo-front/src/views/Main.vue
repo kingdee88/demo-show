@@ -230,19 +230,25 @@ export default {
     selectNav(name) {
       this.$store.commit("setCurrNav", name);
       this.setStore("currNav", name);
-      // 清空所有已打开标签
-      this.$store.commit("clearAllTags");
-      setTimeout(() => {
-        // console.log(this.menuList)
-        this.$router.push({
-          name: this.menuList[0]['children'][0]['name']
-        });
-      }, 400);
-      if (this.$route.name != "home_index") {
+      if (name === 'x-home-index') {
         this.$router.push({
           name: "home_index"
         });
+      } else {
+        setTimeout(() => {
+          // 清空所有已打开标签
+          this.$store.commit("clearAllTags");
+          // console.log(this.menuList)
+          this.$router.push({
+            name: this.menuList[0]['children'][0]['name']
+          });
+        }, 400);
       }
+      // if (this.$route.name != "home_index") {
+      //   this.$router.push({
+      //     name: "home_index"
+      //   });
+      // }
       util.initRouter(this);
     },
     toggleClick() {
