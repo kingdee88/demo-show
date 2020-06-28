@@ -10,7 +10,7 @@
                         <Icon type="ios-arrow-back"/>
                         返回
                     </a>
-                    <div class="head-name">部门业务经费配置</div>
+                    <div class="head-name">支出指标管理</div>
                     <span></span>
                     <a @click="close" class="window-close">
                         <Icon type="ios-close" size="31" class="ivu-icon-ios-close"/>
@@ -24,75 +24,106 @@
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
                             <Row :gutter="24">
                                 <Col span="12">
-                                    <FormItem label="支出事项分类" prop="itemName">
-                                      <Input v-model="form.itemName" style="width: 320px">
-                                      
-                                      </Input>
+                                    <FormItem label="预算年度" prop="itemName">
+                                      <label>2020</label>
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
-                                <FormItem label="是否末级" prop="name">
-                                  <RadioGroup v-model="form.money">
-                                    <Radio  :label="0">否</Radio>
-                                    <Radio  :label="1" >是</Radio>
-                                  </RadioGroup>
+                                <FormItem label="指标类型" prop="type">
+                                    <Select v-model="form.type"
+                                          placeholder="指标类型" clearable style="width: 200px">
+                                          <Option value="1">非项目指标</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
                               <Col span="12">
-                                <FormItem label="事项编码" prop="name">
+                                <FormItem label="支出事项" prop="name">
                                   <Input v-model="form.name" style="width: 320px">
 
                                   </Input>
                                 </FormItem>
                               </Col>
                                <Col span="12">
-                                <FormItem label="事项名称" prop="name">
+                                <FormItem label="指标部门" prop="name">
                                   <Input v-model="form.name" style="width: 320px">
 
                                   </Input>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="上级事项名称" prop="name">
-                                  <Input v-model="form.parentItemName" style="width: 320px" readonly>
-                                  </Input>
-                                </FormItem>
-                              </Col>
                               <Col span="12">
                                 <FormItem label="归口部门" prop="name">
-                                 <Input v-model="form.departmentName" style="width: 320px" readonly>
+                                  <Input v-model="form.name" style="width: 320px">
                                   </Input>
+                                </FormItem>
+                              </Col>
+                              <Col span="12">
+                                <FormItem label="责任人" prop="name">
+                                  <Input v-model="form.name" style="width: 320px">
+                                  </Input>
+                                </FormItem>
+                              </Col>
+                              <Col span="12">
+                                <FormItem label="是否公共指标" prop="public">
+                                    <Select v-model="form.public"
+                                          placeholder="指标类型" clearable style="width: 200px">
+                                          <Option value="1">是</Option>
+                                          <Option value="0">否</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
 
                               <Col span="12">
-                                <FormItem label="归口编制" prop="name">
-                                  <RadioGroup v-model="form.money">
-                                    <Radio  :label="0">否</Radio>
-                                    <Radio  :label="1" >是</Radio>
-                                  </RadioGroup>
+                                <FormItem label="控制方式" prop="public">
+                                    <Select v-model="form.public"
+                                          placeholder="控制方式" clearable style="width: 200px">
+                                          <Option value="0">刚性控制(不允许超标)</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="事项定义" prop="name">
-                                  <Input
-                                          type="textarea"
-                                          v-model="form.description"
-                                          :rows="4"
-                                  />
-                                </FormItem>
-                              </Col>
-                            </Row>
-                           <h4 class="h4-title">开支范围</h4>
-                          <Table
-                                  style="margin-bottom: 20px"
-                                  border
-                                  :columns="columns"
-                                  :data="data"
-                                  sortable="custom"
-                                  ref="table"
-                          ></Table>
 
+                               
+
+                               <Col span="12">
+                                <FormItem label="指标来源" prop="source">
+                                    <Select v-model="form.source"
+                                          placeholder="请选择" clearable style="width: 200px">
+                                          <Option value="1">上年结转</Option>
+                                          <Option value="2">年初预算</Option>
+                                          <Option value="3">追加预算</Option>
+                                  </Select>
+                                </FormItem>
+                              </Col>
+
+                              <Col span="12">
+                                 <FormItem label="批复日期" prop="date">
+                                    <DatePicker v-model="form.date"
+                                        type="date"
+                                        format="yyyy-MM-dd"
+                                        clearable
+                                        placeholder="选择安排时间"
+                                        style="width: 320px"></DatePicker>
+                                 </FormItem>
+                              </Col>
+
+                               <Col span="12">
+                                    <FormItem label="预算金额" prop="fee">
+                                         <Input v-model="form.fee" style="width: 320px" />
+                                    </FormItem>
+                                </Col>
+                                 <Col span="12">
+                                    <FormItem label="财政资金项目" prop="fee">
+                                         <Input v-model="form.fee" style="width: 320px" />
+                                    </FormItem>
+                                </Col>
+                                 <Col span="12">
+                                    <FormItem label="指标说明" prop="fee">
+                                         <Input v-model="form.fee" style="width: 320px" />
+                                    </FormItem>
+                                </Col>
+
+                         
+                            </Row>
+                          
                             <Form-item class="br">
                                 <Button
                                         @click="handleSubmit"
@@ -120,6 +151,8 @@
                 submitLoading: false, // 表单提交状态
                 form: {
                     id: "",
+                    type:"1",
+                    public:"0",
                     itemName: "支出事项分类",
                     money:1,
                     parentItemName:"院办经费",
