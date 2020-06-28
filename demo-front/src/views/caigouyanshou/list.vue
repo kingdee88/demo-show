@@ -25,7 +25,7 @@
                         :label-width="70"
                 >
                     <Form-item
-                            label="招标文件编号"
+                            label="采购验收单号"
                             prop="nickname"
                     >
                         <Input
@@ -37,7 +37,7 @@
                     </Form-item>
 
                     <Form-item
-                            label="采购项目"
+                            label="采购订单号"
                             prop="mobile"
                     >
                         <Input
@@ -48,21 +48,9 @@
                                 style="width: 200px"
                         />
                     </Form-item>
-                    <Form-item
-                            label="采购编号"
-                            prop="email"
-                    >
-                        <Input
-                                type="text"
-                                v-model="searchForm.email"
-                                clearable
-                                placeholder=""
-                                style="width: 200px"
-                        />
-                    </Form-item>
-                    <span v-if="drop">    
+                    <span v-if="drop">
            <Form-item
-                   label="开标结果"
+                   label="审核状态"
                    prop="sex"
            >
               <Select
@@ -73,30 +61,7 @@
                   <Option value="">-请选择-</Option>
               </Select>
             </Form-item>
-                         <Form-item
-                                 label="申请人"
-                                 prop="username"
-                         >
-               <Select
-                      v-model="searchForm.sex"
-                      clearable
-                      style="width: 200px"
-              >
-                  <Option value="">-请选择-</Option>
-              </Select>
-            </Form-item>
-                              <Form-item
-                                      label="申请部门"
-                                      prop="sex"
-                              >
-              <Select
-                      v-model="searchForm.sex"
-                      clearable
-                      style="width: 200px"
-              >
-                  <Option value="">-请选择-</Option>
-              </Select>
-            </Form-item>
+                    
                         </span>
                     <Form-item
                             style="margin-left:-35px;"
