@@ -41,14 +41,14 @@
                               <Col span="12">
                                 <FormItem label="事项编码" prop="name">
                                   <Input v-model="form.name" style="width: 320px">
-                                    
+
                                   </Input>
                                 </FormItem>
                               </Col>
                                <Col span="12">
                                 <FormItem label="事项名称" prop="name">
                                   <Input v-model="form.name" style="width: 320px">
-                          
+
                                   </Input>
                                 </FormItem>
                               </Col>
@@ -75,7 +75,7 @@
                               </Col>
                               <Col span="24">
                                 <FormItem label="事项定义" prop="name">
-                                  <Input  style="width:200px"
+                                  <Input
                                           type="textarea"
                                           v-model="form.description"
                                           :rows="4"
@@ -85,13 +85,14 @@
                             </Row>
                            <h4 class="h4-title">开支范围</h4>
                           <Table
+                                  style="margin-bottom: 20px"
                                   border
                                   :columns="columns"
                                   :data="data"
                                   sortable="custom"
                                   ref="table"
                           ></Table>
-                          
+
                             <Form-item class="br">
                                 <Button
                                         @click="handleSubmit"
@@ -104,7 +105,7 @@
                             </Form-item>
                         </Form>
                     </Col>
-                    
+
                 </Row>
             </Card>
         </Card>
