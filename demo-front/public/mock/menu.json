@@ -2389,7 +2389,7 @@
             "type": 0,
             "title": "开标登记",
             "path": "bid-opening",
-            "component": "purchasing/bidding-manage/bid-opening",
+            "component": "kaibiaodengji/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",

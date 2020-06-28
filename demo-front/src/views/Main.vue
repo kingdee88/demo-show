@@ -39,10 +39,6 @@
           </div>
           <div class="main-nav-menu" v-if="navType==1||navType==2">
             <Menu mode="horizontal" :active-name="currNav" @on-select="selectNav">
-              <MenuItem name="home">
-                <Icon type="ios-home"/>
-                首页
-              </MenuItem>
               <MenuItem v-for="(item, i) in navList.slice(0, sliceNum)" :key="i" :name="item.name">
                 <Icon :type="item.icon" v-if="navType==1" />
                 {{item.title}}
@@ -234,14 +230,14 @@ export default {
     selectNav(name) {
       this.$store.commit("setCurrNav", name);
       this.setStore("currNav", name);
-      // 清空所有已打开标签
-      this.$store.commit("clearAllTags");
-      if (name === 'home') {
+      if (name === 'x-home-index') {
         this.$router.push({
           name: "home_index"
         });
       } else {
         setTimeout(() => {
+          // 清空所有已打开标签
+          this.$store.commit("clearAllTags");
           // console.log(this.menuList)
           this.$router.push({
             name: this.menuList[0]['children'][0]['name']

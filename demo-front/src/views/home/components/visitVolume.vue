@@ -8,7 +8,7 @@
 <!--        <DatePicker type="daterange" placeholder="选择日期范围" style="width: 250px"></DatePicker>-->
 <!--      </div>-->
       <div style="height:273px;">
-        <apexchart type="bar" height="280" :options="chartOptions" :series="series" />
+        <apexchart type="line" height="280" :options="chartOptions" :series="series" />
       </div>
     </Card>
   </div>
@@ -28,42 +28,61 @@ export default {
           data: []
         }
       ],
-      chartOptions: {
-        colors: ["#398af7", "#63a3f9", "#b3d1fd"],
-        chart: {
-          stacked: true,
-          toolbar: {
-            show: false
-          },
-          zoom: {
-            enabled: false
-          },
-          locales: [zh],
-          defaultLocale: "zh"
-        },
-        plotOptions: {
-          bar: {
-            columnWidth: "40%",
-            horizontal: false
-          }
-        },
-        xaxis: {
-          categories: []
-        },
-        legend: {
-          show: false
-        },
-        dataLabels: {
-          enabled: false
-        },
-        tooltip: {
-          enabled: true,
-          x: {
-            show: true,
-            format: "MMM dd日"
-          }
+        chartOptions: {
+            chart: {
+                height: 350,
+                type: 'line',
+                dropShadow: {
+                    enabled: true,
+                    color: '#000',
+                    top: 18,
+                    left: 7,
+                    blur: 10,
+                    opacity: 0.2
+                },
+                toolbar: {
+                    show: false
+                }
+            },
+            colors: ['#77B6EA', '#545454'],
+            dataLabels: {
+                enabled: false,
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            title: {
+                text: '预算使用',
+                align: 'left'
+            },
+            grid: {
+                borderColor: '#e7e7e7',
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            markers: {
+                size: 1
+            },
+            xaxis: {
+                categories: []
+            },
+            yaxis: {
+                title: {
+                    text: ''
+                },
+                min: 0,
+                max: 170
+            },
+            legend: {
+                position: 'top',
+                horizontalAlign: 'right',
+                floating: true,
+                offsetY: -25,
+                offsetX: -5
+            }
         }
-      }
     };
   },
   methods: {
@@ -75,7 +94,7 @@ export default {
         },
         {
           name: "使用",
-          data: [95, 73, 90, 103, 158, 101, 0, 20, 8, 13, 27, 13, 27]
+          data: [95, 73, 90, 103, 158, 101, 0, 0, 0, 0, 0, 0]
         }
       ];
       let categories = [];
