@@ -13,13 +13,6 @@
                 <Button @click="add" type="primary" icon="md-add">新增</Button>
                 <Button @click="getDataList" icon="md-refresh">刷新</Button>
             </Row>
-            <Row v-show="openTip">
-                <Alert show-icon>
-                    已选择
-                    <span class="select-count">{{selectCount}}</span> 项
-                    <a class="select-clear" @click="clearSelectAll">清空</a>
-                </Alert>
-            </Row>
             <Row
                     v-show="openSearch"
                     @keydown.enter.native="handleSearch"
@@ -32,20 +25,19 @@
                         :label-width="70"
                 >
                     <Form-item
-                            label="申请单号"
+                            label="招标文件编号"
                             prop="nickname"
                     >
                         <Input
                                 type="text"
                                 v-model="searchForm.nickname"
                                 clearable
-                                placeholder="请输入用户名"
                                 style="width: 200px"
                         />
                     </Form-item>
 
                     <Form-item
-                            label="预算指标"
+                            label="采购项目"
                             prop="mobile"
                     >
                         <Input
@@ -57,7 +49,7 @@
                         />
                     </Form-item>
                     <Form-item
-                            label="支出事项"
+                            label="采购编号"
                             prop="email"
                     >
                         <Input
@@ -68,68 +60,41 @@
                                 style="width: 200px"
                         />
                     </Form-item>
-                    <span v-if="drop">
-            <Form-item
-                    label="事由摘要"
-                    prop="username"
-            >
-              <Input
-                      type="text"
-                      v-model="searchForm.username"
-                      clearable
-                      placeholder=""
-                      style="width: 200px"
-              />
-            </Form-item>
+                    <span v-if="drop">    
            <Form-item
-                   label="申请类型"
+                   label="开标结果"
                    prop="sex"
            >
               <Select
                       v-model="searchForm.sex"
-                      placeholder="申请类型"
                       clearable
                       style="width: 200px"
               >
                   <Option value="">-请选择-</Option>
-                      <Option value="1">一般经费</Option>
-                      <Option value="2">差旅费</Option>
-                      <Option value="3">国内接待费</Option>
-                      <Option value="4">会议费</Option>
-                      <Option value="5">培训费</Option>
-                      <Option value="6">出国费</Option>
-                      <Option value="10">劳务费</Option>
-                      <Option value="13">外宾接待费</Option>
               </Select>
             </Form-item>
                          <Form-item
                                  label="申请人"
                                  prop="username"
                          >
-              <Input
-                      type="text"
-                      v-model="searchForm.username"
-                      clearable
-                      placeholder=""
-                      style="width: 200px"
-              />
-            </Form-item>
-                              <Form-item
-                                      label="审核状态"
-                                      prop="sex"
-                              >
-              <Select
+               <Select
                       v-model="searchForm.sex"
-                      placeholder="审核状态"
                       clearable
                       style="width: 200px"
               >
                   <Option value="">-请选择-</Option>
-                      <Option value="0">草稿</Option>
-                      <Option value="1">待审批</Option>
-                      <Option value="2">已审批</Option>
-                      <Option value="3">已驳回</Option>
-                      <Option value="4">已终止</Option>
+              </Select>
+            </Form-item>
+                              <Form-item
+                                      label="申请部门"
+                                      prop="sex"
+                              >
+              <Select
+                      v-model="searchForm.sex"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
               </Select>
             </Form-item>
                         </span>
