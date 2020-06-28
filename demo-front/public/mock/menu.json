@@ -279,7 +279,7 @@
             "type": 0,
             "title": "部门业务经费配置",
             "path": "department-funds-allocation",
-            "component": "budget/department-budgeting/department-funds-allocation",
+            "component": "bumenyewujingfeipeizhi/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
