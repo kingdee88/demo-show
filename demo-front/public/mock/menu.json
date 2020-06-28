@@ -2451,7 +2451,7 @@
           "type": 0,
           "title": "采购验收(资产类)",
           "path": "purchase-acceptance-asset-index",
-          "component": "purchasing/purchasing/bidding-manage/purchase-acceptance-asset-index",
+          "component": "caigouyanshou/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
