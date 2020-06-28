@@ -79,7 +79,7 @@ export default {
 .info-intro-text {
   font-size: 12px;
   font-weight: 500;
-  color: #c8c8c8;
+  color: #808695;
 }
 </style>
 
