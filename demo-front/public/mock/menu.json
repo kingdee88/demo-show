@@ -36,7 +36,7 @@
             "type": 0,
             "title": "年度预算目标",
             "path": "target-annual",
-            "component": "/budget/target/annual",
+            "component": "budget/1/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
