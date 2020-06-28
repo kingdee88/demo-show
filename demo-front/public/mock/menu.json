@@ -1,5 +1,13 @@
 [
   {
+    "id": "1232324563535",
+    "title": "主页",
+    "component": "home/home",
+    "name": "x-home-index",
+    "icon": "ios-home",
+    "children": []
+  },
+  {
     "id": "1275995546506629120",
     "parentId": null,
     "name": "budget-preparation",
@@ -46,13 +54,13 @@
           {
             "id": "1276429508345466880",
             "parentId": "1276004822352531456",
-            "name": "budget-control ",
+            "name": "budget-control",
             "showAlways": true,
             "level": 2,
             "type": 0,
             "title": "预算控制数",
-            "path": "budget-control ",
-            "component": "budget/target/budget-control ",
+            "path": "budget-control",
+            "component": "budget/2/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
