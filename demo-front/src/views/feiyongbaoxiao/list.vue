@@ -13,6 +13,7 @@
                 <Button @click="add" type="primary" icon="md-add">我要报销</Button>
                 <Button @click="batchadd" type="primary" icon="ios-checkbox-outline">我要合并报销</Button>
                 <Button @click="change" type="primary" icon="ios-list-box-outline">涉密报销</Button>
+                <Button @click="edit" type="primary" icon="ios-list-box-outline">我要借款</Button>
                 <!-- <Button @click="delAll" icon="md-trash">批量删除</Button> -->
                 <!-- <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button> -->
                 <!-- <Button icon="md-cloud-upload">导入</Button> -->
