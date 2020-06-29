@@ -9,7 +9,7 @@
           <a @click="close" class="back-title">
             <Icon type="ios-arrow-back" />返回
           </a>
-          <div class="head-name">一般经费</div>
+          <div class="head-name">合同拟定申请单</div>
           <span></span>
           <a @click="close" class="window-close">
             <Icon type="ios-close" size="31" class="ivu-icon-ios-close" />
@@ -19,7 +19,7 @@
       <Card>
         <Row type="flex" justify="space-between" :gutter="32">
 <!--          <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：{{form.APPLY_FORM_NO}}</p>-->
-          <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+          <Col :xl="21" :xxl="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
             <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
               <!--                            <h4 class="h4-title">申请基本信息</h4>-->
               <Row :gutter="32">
@@ -274,7 +274,7 @@
               </Form-item>
             </Form>
           </Col>
-          <Col span="8">
+          <Col :xl="3" :xxl="8">
             <div class="operation">
               <div class="s-modal">
                 <h4 class="h4-title">风险提示</h4>

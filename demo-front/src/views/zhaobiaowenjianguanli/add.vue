@@ -18,12 +18,12 @@
       </div>
       <Card>
         <Row type="flex" justify="space-between" :gutter="32">
-          <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+          <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
             <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
               <h4 class="h4-title">申请基本信息</h4>
               <Row :gutter="32">
                 <Col span="24">
-                  <FormItem label="采购需求申请号" prop="name">
+                  <FormItem label="采购需求申请号">
                       送审后自动生成
                     <!-- <Input v-model="form.name" style="width: 320px"> -->
                       <!-- <Button slot="append" icon="ios-bookmarks"></Button> -->
@@ -31,28 +31,27 @@
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="采购项目" prop="name">
-                    <Input v-model="form.name" style="width: 320px">
+                  <FormItem label="采购项目">
+                    <Input style="width: 320px"  >
+                      <Button slot="append" icon="ios-bookmarks" @click="add"></Button>
+                    </Input>
+                  </FormItem>
+                </Col>
+                <Col span="12">
+                  <FormItem label="采购编号">
+                    <Input style="width: 320px"/>
+                  </FormItem>
+                </Col>
+                <Col span="12">
+                  <FormItem label="采购代理机构">
+                    <Input style="width: 320px">
                       <Button slot="append" icon="ios-bookmarks"></Button>
                     </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="采购编号" prop="name">
-                    <Input v-model="form.MOBILE" style="width: 320px"/>
-                  </FormItem>
-                </Col>
-                <Col span="12">
-                  <FormItem label="采购代理机构" prop="name">
-                    <Input v-model="form.name" style="width: 320px">
-                      <Button slot="append" icon="ios-bookmarks"></Button>
-                    </Input>
-                  </FormItem>
-                </Col>
-                <Col span="12">
-                  <FormItem label="评标方式" prop="name">
+                  <FormItem label="评标方式">
                     <Select
-                            v-model="form.type"
                             placeholder="请选择"
                     >
                         <Option :value="0">综合评标法</Option>
@@ -61,46 +60,46 @@
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="投标保证金" prop="name">
-                    <Input v-model="form.ITEM_PAY_ITEM_NAME"  placeholder="自行采购适用" style="width: 320px">
+                  <FormItem label="投标保证金">
+                    <Input  placeholder="自行采购适用" style="width: 320px">
                     </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="标书评审费" prop="name">
-                    <Input v-model="form.APPLY_AMOUNT"  placeholder="自行采购适用"  style="width: 320px"/>
+                  <FormItem label="标书评审费" >
+                    <Input  placeholder="自行采购适用"  style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="招标预算金额" prop="name">
-                    <Input v-model="form.name" style="width: 320px"/>
+                  <FormItem label="招标预算金额" >
+                    <Input style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="控制价" prop="name">
-                    <Input v-model="form.name" style="width: 320px"/>
+                  <FormItem label="控制价" >
+                    <Input style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="是否分包(标)" prop="name">
-                    <RadioGroup v-model="form.IS_LOAN">
+                  <FormItem label="是否分包(标)">
+                    <RadioGroup >
                       <Radio  :label="'0'">否</Radio>
                       <Radio  :label="'1'">是</Radio>
                     </RadioGroup>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="申请人" prop="name">
+                  <FormItem label="申请人" >
                     test11
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="申请部门" prop="name">
+                  <FormItem label="申请部门" >
                     外科病区
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="申请日期" prop="name">
+                  <FormItem label="申请日期">
                     2020-07-01
                   </FormItem>
                 </Col>
@@ -114,7 +113,7 @@
                       ref="table"
               >
               </Table> -->
-              
+
                <h4 class="h4-title">附件上传</h4>
                           <Table
                                   style="margin-bottom: 20px"
@@ -136,7 +135,7 @@
               </Form-item>
             </Form>
           </Col>
-          <Col span="8">
+          <Col :xl="3" :xxl="8" >
             <div class="operation">
               <div class="s-modal">
                 <h4 class="h4-title">风险提示</h4>
@@ -163,6 +162,29 @@
         </Row>
       </Card>
     </Card>
+
+    <Modal
+        :title="modalTitle"
+        v-model="modal1"
+        :mask-closable="false"
+        :width="800"
+        :styles="{top: '60px'}"
+        >
+      <Table
+            border
+            :columns="columns"
+            :data="datas"
+            sortable="custom"
+            ref="table"
+              >
+      </Table>
+      <div slot="footer">
+        <Button type="text" @click="modal1 = false">取消</Button>
+        <Button type="primary" :loading="submitLoading" @click="submitAdd">提交</Button>
+      </div>
+    </Modal>
+
+
   </div>
 </template>
 
@@ -174,6 +196,8 @@ export default {
   },
   data() {
     return {
+      modalTitle:"采购项目",
+      modal1: false,
       loading: false, // 表单加载状态
       submitLoading: false, // 表单提交状态
       form: {
@@ -183,7 +207,7 @@ export default {
       datas: [{
         c: 0
       }],
-      data3:  [],
+      data3: [],
       columns3: [{
           title:"附件类型",
           key:"a"
@@ -196,33 +220,37 @@ export default {
       }],
       columns: [
         {
-          title: "采购品目",
-          key: "a",
-          minWidth: 150
+          title: "项目编号",
+          key: "a"
         },
         {
-          title: "品目名称",
-          key: "b",
-          width: 150
+          title: "项目名称",
+          key: "b"
         },
         {
-            title: "名称",
-            key: "c",
-            width: 100
+            title: "项目资金",
+            key: "c"
         },
         {
-          title: "规格型号/项目名称",
-          key: "d",
-          width: 150
+          title: "上限控制价",
+          key: "d"
         },
         {
-          title: "技术参数",
+          title: "申请人",
           key: "e"
+        },
+        {
+            title: "申请部门",
+            key: "f"
+        },
+        {
+            title: "申请事由",
+            key: "g"
         }
       ],
       // 表单验证规则
       formValidate: {
-        name: [{ required: true, message: "不能为空", trigger: "blur" }]
+        // name: [{ required: true, message: "不能为空", trigger: "blur" }]
       },
       unit: ["仟", "佰", "拾", "", "仟", "佰", "拾", "", "角", "分"],
     };
@@ -231,15 +259,20 @@ export default {
     init() {
       this.handleReset();
       this.form = this.data;
-      this.datas = [{
-        a: this.form.ITEM_PAY_ITEM_NAME,
-        b: '据实列支',
-        c: this.form.APPLY_AMOUNT,
-        d: ''
-      }]
+    //   this.datas = [{
+    //     a: this.form.ITEM_PAY_ITEM_NAME,
+    //     b: '据实列支',
+    //     c: this.form.APPLY_AMOUNT,
+    //     d: ''
+    //   }]
     },
     handleReset() {
       this.$refs.form.resetFields();
+    },
+    add () {
+        console.log(this.modal1);
+        this.modal1=true;
+        console.log(this.modal1);
     },
     handleSubmit() {
       this.$refs.form.validate(valid => {

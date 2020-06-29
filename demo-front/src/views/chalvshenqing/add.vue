@@ -20,7 +20,7 @@
 
             <Card>
                 <Row type="flex" justify="space-between" :gutter="32">
-                    <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+                    <Col :xl="21" :xxl="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
                             <h4 class="h4-title">申请基本信息</h4>
                             <Row :gutter="32">
@@ -43,6 +43,7 @@
                                   <Select
                                           v-model="form.type"
                                           placeholder="请选择"
+                                          style="width: 320px"
                                   >
                                     <Option :value="0">普通外科病区</Option>
                                     <Option :value="1">呼吸科</Option>
@@ -136,15 +137,15 @@
                               </Col>
                               <Col span="12">
                                 <FormItem label="出差类型" prop="type">
-                                  <Select v-model="form.type2" >
+                                  <Select v-model="form.type2" style="width: 320px">
                                     <Option value="1">考察调研</Option>
                                   </Select>
                                 </FormItem>
                               </Col>
                               <Col span="12">
                                <FormItem label="出差起止地点" prop="type">
-                                  <al-selector v-model="resArr" :level="1" />
-                                </FormItem>                               
+                                  <al-selector v-model="resArr" :level="1" class="area-select" style="width: 320px"/>
+                                </FormItem>
                               </Col>
                               <Col span="24">
                                 <FormItem label="预算指标" prop="name">
@@ -158,7 +159,7 @@
                                   <Input v-model="form.name" style="width: 320px"/>
                                 </FormItem>
                               </Col>
-                              
+
                               <Col span="12">
                                 <FormItem label="拟参与人数" prop="name">
                                   <Input v-model="form.name" style="width: 320px"/>
@@ -187,7 +188,7 @@
                                 </FormItem>
                               </Col>
                             </Row>
-                          
+
                             <Form-item class="br">
                                 <Button
                                         @click="handleSubmit"
@@ -200,7 +201,7 @@
                             </Form-item>
                         </Form>
                     </Col>
-                    <Col span="8">
+                    <Col :xl="3" :xxl="8">
                         <div class="operation">
                           <div class="s-modal">
                             <h4 class="h4-title">风险提示</h4>
