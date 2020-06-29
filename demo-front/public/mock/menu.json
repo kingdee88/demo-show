@@ -360,7 +360,7 @@
             "type": 0,
             "title": "指标调整申请",
             "path": "apply-i-manage",
-            "component": "budget/i-manage/apply-i-manage",
+            "component": "zhibiaotiaozhengshenqing/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
