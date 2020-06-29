@@ -96,12 +96,18 @@
                 ></Page>
             </Row>
         </Card>
+           <addEdit
+                :data="form"
+                :type="showType"
+                v-model="showUser"
+                @on-submit="getUserList"
+        />
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-    import add from "./add.vue";
+    import addEdit from "./addEdit.vue";
     import edit from "./edit.vue";
     import audit from "./audit";
     import change from "./change";
@@ -109,7 +115,7 @@
     export default {
         name: "xiangmushenbaojihua",
         components: {
-            add,
+            addEdit,
             edit,
             audit,
             change,
@@ -117,6 +123,9 @@
         },
         data() {
             return {
+                showUser: false,
+                showType: "0",
+                form: {},
                 openTip: false, // 显示提示
                 openSearch: true,
                 drop: false,
@@ -296,8 +305,9 @@
 
                 });
             },
-            add() {
-                this.currView = "add";
+             add() {
+                this.showType = "2";
+                this.showUser = true;
             },
             audit() {
                 this.currView = "audit";
