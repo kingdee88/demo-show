@@ -5,9 +5,10 @@
     <div class="search">
         <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
         <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
-        <!-- <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/> -->
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
         <audit v-if="currView=='batchadd'" @close="currView='index'" @submited="submited"/>
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
+        <hbbx v-if="currView=='hbbx'" @close="currView='index'" @submited="submited"></hbbx>
         <Card v-show="currView=='index'">
             <Row class="operation">
                 <Button @click="add" type="primary" icon="md-add">我要报销</Button>
@@ -211,6 +212,8 @@
     import axios from 'axios';
     import add from "./add.vue";
     import edit from "./edit.vue";
+    import detail from "./detail.vue";
+    import hbbx from "./hbbx";
     // import audit from "./audit";
     import change from "./change";
     import batchadd from "./batchadd";
@@ -221,8 +224,10 @@
             add,
             edit,
             // audit,
+            detail,
             change,
-            batchadd
+            batchadd,
+            hbbx
         },
         data() {
             return {
@@ -233,7 +238,7 @@
                 dropDownIcon: "ios-arrow-down",
                 formData: {},
                 currView: "index",
-                loading: true, // 表单加载状态
+                loading: false, // 表单加载状态
                 searchForm: {
                     // 搜索框对应data对象
                     pageNumber: 1, // 当前页数
@@ -243,9 +248,180 @@
                 },
                 selectList: [], // 多选数据
                 selectCount: 0, // 多选计数
-                columns: [],
+                columns: [
+                    {
+                        title: '报销单号',
+                        key: 'a',
+                        minWidth: 160,
+                        fixed: 'left',
+                        render: (h, params) => {
+                            return h(
+                                "a",
+                                {
+                                    on: {
+                                        click: () => {
+                                            this.showDetail(params.row);
+                                        }
+                                    }
+                                },
+                                params.row['a']
+                            );
+                        }
+                    },
+                    {
+                        title: '预算指标',
+                        key: 'b',
+                        minWidth: 100
+                    },
+                    {
+                        title: '指标来源',
+                        key: 'c',
+                        minWidth: 100
+                    },
+                    {
+                        title: '支出事项',
+                        key: 'd',
+                        minWidth: 100
+                    },
+                    {
+                        title: '申请日期',
+                        key: 'e',
+                        minWidth: 120
+                    },
+                    {
+                        title: '事由摘要',
+                        key: 'f',
+                        minWidth: 120
+                    },
+                    {
+                        title: '报销金额',
+                        key: 'g',
+                        minWidth: 120
+                    },
+                    {
+                        title: '实报金额',
+                        key: 'h',
+                        minWidth: 120
+                    },
+                    {
+                        title: '报销部门',
+                        key: 'i',
+                        minWidth: 120
+                    },
+                    {
+                        title: '报销申请人',
+                        key: 'j',
+                        minWidth: 120
+                    },
+                    {
+                        title: '审核状态',
+                        key: 'k',
+                        minWidth: 140
+                    },
+                    {
+                        title: '财务处理状态',
+                        key: 'l',
+                        minWidth: 140
+                    },
+                    {
+                        title: '当前操作环节',
+                        key: 'm',
+                        minWidth: 130
+                    },
+                    {
+                        title: '当前操作人',
+                        key: 'n',
+                        minWidth: 120
+                    },
+                    {
+                        title: '报销类型',
+                        key: 'o',
+                        minWidth: 120
+                    },
+                    {
+                        title: '结算方式',
+                        key: 'p',
+                        minWidth: 120
+                    },
+                    {
+                        title: '经办人',
+                        key: 'q',
+                        minWidth: 120
+                    },
+                    {
+                        title: '关联事前申请',
+                        key: 'r',
+                        minWidth: 130
+                    },
+                    {
+                        title: "操作",
+                        key: "action",
+                        align: "center",
+                        fixed: 'right',
+                        width: 200,
+                        render: (h, params) => {
+                            return h("div", [
+                                h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "primary",
+                                            size: "small",
+                                            icon: "ios-create-outline"
+                                        },
+                                        style: {
+                                            marginRight: "5px"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.edit(params.row);
+                                            }
+                                        }
+                                    },
+                                    "编辑"
+                                ),
+                                h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "error",
+                                            size: "small",
+                                            icon: "md-trash"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.remove(params.row);
+                                            }
+                                        }
+                                    },
+                                    "删除"
+                                )
+                            ]);
+                        }
+                    }
+                ],
                 historyData: [],
-                data: [], // 表单数据
+                data: [
+                    {
+                        a: '送审之后生成单号',
+                        b: '离休费',
+                        c: '上年结转',
+                        e: '离休费',
+                        f: '2020-06-01',
+                        h: '',
+                        i: '0',
+                        j: '-',
+                        k: '普通外科病区',
+                        l: 'test11',
+                        m: '草稿',
+                        n: '',
+                        o: '',
+                        p: '',
+                        s: 8846,
+                        t: 0,
+                        u: '网银转账'
+                    }
+                ], // 表单数据
                 total: 0 // 表单数据总数
             };
         },
@@ -314,14 +490,14 @@
                 this.selectCount = e.length;
             },
             getDataList() {
-                this.loading = true;
+                // this.loading = true;
 
-                axios.get('/mock/data.json').then(res => {
+                /*axios.get('/mock/data.json').then(res => {
                     this.columns = res.headers.map(res => {
                         return {
                             title: res,
                             key: res,
-                            minWidth: 200
+                            minWidth: 120
                         }
                     });
                     this.columns.unshift({
@@ -403,7 +579,7 @@
                     this.loading = false;
 
 
-                });
+                });*/
             },
             add() {
                 this.currView = "add";
@@ -414,16 +590,19 @@
             change() {
                 this.currView = "change";
             },
+            batchadd () {
+                this.currView = "hbbx";
+            },
             edit(v) {
                 // 转换null为""
-                // for (let attr in v) {
-                //     if (v[attr] == null) {
-                //         v[attr] = "";
-                //     }
-                // }
-                // let str = JSON.stringify(v);
-                // let data = JSON.parse(str);
-                // this.formData = data;
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
                 this.currView = "edit";
             },
             showDetail(v) {

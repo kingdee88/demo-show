@@ -17,39 +17,34 @@
                     </a>
                 </div>
             </div>
-
-            <Card>
+            <Card class="detail-app">
                 <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}} 经办人：test11 申请日期：{{form.TIME_CREATE}}
-                    报销单编号：送审后自动生成</p>
+                    申请单号：{{form.APPLY_FORM_NO}}</p>
                 <Row type="flex" justify="space-between" :gutter="32">
                     <Col :xl="21" :xxl="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
-                        <Form ref="form" :model="form" :label-width="135" :rules="formValidate">
+                        <Form ref="form" :model="form" :label-width="130" :rules="formValidate">
                             <h4 class="h4-title">报销基本信息</h4>
                             <Row :gutter="32">
-                                <Col span="24">
-                                    <FormItem label="关联事先申请">
-                                        <Input style="width: 320px">
-                                            <Button slot="append" icon="ios-bookmarks"></Button>
-                                        </Input>
+                                <Col span="12">
+                                    <FormItem label="关联事先申请:">
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
-                                    <FormItem label="报销申请人">
-                                        <Input style="width: 320px" v-model="form.l">
-                                            <Button slot="append" icon="ios-bookmarks"></Button>
-                                        </Input>
+                                    <FormItem label="关联行政申请:">
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
-                                    <FormItem label="报销部门">
-                                        <Input style="width: 320px" v-model="form.k" readonly>
-                                        </Input>
+                                    <FormItem label="报销申请人:">
+                                        test11
+                                    </FormItem>
+                                </Col>
+                                <Col span="12">
+                                    <FormItem label="报销部门:">
+                                        {{form.k}}
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
-                                    <FormItem label="申请人电话">
-                                        <Input style="width: 320px">
-                                        </Input>
+                                    <FormItem label="申请人电话:">
                                     </FormItem>
                                 </Col>
                             </Row>
@@ -73,56 +68,41 @@
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
-                                    <FormItem label="待还借款金额" prop="name">
-                                        <Input style="width: 320px" v-model="form.s" readonly/>
+                                    <FormItem label="代还借款金额:">
+                                    8466
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
-                                    <FormItem label="是否冲抵借款">
-                                        <Select
-                                                v-model="form.t"
-                                                placeholder="请选择"
-                                        >
-                                            <Option :value="0">冲抵借款</Option>
-                                            <Option :value="1">本次报销不涉及借款</Option>
-                                        </Select>
+                                    <FormItem label="是否冲抵借款:">
+                                        冲抵借款
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
-                                    <FormItem label="结算方式" prop="name">
-                                        <CheckboxGroup v-model="form.u">
-                                            <Checkbox label="现金"></Checkbox>
-                                            <Checkbox label="网银转账"></Checkbox>
-                                            <Checkbox label="支票"></Checkbox>
-                                            <Checkbox label="公务卡"></Checkbox>
-                                            <Checkbox label="往来"></Checkbox>
+                                    <FormItem label="结算方式:" prop="name">
+                                        <CheckboxGroup v-model="ttt">
+                                            <Checkbox label="现金" readonly></Checkbox>
+                                            <Checkbox label="网银转账" readonly></Checkbox>
+                                            <Checkbox label="支票" readonly></Checkbox>
+                                            <Checkbox label="公务卡" readonly></Checkbox>
+                                            <Checkbox label="往来" readonly></Checkbox>
                                         </CheckboxGroup>
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
-                                    <FormItem label="是否录入发票信息" prop="name">
-                                        <RadioGroup>
-                                            <Radio label="否"></Radio>
-                                            <Radio label="是"></Radio>
-                                        </RadioGroup>
+                                    <FormItem label="是否录入发票信息:" prop="name">
+                                        否
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
-                                    <FormItem label="发票及附件数" prop="name">
-                                        <Input style="width: 320px"/>
+                                    <FormItem label="发票及附件数:" prop="name">
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
-                                    <FormItem label="事由摘要" prop="name">
-                                        <Input style="width: 320px"/>
+                                    <FormItem label="事由摘要:" prop="name">
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
-                                    <FormItem label="事由说明" prop="name">
-                                        <Input
-                                                type="textarea"
-                                                :rows="4"
-                                        />
+                                    <FormItem label="事由说明:" prop="name">
                                     </FormItem>
                                 </Col>
                             </Row>
@@ -132,7 +112,7 @@
                                     <Table
                                             border
                                             :columns="columns"
-                                            :data="data1"
+                                            :data="data"
                                             sortable="custom"
                                             ref="table"
                                     ></Table>
@@ -211,69 +191,58 @@
 
 <script>
     export default {
-        name: "add",
+        name: "edit",
         props: {
             data: Object
         },
         data() {
             return {
+                ttt: '网银转账',
+                loading: false, // 表单加载状态
                 submitLoading: false, // 表单提交状态
-                form: {},
-                // 表单验证规则
-                formValidate: {
-                    name: [{required: true, message: "不能为空", trigger: "blur"}]
+                form: {
+                    id: "",
+                    name: ""
                 },
-                data4: [],
-                data5: [],
-                columns4: [
+                datas: [{
+                    c: 0
+                }],
+                columns: [
                     {
-                        title: "收款方",
-                        key: "a"
+                        title: "费用明细",
+                        key: "a",
+                        minWidth: 150
                     },
                     {
-                        title: "开户银行网点名称",
+                        title: "开支标准",
                         key: "b",
-                        width: 160
+                        width: 150
                     },
                     {
-                        title: "银行账户",
-                        key: "c"
+                        title: "申请金额(元)",
+                        key: "c",
+                        width: 150
                     },
                     {
-                        title: "支付系统银行行号",
-                        key: "d",
-                        width: 160
-                    },
-                    {
-                        title: "应付金额(元)",
-                        key: "e"
-                    },
-                    {
-                        title: "结算方式",
-                        key: "f"
-                    },
-                    {
-                        title: "操作",
-                        key: "g"
+                        title: "备注",
+                        key: "d"
                     }
                 ],
-                columns5: [{
-                    title: "附件类型",
-                    key: "a"
-                }, {
-                    title: "文件名",
-                    key: "b"
-                }, {
-                    title: "操作",
-                    key: "c"
-                }],
+                // 表单验证规则
+                formValidate: {},
+                unit: ["仟", "佰", "拾", "", "仟", "佰", "拾", "", "角", "分"],
             };
         },
         methods: {
             init() {
-                this.form = Object.assign(this.data, {TIME_CREATE: "2020-07-01",
-                    APPLY_DEPT_NAME: "外科病区"});
-                console.log(this.data);
+                this.handleReset();
+                this.form = this.data;
+                this.datas = [{
+                    a: this.form.ITEM_PAY_ITEM_NAME,
+                    b: '据实列支',
+                    c: this.form.APPLY_AMOUNT,
+                    d: ''
+                }]
             },
             handleReset() {
                 this.$refs.form.resetFields();
@@ -284,13 +253,13 @@
                         // this.postRequest("请求路径", this.form).then(res => {
                         //   this.submitLoading = false;
                         //   if (res.success) {
-                        //     this.$Message.success("添加成功");
+                        //     this.$Message.success("编辑成功");
                         //     this.submited();
                         //   }
                         // });
                         // 模拟成功
                         this.submitLoading = false;
-                        this.$Message.success("添加成功");
+                        this.$Message.success("编辑成功");
                         this.submited();
                     }
                 });
@@ -300,7 +269,57 @@
             },
             submited() {
                 this.$emit("submited", true);
+            },
+            toDx(n) {   //阿拉伯数字转换函数
+                switch (n) {
+                    case "0":
+                        return "零";
+                    case "1":
+                        return "壹";
+                    case "2":
+                        return "贰";
+                    case "3":
+                        return "叁";
+                    case "4":
+                        return "肆";
+                    case "5":
+                        return "伍";
+                    case "6":
+                        return "陆";
+                    case "7":
+                        return "柒";
+                    case "8":
+                        return "捌";
+                    case "9":
+                        return "玖";
+                }
+            },
+            NumberToChinese(m) {
+                m *= 100;
+                m += "";
+                var length = m.length;
+
+                var result = "";
+                for (var i = 0; i < length; i++) {
+                    if (i == 2) {
+                        result = "元" + result;
+                    } else if (i == 6) {
+                        result = "万" + result;
+                    }
+                    if (m.charAt(length - i - 1) == 0) {
+                        if (i != 0 && i != 1) {
+                            if (result.charAt(0) != '零' && result.charAt(0) != '元' && result.charAt(0) != '万') {
+                                result = "零" + result;
+                            }
+                        }
+                        continue;
+                    }
+                    result = this.toDx(m.charAt(length - i - 1)) + this.unit[this.unit.length - i - 1] + result;
+                }
+                result += result.charAt(result.length - 1) == '元' ? "整" : "";
+                return result;
             }
+
         },
         mounted() {
             this.init();
