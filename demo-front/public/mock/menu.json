@@ -2552,7 +2552,7 @@
           "type": 0,
           "title": "采购台账",
           "path": "purchase-account-index",
-          "component": "purchasing/purchase-account/purchase-account-index",
+          "component": "caigoutaizhang/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
