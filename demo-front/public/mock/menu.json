@@ -2121,7 +2121,7 @@
         "type": 0,
         "title": "合同责任部门/人员变更",
         "path": "contract-department",
-        "component": "contract/change-cancellation/contract-department",
+        "component": "hetongzerenbumenrenyuanbiangeng/list",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",
