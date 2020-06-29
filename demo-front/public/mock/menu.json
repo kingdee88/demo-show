@@ -2106,7 +2106,7 @@
         "type": 0,
         "title": "合同阶段补充/变更",
         "path": "contract-supplement",
-        "component": "contract/change-cancellation/contract-supplement",
+        "component": "hetongjieduanbuchongbiangeng/list",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",
