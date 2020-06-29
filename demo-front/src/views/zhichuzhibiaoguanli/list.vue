@@ -5,17 +5,17 @@
     <div class="search">
         <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
         <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
-        <!-- <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/> -->
-        <!-- <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/> -->
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">因公出国申请</Button>
-                <Button type="primary" icon="ios-checkbox-outline">因公出国申请审核</Button>
-                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
-                <!-- <Button @click="delAll" icon="md-trash">批量删除</Button> -->
-                <!-- <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button> -->
-                <!-- <Button icon="md-cloud-upload">导入</Button> -->
+                <Button @click="add" type="primary" icon="md-add">新增</Button>
+                <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>
+                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>-->
+                <Button @click="delAll" icon="md-trash">批量删除</Button>
+                <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button>
+                <Button icon="md-cloud-upload">导入</Button>
                 <Button @click="getDataList" icon="md-refresh">刷新</Button>
                 <!--                <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
             </Row>
@@ -194,17 +194,17 @@
     import axios from 'axios';
     import add from "./add.vue";
     import edit from "./edit.vue";
-    // import audit from "./audit";
+    import audit from "./audit";
     import change from "./change";
-    // import detail from "./detail";
+    import detail from "./detail";
     export default {
         name: "xiangmushenbaojihua",
         components: {
             add,
             edit,
-            // audit,
-            change
-            // detail
+            audit,
+            change,
+            detail
         },
         data() {
             return {

@@ -10,8 +10,8 @@
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">因公出国申请</Button>
-                <Button type="primary" icon="ios-checkbox-outline">因公出国申请审核</Button>
+                <Button @click="add" type="primary" icon="md-add">公务用车运行维护申请</Button>
+                <Button type="primary" icon="ios-checkbox-outline">公务用车运行维护申请审核</Button>
                 <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
                 <!-- <Button @click="delAll" icon="md-trash">批量删除</Button> -->
                 <!-- <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button> -->

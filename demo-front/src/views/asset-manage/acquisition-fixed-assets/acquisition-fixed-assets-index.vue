@@ -1,21 +1,21 @@
 <style lang="less">
-    @import "../../styles/table-common.less";
+    @import "../../../styles/table-common.less";
 </style>
 <template>
     <div class="search">
         <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
-        <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
-        <!-- <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/> -->
-        <!-- <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/> -->
-        <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
+<!--        <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>-->
+<!--        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>-->
+<!--        <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>-->
+<!--        <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>-->
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">因公出国申请</Button>
-                <Button type="primary" icon="ios-checkbox-outline">因公出国申请审核</Button>
-                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
-                <!-- <Button @click="delAll" icon="md-trash">批量删除</Button> -->
-                <!-- <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button> -->
-                <!-- <Button icon="md-cloud-upload">导入</Button> -->
+                <Button @click="add" type="primary" icon="md-add">新增</Button>
+                <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>
+                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>-->
+                <Button @click="delAll" icon="md-trash">批量删除</Button>
+                <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button>
+                <Button icon="md-cloud-upload">导入</Button>
                 <Button @click="getDataList" icon="md-refresh">刷新</Button>
                 <!--                <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
             </Row>
@@ -26,137 +26,25 @@
                     <a class="select-clear" @click="clearSelectAll">清空</a>
                 </Alert>
             </Row>
-            <Row
-                    v-show="openSearch"
-                    @keydown.enter.native="handleSearch"
-            >
+            <Row v-show="openSearch" @keydown.enter.native="handleSearch">
 
-                <Form
-                        ref="searchForm"
-                        :model="searchForm"
-                        inline
-                        :label-width="70"
-                >
-                    <Form-item
-                            label="申请单号"
-                            prop="nickname"
-                    >
-                        <Input
-                                type="text"
-                                v-model="searchForm.nickname"
-                                clearable
-                                placeholder="请输入用户名"
-                                style="width: 200px"
-                        />
+                <Form ref="searchForm" :model="searchForm" inline :label-width="70">
+                    <Form-item label="预算年份" prop="year">
+                        <Select v-model="searchForm.year" placeholder="预算年份" clearable style="width: 200px">
+                              <Option value="">-请选择-</Option>
+                              <Option value="2014">2014</Option>
+                              <Option value="2015">2015</Option>
+                              <Option value="2016">2016</Option>
+                              <Option value="2017">2017</Option>
+                              <Option value="2018">2018</Option>
+                              <Option value="2019">2019</Option>
+                              <Option value="2020">2020</Option>
+                              <Option value="2021">2021</Option>
+                        </Select>
                     </Form-item>
-
-                    <Form-item
-                            label="预算指标"
-                            prop="mobile"
-                    >
-                        <Input
-                                type="text"
-                                v-model="searchForm.mobile"
-                                clearable
-                                placeholder=""
-                                style="width: 200px"
-                        />
-                    </Form-item>
-                    <Form-item
-                            label="支出事项"
-                            prop="email"
-                    >
-                        <Input
-                                type="text"
-                                v-model="searchForm.email"
-                                clearable
-                                placeholder=""
-                                style="width: 200px"
-                        />
-                    </Form-item>
-                    <span v-if="drop">
-            <Form-item
-                    label="事由摘要"
-                    prop="username"
-            >
-              <Input
-                      type="text"
-                      v-model="searchForm.username"
-                      clearable
-                      placeholder=""
-                      style="width: 200px"
-              />
-            </Form-item>
-           <Form-item
-                   label="申请类型"
-                   prop="sex"
-           >
-              <Select
-                      v-model="searchForm.sex"
-                      placeholder="申请类型"
-                      clearable
-                      style="width: 200px"
-              >
-                  <Option value="">-请选择-</Option>
-                      <Option value="1">一般经费</Option>
-                      <Option value="2">差旅费</Option>
-                      <Option value="3">国内接待费</Option>
-                      <Option value="4">会议费</Option>
-                      <Option value="5">培训费</Option>
-                      <Option value="6">出国费</Option>
-                      <Option value="10">劳务费</Option>
-                      <Option value="13">外宾接待费</Option>
-              </Select>
-            </Form-item>
-                         <Form-item
-                                 label="申请人"
-                                 prop="username"
-                         >
-              <Input
-                      type="text"
-                      v-model="searchForm.username"
-                      clearable
-                      placeholder=""
-                      style="width: 200px"
-              />
-            </Form-item>
-                              <Form-item
-                                      label="审核状态"
-                                      prop="sex"
-                              >
-              <Select
-                      v-model="searchForm.sex"
-                      placeholder="审核状态"
-                      clearable
-                      style="width: 200px"
-              >
-                  <Option value="">-请选择-</Option>
-                      <Option value="0">草稿</Option>
-                      <Option value="1">待审批</Option>
-                      <Option value="2">已审批</Option>
-                      <Option value="3">已驳回</Option>
-                      <Option value="4">已终止</Option>
-              </Select>
-            </Form-item>
-                        </span>
-                    <Form-item
-                            style="margin-left:-35px;"
-                            class="br"
-                    >
-                        <Button
-                                @click="handleSearch"
-                                type="primary"
-                                icon="ios-search"
-                        >搜索
-                        </Button>
+                    <Form-item style="margin-left:-35px;" class="br">
+                        <Button @click="handleSearch" type="primary" icon="ios-search">搜索</Button>
                         <Button @click="handleReset">重置</Button>
-                        <a
-                                class="drop-down"
-                                @click="dropDown"
-                        >
-                            {{dropDownContent}}
-                            <Icon :type="dropDownIcon"></Icon>
-                        </a>
                     </Form-item>
                 </Form>
             </Row>
@@ -193,18 +81,18 @@
 <script>
     import axios from 'axios';
     import add from "./add.vue";
-    import edit from "./edit.vue";
+    // import edit from "./edit.vue";
     // import audit from "./audit";
-    import change from "./change";
+    // import change from "./change";
     // import detail from "./detail";
     export default {
-        name: "xiangmushenbaojihua",
+        name: "gudingzichan",
         components: {
             add,
-            edit,
-            // audit,
-            change
-            // detail
+        //     edit,
+        //     audit,
+        //     change,
+        //     detail
         },
         data() {
             return {
@@ -298,7 +186,7 @@
             getDataList() {
                 this.loading = true;
 
-                axios.get('/mock/data.json').then(res => {
+                axios.get('/mock/gudingzichan.json').then(res => {
                     this.columns = res.headers.map(res => {
                         return {
                             title: res,
@@ -369,7 +257,7 @@
                                             }
                                         }
                                     },
-                                    params.row['项目编码']
+                                    params.row['资产编号']
                                 );
                             }
                         }
