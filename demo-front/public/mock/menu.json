@@ -271,7 +271,7 @@
             "type": 0,
             "title": "支出预算编制",
             "path": "expenditure-budgeting",
-            "component": "budget/department-budgeting/expenditure-budgeting",
+            "component": "budget/3/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
