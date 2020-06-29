@@ -2583,7 +2583,7 @@
           "type": 0,
           "title": "供应商登记",
           "path": "supplier-registration-index",
-          "component": "purchasing/supplier-registration/supplier-registration-index",
+          "component": "gongyingshangdengji/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
