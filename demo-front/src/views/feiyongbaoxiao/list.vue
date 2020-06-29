@@ -416,14 +416,14 @@
             },
             edit(v) {
                 // 转换null为""
-                for (let attr in v) {
-                    if (v[attr] == null) {
-                        v[attr] = "";
-                    }
-                }
-                let str = JSON.stringify(v);
-                let data = JSON.parse(str);
-                this.formData = data;
+                // for (let attr in v) {
+                //     if (v[attr] == null) {
+                //         v[attr] = "";
+                //     }
+                // }
+                // let str = JSON.stringify(v);
+                // let data = JSON.parse(str);
+                // this.formData = data;
                 this.currView = "edit";
             },
             showDetail(v) {
