@@ -5,18 +5,17 @@
     <div class="search">
         <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
         <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
-        <!-- <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/> -->
-        <audit v-if="currView=='batchadd'" @close="currView='index'" @submited="submited"/>
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">我要报销</Button>
-                <Button @click="batchadd" type="primary" icon="ios-checkbox-outline">我要合并报销</Button>
-                <Button @click="change" type="primary" icon="ios-list-box-outline">涉密报销</Button>
-                <Button @click="edit" type="primary" icon="ios-list-box-outline">我要借款</Button>
-                <!-- <Button @click="delAll" icon="md-trash">批量删除</Button> -->
-                <!-- <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button> -->
-                <!-- <Button icon="md-cloud-upload">导入</Button> -->
+                <Button @click="add" type="primary" icon="md-add">新增</Button>
+                <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>-->
+                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
+                <Button @click="delAll" icon="md-trash">批量删除</Button>
+                <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button>
+                <Button icon="md-cloud-upload">导入</Button>
                 <Button @click="getDataList" icon="md-refresh">刷新</Button>
                 <!--                <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
             </Row>
@@ -162,32 +161,16 @@
                 </Form>
             </Row>
             <Row>
-                <Tabs type="card">
-                    <TabPane label="报销申请">
-                        <Table
-                                :loading="loading"
-                                border
-                                :columns="columns"
-                                :data="data"
-                                ref="table"
-                                sortable="custom"
-                                @on-sort-change="changeSort"
-                                @on-selection-change="changeSelect"
-                        ></Table>
-                    </TabPane>
-                    <TabPane label="借款申请">
-                        <Table
-                                :loading="loading"
-                                border
-                                :columns="columns"
-                                :data="data"
-                                ref="table"
-                                sortable="custom"
-                                @on-sort-change="changeSort"
-                                @on-selection-change="changeSelect"
-                        ></Table>
-                    </TabPane>
-                </Tabs>
+                <Table
+                        :loading="loading"
+                        border
+                        :columns="columns"
+                        :data="data"
+                        ref="table"
+                        sortable="custom"
+                        @on-sort-change="changeSort"
+                        @on-selection-change="changeSelect"
+                ></Table>
             </Row>
             <Row type="flex" justify="end" class="page">
                 <Page
@@ -211,18 +194,17 @@
     import axios from 'axios';
     import add from "./add.vue";
     import edit from "./edit.vue";
-    // import audit from "./audit";
+    import audit from "./audit";
     import change from "./change";
-    import batchadd from "./batchadd";
-
+    import detail from "./detail";
     export default {
         name: "xiangmushenbaojihua",
         components: {
             add,
             edit,
-            // audit,
+            audit,
             change,
-            batchadd
+            detail
         },
         data() {
             return {
@@ -253,10 +235,10 @@
             init() {
                 this.getDataList();
             },
-            handleSelectDep(v) {
+            handleSelectDep (v) {
                 this.searchForm.departmentId = v;
             },
-            dropDown() {
+            dropDown () {
                 if (this.drop) {
                     this.dropDownContent = "展开查询";
                     this.dropDownIcon = "ios-arrow-down";
@@ -266,12 +248,12 @@
                 }
                 this.drop = !this.drop;
             },
-            handleSearch() {
+            handleSearch () {
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
                 // this.getUserList();
             },
-            handleReset() {
+            handleReset () {
                 this.$refs.searchForm.resetFields();
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
@@ -288,15 +270,15 @@
             changePage(v) {
                 this.searchForm.pageNumber = v;
                 this.clearSelectAll();
-                let _start = (v - 1) * this.searchForm.pageSize;
+                let _start = ( v- 1 ) * this.searchForm.pageSize;
                 let _end = v * this.searchForm.pageSize;
-                this.data = this.historyData.slice(_start, _end);
+                this.data = this.historyData.slice(_start,_end);
             },
             changePageSize(v) {
                 this.searchForm.pageSize = v;
-                let _start = (this.searchForm.pageNumber - 1) * v;
+                let _start = ( this.searchForm.pageNumber - 1 ) * v;
                 let _end = this.searchForm.pageNumber * v;
-                this.data = this.historyData.slice(_start, _end);
+                this.data = this.historyData.slice(_start,_end);
             },
             changeSort(e) {
                 this.searchForm.sort = e.key;
@@ -321,7 +303,7 @@
                         return {
                             title: res,
                             key: res,
-                            minWidth: 200
+                            minWidth:200
                         }
                     });
                     this.columns.unshift({
@@ -330,7 +312,7 @@
                         align: "center",
                         fixed: "left"
                     });
-                    this.columns.push({
+                    this.columns.push( {
                         title: "操作",
                         key: "action",
                         align: "center",
@@ -394,10 +376,10 @@
                     );
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-                    if (this.historyData.length < this.searchForm.pageSize) {
+                    if(this.historyData.length < this.searchForm.pageSize){
                         this.data = this.historyData;
-                    } else {
-                        this.data = this.historyData.slice(0, this.searchForm.pageSize);
+                    }else{
+                        this.data = this.historyData.slice(0,this.searchForm.pageSize);
                     }
                     this.total = this.historyData.length;
                     this.loading = false;
@@ -411,19 +393,19 @@
             audit() {
                 this.currView = "audit";
             },
-            change() {
+            change () {
                 this.currView = "change";
             },
             edit(v) {
                 // 转换null为""
-                // for (let attr in v) {
-                //     if (v[attr] == null) {
-                //         v[attr] = "";
-                //     }
-                // }
-                // let str = JSON.stringify(v);
-                // let data = JSON.parse(str);
-                // this.formData = data;
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
                 this.currView = "edit";
             },
             showDetail(v) {
@@ -460,7 +442,7 @@
                     }
                 });
             },
-            handleDropdown(name) {
+            handleDropdown (name) {
                 if (name == "refresh") {
                     this.getUserList();
                 } else if (name == "reset") {
@@ -496,7 +478,7 @@
                     loading: true,
                     onOk: () => {
                         let ids = "";
-                        this.selectList.forEach(function (e) {
+                        this.selectList.forEach(function(e) {
                             ids += e.id + ",";
                         });
                         ids = ids.substring(0, ids.length - 1);
