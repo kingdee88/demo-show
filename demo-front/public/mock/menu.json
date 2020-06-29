@@ -2091,7 +2091,7 @@
         "type": 0,
         "title": "合同补充、变更与解除",
         "path": "change-contract",
-        "component": "contract/change-cancellation/change-contract",
+        "component": "hetongbuchongbiangengyujiechu/list",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",
