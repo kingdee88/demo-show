@@ -1594,7 +1594,7 @@
           "type": 0,
           "title": "固定资产维保申请",
           "path": "fixed-assets-maintenance-application",
-          "component": "asset-manage/maintenance-manage/fixed-assets-maintenance-application",
+          "component": "gudingzichanweibaoshenqing/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
