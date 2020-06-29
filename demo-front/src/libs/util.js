@@ -325,7 +325,7 @@ util.initMenuData = function (vm, data) {
     let currNav = window.localStorage.getItem('currNav')
     if (currNav) {
         // 读取缓存title
-        for (var item of navList) {
+        for (let item of navList) {
             if (item.name == currNav) {
                 vm.$store.commit('setCurrNavTitle', item.title);
                 break;
@@ -337,7 +337,7 @@ util.initMenuData = function (vm, data) {
         vm.$store.commit('setCurrNavTitle', navList[0].title);
     }
     vm.$store.commit('setCurrNav', currNav);
-    for (var item of menuData) {
+    for (let item of menuData) {
         if (item.name == currNav) {
             // 过滤
             menuData = item.children;
@@ -362,7 +362,7 @@ util.initMenuData = function (vm, data) {
 // 生成路由节点
 util.initRouterNode = function (routers, data) {
 
-    for (var item of data) {
+    for (let item of data) {
         let menu = Object.assign({}, item);
         // menu.component = import(`@/views/${menu.component}.vue`);
         menu.component = lazyLoading(menu.component);
@@ -381,6 +381,32 @@ util.initRouterNode = function (routers, data) {
 
         routers.push(menu);
     }
+};
+
+// 生成树
+util.arrayToTree = function(nodes, config) {
+    let id = config && config.id || 'id';
+    let pid = config && config.pid || 'parentId';
+    let children = config && config.children || 'children';;
+    let idMap = {};
+    let jsonTree = [];
+    let mockdata = nodes.map(s => {
+        return {...s, children: []}
+    });
+    mockdata.forEach(function (v) {
+        idMap[v[id]] = v
+    });
+    mockdata.forEach(function (v) {
+        let parent = idMap[v[pid]];
+        if (parent) {
+            !parent[children] && (parent[children] = []);
+            parent[children].push(v);
+        }
+        else {
+            jsonTree.push(v);
+        }
+    });
+    return jsonTree;
 };
 
 export default util;
