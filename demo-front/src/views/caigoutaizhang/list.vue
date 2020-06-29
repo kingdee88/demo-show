@@ -3,126 +3,138 @@
 </style>
 <template>
     <div class="search">
-        <Card>
-            <Row type="flex" justify="start">
-                <Col :md="6">
-                    <div show-icon>
-                        支出事项分类：
-                        <Select v-model="formData.ywfl" disabled placeholder="支出事项分类" clearable style="width: 200px">
-                            <Option value="0">业务经费</Option>
-                        </Select>
-                    </div>
-                    <div class="tree-bar" :style="{maxHeight: maxHeight}">
-                        <Tree
-                                ref="tree"
-                                :data="treeData"
-                                show-checkbox
-                        ></Tree>
-                        <Spin size="large" fix v-if="loading"></Spin>
-                    </div>
-                </Col>
-                <Col :md="18">
-                    <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
-                    <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
-                    <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
-                    <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
-                    <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
-                    <Card v-show="currView=='index'">
-                        <Row class="operation">
-                            <Button @click="add" type="primary" icon="md-add">新增</Button>
-                            <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>
-                            <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
-                            <Button @click="delAll" icon="md-trash">批量删除</Button>
-                            <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button>
-                            <Button icon="md-cloud-upload">导入</Button>-->
-                            <Button @click="getDataList" icon="md-refresh">刷新</Button>
-                            <!--                <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
-                        </Row>
-                        <Row v-show="openTip">
-                            <Alert show-icon>
-                                已选择
-                                <span class="select-count">{{selectCount}}</span> 项
-                                <a class="select-clear" @click="clearSelectAll">清空</a>
-                            </Alert>
-                        </Row>
-                        <Row
-                                v-show="openSearch"
-                                @keydown.enter.native="handleSearch"
+        <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
+        <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
+        <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
+        <Card v-show="currView=='index'">
+            <Row class="operation">
+                <Button @click="getDataList" icon="md-refresh">刷新</Button>
+            </Row>
+            <Row
+                    v-show="openSearch"
+                    @keydown.enter.native="handleSearch"
+            >
+
+                <Form
+                        ref="searchForm"
+                        :model="searchForm"
+                        inline
+                        :label-width="70"
+                >
+                    <Form-item
+                            label="项目名称"
+                            prop="nickname"
+                    >
+                        <Input
+                                type="text"
+                                v-model="searchForm.nickname"
+                                clearable
+                                style="width: 200px"
+                        />
+                    </Form-item>
+
+                    <Form-item
+                            label="项目编码"
+                            prop="mobile"
+                    >
+                        <Input
+                                type="text"
+                                v-model="searchForm.mobile"
+                                clearable
+                                style="width: 200px"
+                        />
+                    </Form-item>
+                        <Form-item
+                            label="申请人"
+                            prop="mobile"
+                    >
+                        <Input  style="width: 200px">
+                                        <Button slot="append" icon="ios-bookmarks"></Button>
+                                      </Input>
+                    </Form-item>
+                        <Form-item
+                            label="申请部门"
+                            prop="mobile"
+                    >
+                         <Input  style="width: 200px">
+                                        <Button slot="append" icon="ios-bookmarks"></Button>
+                                      </Input>
+                    </Form-item>
+                    <span v-if="drop">
+           <Form-item
+                   label="采购性质"
+                   prop="sex"
+           >
+              <Select
+                      v-model="searchForm.sex"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+              </Select>
+            </Form-item>
+             <Form-item
+                   label="采购组织形式"
+                   prop="sex"
+           >
+              <Select
+                      v-model="searchForm.sex"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+              </Select>
+            </Form-item>
+                    
+                        </span>
+                    <Form-item
+                            style="margin-left:-35px;"
+                            class="br"
+                    >
+                        <Button
+                                @click="handleSearch"
+                                type="primary"
+                                icon="ios-search"
+                        >搜索
+                        </Button>
+                        <Button @click="handleReset">重置</Button>
+                        <a
+                                class="drop-down"
+                                @click="dropDown"
                         >
-
-                            <Form
-                                    ref="searchForm"
-                                    :model="searchForm"
-                                    inline
-                                    :label-width="70"
-                            >
-                                <Form-item
-                                        label="事项编码"
-                                        prop="nickname"
-                                >
-                                    <Input
-                                            type="text"
-                                            v-model="searchForm.nickname"
-                                            clearable
-                                            placeholder="请输入用户名"
-                                            style="width: 200px"
-                                    />
-                                </Form-item>
-
-                                <Form-item
-                                        label="事项名称"
-                                        prop="mobile"
-                                >
-                                    <Input
-                                            type="text"
-                                            v-model="searchForm.mobile"
-                                            clearable
-                                            placeholder=""
-                                            style="width: 200px"
-                                    />
-                                </Form-item>
-                                <Form-item
-                                        style="margin-left:-35px;"
-                                        class="br"
-                                >
-                                    <Button
-                                            @click="handleSearch"
-                                            type="primary"
-                                            icon="ios-search"
-                                    >搜索
-                                    </Button>
-                                    <Button @click="handleReset">重置</Button>
-                                </Form-item>
-                            </Form>
-                        </Row>
-                        <Row>
-                            <Table
-                                    :loading="loading"
-                                    border
-                                    :columns="columns"
-                                    :data="data"
-                                    ref="table"
-                                    sortable="custom"
-                                    @on-sort-change="changeSort"
-                                    @on-selection-change="changeSelect"
-                            ></Table>
-                        </Row>
-                        <Row type="flex" justify="end" class="page">
-                            <Page
-                                    :current="searchForm.pageNumber"
-                                    :total="total"
-                                    :page-size="searchForm.pageSize"
-                                    @on-change="changePage"
-                                    @on-page-size-change="changePageSize"
-                                    :page-size-opts="[10,20,50]"
-                                    size="small"
-                                    show-total
-                                    show-elevator
-                                    show-sizer
-                            ></Page>
-                        </Row>
-                    </Card>
-                </Col>
+                            {{dropDownContent}}
+                            <Icon :type="dropDownIcon"></Icon>
+                        </a>
+                    </Form-item>
+                </Form>
+            </Row>
+            <Row>
+                <Table
+                        :loading="loading"
+                        border
+                        :columns="columns"
+                        :data="data"
+                        ref="table"
+                        sortable="custom"
+                        @on-sort-change="changeSort"
+                        @on-selection-change="changeSelect"
+                ></Table>
+            </Row>
+            <Row type="flex" justify="end" class="page">
+                <Page
+                        :current="searchForm.pageNumber"
+                        :total="total"
+                        :page-size="searchForm.pageSize"
+                        @on-change="changePage"
+                        @on-page-size-change="changePageSize"
+                        :page-size-opts="[10,20,50]"
+                        size="small"
+                        show-total
+                        show-elevator
+                        show-sizer
+                ></Page>
             </Row>
         </Card>
     </div>
@@ -135,7 +147,6 @@
     import audit from "./audit";
     import change from "./change";
     import detail from "./detail";
-
     export default {
         name: "xiangmushenbaojihua",
         components: {
@@ -147,16 +158,12 @@
         },
         data() {
             return {
-                strict: true,
-                maxHeight: "500px",
                 openTip: false, // 显示提示
                 openSearch: true,
                 drop: false,
                 dropDownContent: "展开查询",
                 dropDownIcon: "ios-arrow-down",
-                formData: {
-                    ywfl: '0'
-                },
+                formData: {},
                 currView: "index",
                 loading: true, // 表单加载状态
                 searchForm: {
@@ -171,64 +178,17 @@
                 columns: [],
                 historyData: [],
                 data: [], // 表单数据
-                total: 0, // 表单数据总数
-                treeData: []
+                total: 0 // 表单数据总数
             };
         },
         methods: {
-            selectTree(v) {
-                if (v.length > 0) {
-                    // 转换null为""
-                    for (let attr in v[0]) {
-                        if (v[0][attr] == null) {
-                            v[0][attr] = "";
-                        }
-                    }
-                    let str = JSON.stringify(v[0]);
-                    let menu = JSON.parse(str);
-                    this.form = menu;
-                    this.editTitle = menu.title;
-                } else {
-                    this.cancelEdit();
-                }
-            },
-            renderContent(h, {root, node, data}) {
-                let icon = "";
-                if (data.level == 0) {
-                    icon = "ios-navigate";
-                } else if (data.level == 1) {
-                    icon = "md-list-box";
-                } else if (data.level == 2) {
-                    icon = "md-list";
-                } else if (data.level == 3) {
-                    icon = "md-radio-button-on";
-                } else {
-                    icon = "md-radio-button-off";
-                }
-                return h("span", [
-                    h("span", [
-                        h("Icon", {
-                            props: {
-                                type: icon,
-                                size: "16"
-                            },
-                            style: {
-                                "margin-right": "8px",
-                                "margin-bottom": "3px"
-                            }
-                        }),
-                        h("span", data.title)
-                    ])
-                ]);
-            },
             init() {
                 this.getDataList();
-                this.initTree();
             },
-            handleSelectDep(v) {
+            handleSelectDep (v) {
                 this.searchForm.departmentId = v;
             },
-            dropDown() {
+            dropDown () {
                 if (this.drop) {
                     this.dropDownContent = "展开查询";
                     this.dropDownIcon = "ios-arrow-down";
@@ -238,12 +198,12 @@
                 }
                 this.drop = !this.drop;
             },
-            handleSearch() {
+            handleSearch () {
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
                 // this.getUserList();
             },
-            handleReset() {
+            handleReset () {
                 this.$refs.searchForm.resetFields();
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
@@ -260,15 +220,15 @@
             changePage(v) {
                 this.searchForm.pageNumber = v;
                 this.clearSelectAll();
-                let _start = (v - 1) * this.searchForm.pageSize;
+                let _start = ( v- 1 ) * this.searchForm.pageSize;
                 let _end = v * this.searchForm.pageSize;
-                this.data = this.historyData.slice(_start, _end);
+                this.data = this.historyData.slice(_start,_end);
             },
             changePageSize(v) {
                 this.searchForm.pageSize = v;
-                let _start = (this.searchForm.pageNumber - 1) * v;
+                let _start = ( this.searchForm.pageNumber - 1 ) * v;
                 let _end = this.searchForm.pageNumber * v;
-                this.data = this.historyData.slice(_start, _end);
+                this.data = this.historyData.slice(_start,_end);
             },
             changeSort(e) {
                 this.searchForm.sort = e.key;
@@ -293,7 +253,7 @@
                         return {
                             title: res,
                             key: res,
-                            minWidth: 200
+                            minWidth:200
                         }
                     });
                     this.columns.unshift({
@@ -302,7 +262,7 @@
                         align: "center",
                         fixed: "left"
                     });
-                    this.columns.push({
+                    this.columns.push( {
                         title: "操作",
                         key: "action",
                         align: "center",
@@ -366,10 +326,10 @@
                     );
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-                    if (this.historyData.length < this.searchForm.pageSize) {
+                    if(this.historyData.length < this.searchForm.pageSize){
                         this.data = this.historyData;
-                    } else {
-                        this.data = this.historyData.slice(0, this.searchForm.pageSize);
+                    }else{
+                        this.data = this.historyData.slice(0,this.searchForm.pageSize);
                     }
                     this.total = this.historyData.length;
                     this.loading = false;
@@ -383,7 +343,7 @@
             audit() {
                 this.currView = "audit";
             },
-            change() {
+            change () {
                 this.currView = "change";
             },
             edit(v) {
@@ -432,7 +392,7 @@
                     }
                 });
             },
-            handleDropdown(name) {
+            handleDropdown (name) {
                 if (name == "refresh") {
                     this.getUserList();
                 } else if (name == "reset") {
@@ -468,7 +428,7 @@
                     loading: true,
                     onOk: () => {
                         let ids = "";
-                        this.selectList.forEach(function (e) {
+                        this.selectList.forEach(function(e) {
                             ids += e.id + ",";
                         });
                         ids = ids.substring(0, ids.length - 1);
@@ -488,46 +448,10 @@
                         this.getDataList();
                     }
                 });
-            },
-            initTree() {
-                axios.get('/mock/tree.json').then(res => {
-                    this.treeData = res;
-                });
-            },
-            renderContent(h, {root, node, data}) {
-                let icon = "";
-                if (data.level == 0) {
-                    icon = "ios-navigate";
-                } else if (data.level == 1) {
-                    icon = "md-list-box";
-                } else if (data.level == 2) {
-                    icon = "md-list";
-                } else if (data.level == 3) {
-                    icon = "md-radio-button-on";
-                } else {
-                    icon = "md-radio-button-off";
-                }
-                return h("span", [
-                    h("span", [
-                        h("Icon", {
-                            props: {
-                                type: icon,
-                                size: "16"
-                            },
-                            style: {
-                                "margin-right": "8px",
-                                "margin-bottom": "3px"
-                            }
-                        }),
-                        h("span", data.title)
-                    ])
-                ]);
-            },
+            }
         },
         mounted() {
             this.init();
-            let height = document.documentElement.clientHeight;
-            this.maxHeight = Number(height - 287) + "px";
         }
     };
 </script>
