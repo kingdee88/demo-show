@@ -2521,7 +2521,7 @@
           "type": 0,
           "title": "采购退(换)货",
           "path": "purchase-return-index",
-          "component": "purchasing/purchase-return/purchase-return-index",
+          "component": "caigoutuihuanhuo/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
