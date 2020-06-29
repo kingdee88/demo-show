@@ -1043,7 +1043,7 @@
           "type": 0,
           "title": "费用报销",
           "path": "list-page",
-          "component": "/expenditure/reimbursement/list-page",
+          "component": "feiyongbaoxiao/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
