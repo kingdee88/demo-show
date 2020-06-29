@@ -932,7 +932,7 @@
           "type": 0,
           "title": "公务接待申请",
           "path": "official-reception",
-          "component": "expenditure/beforehand/official-reception",
+          "component": "gongwujiedaishenqing/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
