@@ -19,12 +19,12 @@
                             prop="sex"
                     >
                         <Select
-                                v-model="searchForm.sex"
+                                v-model="searchForm.year"
                                 placeholder="预算年度"
                                 clearable
                                 style="width: 200px"
                         >
-                            <Option value="0">2018</Option>
+                            <Option value="0">2020</Option>
                             <Option value="1">2019</Option>
                             <Option value="2">2020</Option>
                         </Select>
@@ -114,7 +114,7 @@
                 >
                     <template slot-scope="{ row, index }" slot="mbz">
                         <Input
-                                :value="row.mbz"
+                                :value="row.PLAN_VALUE"
                                 :clearable="false"
                                 :disabled=" false"
                                 placeholder="请输入"/>
@@ -190,285 +190,284 @@
     import departmentChoose from "../../my-components/xboot/department-choose";
     import checkPassword from "@/views/my-components/xboot/check-password";
 
-    const data = [{
-        "ID": "001",
+    const data =  [{
+        "ID": "00000000000000000000000000000020171123101720029ti78qmsv8w2ji",
         "BUDGET_YEAR": 2020,
-        "PLAN_VALUE": null,
+        "PLAN_VALUE": 9.11,
         "TARGET_DESC": null,
         "TARGET_CODE": "001",
         "TARGET_NAME": "医疗收入增长率",
         "DISPLAY_UNIT": "10%",
         "TARGET_TYPE": "1",
         "CALC_FORMULA": null,
-        "2019RATE_DIB": 0.0,
-        "2019PLAN": 11.0,
-        "2019ACTUAL": 0.0
+        "2017PLAN": 14.0,
+        "2017RATE_DIB": 0.0,
+        "2017ACTUAL": 0.0
     },
         {
-            "ID": "004",
+            "ID": "00000000000000000000000000000020171123101720039dei45id5i2oej",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 200.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "004",
             "TARGET_NAME": "实际开放床位",
             "DISPLAY_UNIT": "张",
             "TARGET_TYPE": "1",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 888.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 5555.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "005",
+            "ID": "00000000000000000000000000000020171123101720049qajp9aufclacj",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 65.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "005",
             "TARGET_NAME": "床位使用率",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "1",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 55.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 21.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "006",
+            "ID": "00000000000000000000000000000020171123101720049kh1wm55q2d70l",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 601.34,
             "TARGET_DESC": null,
             "TARGET_CODE": "006",
             "TARGET_NAME": "平均床日费",
             "DISPLAY_UNIT": "元",
             "TARGET_TYPE": "1",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 666.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 345.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "009",
+            "ID": "00000000000000000000000000000020171123101720059q8vu4dd9d25fj",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 31.2,
             "TARGET_DESC": null,
             "TARGET_CODE": "009",
             "TARGET_NAME": "医疗服务收入占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "1",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 31.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 31.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "010",
+            "ID": "00000000000000000000000000000020171123101720059l6sp8uidq8m4m",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 294180.98,
             "TARGET_DESC": null,
             "TARGET_CODE": "010",
             "TARGET_NAME": "人均收入",
             "DISPLAY_UNIT": "元",
             "TARGET_TYPE": "1",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 223212.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 341.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "011",
+            "ID": "00000000000000000000000000000020171123101720059ctqadr2o03a2h",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 29418.78,
             "TARGET_DESC": null,
             "TARGET_CODE": "011",
             "TARGET_NAME": "医疗总成本",
             "DISPLAY_UNIT": "元",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 4123121.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 2.3123123E7,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "012",
+            "ID": "00000000000000000000000000000020171123101720059n133fv12jj4oh",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 0.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "012",
             "TARGET_NAME": "财政补贴",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 31232.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "013",
+            "ID": "00000000000000000000000000000020171123101720070b8t7wr15de14n",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 993.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "013",
             "TARGET_NAME": "人均办公经费",
             "DISPLAY_UNIT": "元",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 3000.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 2444.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "014",
+            "ID": "00000000000000000000000000000020171123101720070f14761ik6or5l",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 15.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "014",
             "TARGET_NAME": "材料费占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 16.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 31.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "015",
+            "ID": "00000000000000000000000000000020171123101720070c26b9v4mfrcpj",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 29.1,
             "TARGET_DESC": null,
             "TARGET_CODE": "015",
             "TARGET_NAME": "药品费占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 22.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 30.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "016",
+            "ID": "000000000000000000000000000000201711231017200806jm0mnrvtri7k",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 8.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "016",
             "TARGET_NAME": "购置设备占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 12.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 26.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "017",
+            "ID": "000000000000000000000000000000201711231017200801hr1lcjtvniti",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 13.4,
             "TARGET_DESC": null,
             "TARGET_CODE": "017",
             "TARGET_NAME": "其他费用占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 15.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 21.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "018",
+            "ID": "00000000000000000000000000000020171123101720090r5avi3sk7635h",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 34.5,
             "TARGET_DESC": null,
             "TARGET_CODE": "018",
             "TARGET_NAME": "人员经费占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "2",
             "CALC_FORMULA": "",
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 33.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 41.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "101",
+            "ID": "0000000000000000000000000000002017121318472536113oldi37awv7h",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 28.6,
             "TARGET_DESC": null,
             "TARGET_CODE": "101",
             "TARGET_NAME": "药占比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "3",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 29.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 25.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "102",
+            "ID": "00000000000000000000000000000020171213184725363bpi4bqw7fcwfk",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 4229.7,
             "TARGET_DESC": null,
             "TARGET_CODE": "102",
             "TARGET_NAME": "住院均次费用",
             "DISPLAY_UNIT": "元",
             "TARGET_TYPE": "3",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 4555.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 342.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "103",
+            "ID": "00000000000000000000000000000020171213184725366s4n60e9v3sfbi",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 6800.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "103",
             "TARGET_NAME": "住院工作量",
             "DISPLAY_UNIT": "次",
             "TARGET_TYPE": "3",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 26500.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 651000.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "104",
+            "ID": "00000000000000000000000000000020171213184725369bd1rs12664ajm",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 8.2,
             "TARGET_DESC": null,
             "TARGET_CODE": "104",
             "TARGET_NAME": "计划耗材比",
             "DISPLAY_UNIT": "%",
             "TARGET_TYPE": "3",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 9.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 16.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "105",
+            "ID": "00000000000000000000000000000020171213184725372f5rcjen6s0ukn",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 310.25,
             "TARGET_DESC": null,
             "TARGET_CODE": "105",
             "TARGET_NAME": "门诊均次费用",
             "DISPLAY_UNIT": "元",
             "TARGET_TYPE": "3",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 333.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 430.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
-            "ID": "106",
+            "ID": "0000000000000000000000000000002017121318472538203clr3d0ttufi",
             "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
+            "PLAN_VALUE": 210000.0,
             "TARGET_DESC": null,
             "TARGET_CODE": "106",
             "TARGET_NAME": "门诊工作量",
             "DISPLAY_UNIT": "次",
             "TARGET_TYPE": "3",
             "CALC_FORMULA": null,
-            "2019RATE_DIB": 0.0,
-            "2019PLAN": 222212.0,
-            "2019ACTUAL": 0.0
+            "2017PLAN": 65000.0,
+            "2017RATE_DIB": 0.0,
+            "2017ACTUAL": 0.0
         },
         {
             "ID": "111",
@@ -507,7 +506,7 @@
                 searchKey: "",
                 searchForm: {
                     id: "",
-                    nickname: "",
+                    year: '0',
                     username: "",
                     departmentId: "",
                     mobile: "",
@@ -516,7 +515,7 @@
                     type: "",
                     status: "",
                     pageNumber: 1,
-                    pageSize: 10,
+                    pageSize: 15,
                     sort: "createTime",
                     order: "desc",
                     startDate: "",
@@ -537,7 +536,7 @@
                     {
                         title: "目标名称",
                         key: "TARGET_NAME",
-                        minWidth: 125
+                        minWidth: 140
                     },
                     {
                         title: "单位",
@@ -546,22 +545,22 @@
                     },
                     {
                         title: "2019预算值",
-                        key: "2019PLAN",
+                        key: "2017PLAN",
                         minWidth: 125
                     },
                     {
                         title: "2019执行值",
-                        key: "PLAN_VALUE",
+                        key: "TARGET_DESC",
                         minWidth: 160
                     },
                     {
                         title: "2019执行率",
-                        key: "PLAN_VALUE",
+                        key: "TARGET_DESCE",
                         minWidth: 125
                     },
                     {
                         title: "2020目标值",
-                        key: "username",
+                        key: "PLAN_VALUE",
                         minWidth: 125,
                         slot: 'mbz'
                     },
@@ -574,7 +573,7 @@
                     {
                         title: "目标说明",
                         slot: 'desc',
-                        minWidth: 125,
+                        minWidth: 225,
                     }
                 ],
                 exportColumns: [
