@@ -20,7 +20,7 @@
 
             <Card>
                 <Row type="flex" justify="space-between" :gutter="32">
-                    <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+                    <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
                             <h4 class="h4-title">申请信息</h4>
                             <Row :gutter="32">
@@ -62,7 +62,7 @@
                                     <Button slot="append" icon="ios-person"></Button>
                                   </Input>
                                 </FormItem>
-                              </Col>                          
+                              </Col>
                                <Col span="12">
                                 <FormItem label="退货部门" prop="name">
                                   <Input v-model="form.name" style="width: 320px" />
@@ -77,7 +77,7 @@
                                   />
                                 </FormItem>
                               </Col>
-                              
+
                             </Row>
                              <h4 class="h4-title">采购退货信息</h4>
                           <Table
@@ -119,7 +119,7 @@
                                           style="width: 320px"
                                   ></DatePicker>
                                     </FormItem>
-                                </Col>                              
+                                </Col>
                             </Row>
                             <Form-item class="br">
                                 <Button
@@ -133,7 +133,7 @@
                             </Form-item>
                         </Form>
                     </Col>
-                    <Col span="8">
+                    <Col :xl="3" :xxl="8" >
                         <div class="operation">
                           <div class="s-modal">
                             <h4 class="h4-title">相关制度</h4>

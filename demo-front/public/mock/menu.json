@@ -2287,7 +2287,7 @@
         "type": 0,
         "title": "采购计划",
         "path": "procurement-plan-index",
-        "component": "purchasing/procurement-plan/procurement-plan-index",
+        "component": "caigoujihua/list",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",

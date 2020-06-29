@@ -20,7 +20,7 @@
 
             <Card>
                 <Row type="flex" justify="space-between" :gutter="32">
-                    <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+                    <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
                             <h4 class="h4-title">申请基本信息</h4>
                             <Row :gutter="32">
@@ -139,7 +139,7 @@
                             </Form-item>
                         </Form>
                     </Col>
-                    <Col span="8">
+                    <Col :xl="3" :xxl="18" >
                         <div class="operation">
                           <div class="s-modal">
                             <h4 class="h4-title">风险提示</h4>

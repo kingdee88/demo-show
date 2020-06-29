@@ -20,7 +20,7 @@
 
             <Card>
                 <Row type="flex" justify="space-between" :gutter="32">
-                    <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+                    <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
                             <h4 class="h4-title">基本信息</h4>
                             <Row :gutter="32">
@@ -85,7 +85,7 @@
                                           style="width: 320px"
                                   ></DatePicker>
                                 </FormItem>
-                              </Col>                           
+                              </Col>
                                <Col span="24">
                                 <FormItem label="评审地点" prop="name">
                                   <Input v-model="form.name" style="width: 320px" placeholder="请输入至少5个字符"/>
@@ -100,7 +100,7 @@
                                   />
                                 </FormItem>
                               </Col>
-                              
+
                             </Row>
                              <h4 class="h4-title">采购信息</h4>
                             <Row :gutter="32">
@@ -140,8 +140,8 @@
                                   </Select>
                                 </FormItem>
                               </Col>
-                               
-                              
+
+
                             </Row>
                              <h4 class="h4-title">候选供应商</h4>
                           <Table
@@ -171,7 +171,7 @@
                             </Form-item>
                         </Form>
                     </Col>
-                    <Col span="8">
+                    <Col :xl="3" :xxl="8" >
                         <div class="operation">
                           <div class="s-modal">
                             <h4 class="h4-title">相关制度</h4>
