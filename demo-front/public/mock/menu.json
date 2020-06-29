@@ -1375,7 +1375,7 @@
         "type": 0,
         "title": "固定资产配置计划",
         "path": "fixed-assets-allocation-index",
-        "component": "asset-manage/fixed-assets-allocation/fixed-assets-allocation-index",
+        "component": "gudingzichanpeizhijihua/list",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",
