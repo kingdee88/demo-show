@@ -948,7 +948,7 @@
           "type": 0,
           "title": "培训申请",
           "path": "training-application",
-          "component": "expenditure/beforehand/training-application",
+          "component": "peixunshenqing/list",
           "icon": "ios-menu",
           "url": null,
           "buttonType": "",
