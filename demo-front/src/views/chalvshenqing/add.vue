@@ -147,46 +147,42 @@
                                   <al-selector v-model="resArr" :level="1" class="area-select" style="width: 320px"/>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="预算指标" prop="name">
-                                  <Input v-model="form.name" style="width: 320px">
-                                    <Button slot="append" icon="ios-pricetag"></Button>
-                                  </Input>
+                              <Col span="12">
+                               <FormItem label="至" prop="type">
+                                  <al-selector v-model="resArr" :level="1" class="area-select" style="width: 320px"/>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="指标可用金额" prop="name">
-                                  <Input v-model="form.name" style="width: 320px"/>
+                              <Col span="12">
+                                <FormItem label="交通工具" prop="type">
+                                  <Select v-model="form.type2" style="width: 320px">
+                                    <Option value="1">火车</Option>
+                                  </Select>
+                                </FormItem>
+                              </Col>
+                               <Col span="12">
+                                <FormItem label="交通工具等级" prop="type">
+                                  <Select v-model="form.grade" style="width: 320px">
+                                    <Option value="1">火车</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
 
                               <Col span="12">
-                                <FormItem label="拟参与人数" prop="name">
-                                  <Input v-model="form.name" style="width: 320px"/>
+                                <FormItem label="伙食费用安排" prop="type">
+                                  <Select v-model="form.grade" style="width: 320px">
+                                    <Option value="1">火车</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="是否需借款" prop="name">
-                                  <RadioGroup v-model="form.money">
-                                    <Radio  :label="0">否</Radio>
-                                    <Radio  :label="1">是</Radio>
-                                  </RadioGroup>
+                              <Col span="12">
+                                <FormItem label="住宿费用安排" prop="type">
+                                  <Select v-model="form.grade" style="width: 320px">
+                                    <Option value="1">火车</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="事由摘要" prop="name">
-                                  <Input v-model="form.name" style="width: 320px" placeholder="请输入至少5个字符"/>
-                                </FormItem>
-                              </Col>
-                              <Col span="24">
-                                <FormItem label="申请事务" prop="name">
-                                  <Input
-                                          type="textarea"
-                                          v-model="form.description"
-                                          :rows="4"
-                                  />
-                                </FormItem>
-                              </Col>
+
+                              
                             </Row>
 
                             <Form-item class="br">

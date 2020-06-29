@@ -128,59 +128,62 @@
                                 </FormItem>
                               </Col>
                               <Col span="24">
-                                <FormItem label="申请人电话" prop="name">
-                                  <Input v-model="form.name" style="width: 320px"/>
-                                </FormItem>
-                              </Col>
-                              <Col span="24">
-                                <FormItem label="预算指标" prop="name">
-                                  <Input v-model="form.name" style="width: 320px">
-                                    <Button slot="append" icon="ios-pricetag"></Button>
-                                  </Input>
-                                </FormItem>
-                              </Col>
-                              <Col span="24">
-                                <FormItem label="指标可用金额" prop="name">
-                                  <Input v-model="form.name" style="width: 320px"/>
-                                </FormItem>
-                              </Col>
-                              <Col span="12">
-                                <FormItem label="拟安排时间" prop="name">
+                                <FormItem label="接待日期" prop="name">
                                   <DatePicker
                                           v-model="form.date"
                                           type="daterange"
                                           format="yyyy-MM-dd"
                                           clearable
-                                          placeholder="选择安排时间"
+                                          placeholder="选择接待日期"
                                           style="width: 320px"
                                   ></DatePicker>
                                 </FormItem>
                               </Col>
                               <Col span="12">
-                                <FormItem label="拟参与人数" prop="name">
+                                <FormItem label="接待天数" prop="name">
                                   <Input v-model="form.name" style="width: 320px"/>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="是否需借款" prop="name">
-                                  <RadioGroup v-model="form.money">
-                                    <Radio  :label="0">否</Radio>
-                                    <Radio  :label="1">是</Radio>
-                                  </RadioGroup>
+                               <Col span="12">
+                                <FormItem label="接待对象人数" prop="name">
+                                  <Input v-model="form.name" style="width: 320px"/>
+                                </FormItem>
+                              </Col>
+                              <Col span="12">
+                                <FormItem label="接待就餐安排" prop="name">
+                                  <Select
+                                          v-model="form.type"
+                                          placeholder="请选择"
+                                  >
+                                    <Option value="0">工作餐</Option>
+                                  </Select>
+                                </FormItem>
+                              </Col>
+                              <Col span="12">
+                                <FormItem label="接待就餐地点" prop="name">
+                                  <Select
+                                          v-model="form.type"
+                                          placeholder="请选择"
+                                  >
+                                    <Option value="0">单位食堂</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
                               <Col span="24">
-                                <FormItem label="事由摘要" prop="name">
-                                  <Input v-model="form.name" style="width: 320px" placeholder="请输入至少5个字符"/>
+                                <FormItem label="地点说明" prop="name">
+                                  <Input v-model="form.name" style="width: 320px">
+                                    <Button slot="append" icon="ios-pricetag"></Button>
+                                  </Input>
                                 </FormItem>
                               </Col>
-                              <Col span="24">
-                                <FormItem label="申请事务" prop="name">
-                                  <Input
-                                          type="textarea"
-                                          v-model="form.description"
-                                          :rows="4"
-                                  />
+                              <Col span="12">
+                                <FormItem label="陪餐人员" prop="name">
+                                  <Input v-model="form.name" style="width: 320px"/>
+                                </FormItem>
+                              </Col>
+                               <Col span="12">
+                                <FormItem label="陪餐人数" prop="name">
+                                  <Input v-model="form.name" style="width: 320px"/>
                                 </FormItem>
                               </Col>
                             </Row>
