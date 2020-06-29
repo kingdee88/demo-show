@@ -162,16 +162,32 @@
                 </Form>
             </Row>
             <Row>
-                <Table
-                        :loading="loading"
-                        border
-                        :columns="columns"
-                        :data="data"
-                        ref="table"
-                        sortable="custom"
-                        @on-sort-change="changeSort"
-                        @on-selection-change="changeSelect"
-                ></Table>
+                <Tabs type="card">
+                    <TabPane label="报销申请">
+                        <Table
+                                :loading="loading"
+                                border
+                                :columns="columns"
+                                :data="data"
+                                ref="table"
+                                sortable="custom"
+                                @on-sort-change="changeSort"
+                                @on-selection-change="changeSelect"
+                        ></Table>
+                    </TabPane>
+                    <TabPane label="借款申请">
+                        <Table
+                                :loading="loading"
+                                border
+                                :columns="columns"
+                                :data="data"
+                                ref="table"
+                                sortable="custom"
+                                @on-sort-change="changeSort"
+                                @on-selection-change="changeSelect"
+                        ></Table>
+                    </TabPane>
+                </Tabs>
             </Row>
             <Row type="flex" justify="end" class="page">
                 <Page
@@ -198,6 +214,7 @@
     // import audit from "./audit";
     import change from "./change";
     import batchadd from "./batchadd";
+
     export default {
         name: "xiangmushenbaojihua",
         components: {
@@ -236,10 +253,10 @@
             init() {
                 this.getDataList();
             },
-            handleSelectDep (v) {
+            handleSelectDep(v) {
                 this.searchForm.departmentId = v;
             },
-            dropDown () {
+            dropDown() {
                 if (this.drop) {
                     this.dropDownContent = "展开查询";
                     this.dropDownIcon = "ios-arrow-down";
@@ -249,12 +266,12 @@
                 }
                 this.drop = !this.drop;
             },
-            handleSearch () {
+            handleSearch() {
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
                 // this.getUserList();
             },
-            handleReset () {
+            handleReset() {
                 this.$refs.searchForm.resetFields();
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
@@ -271,15 +288,15 @@
             changePage(v) {
                 this.searchForm.pageNumber = v;
                 this.clearSelectAll();
-                let _start = ( v- 1 ) * this.searchForm.pageSize;
+                let _start = (v - 1) * this.searchForm.pageSize;
                 let _end = v * this.searchForm.pageSize;
-                this.data = this.historyData.slice(_start,_end);
+                this.data = this.historyData.slice(_start, _end);
             },
             changePageSize(v) {
                 this.searchForm.pageSize = v;
-                let _start = ( this.searchForm.pageNumber - 1 ) * v;
+                let _start = (this.searchForm.pageNumber - 1) * v;
                 let _end = this.searchForm.pageNumber * v;
-                this.data = this.historyData.slice(_start,_end);
+                this.data = this.historyData.slice(_start, _end);
             },
             changeSort(e) {
                 this.searchForm.sort = e.key;
@@ -304,7 +321,7 @@
                         return {
                             title: res,
                             key: res,
-                            minWidth:200
+                            minWidth: 200
                         }
                     });
                     this.columns.unshift({
@@ -313,7 +330,7 @@
                         align: "center",
                         fixed: "left"
                     });
-                    this.columns.push( {
+                    this.columns.push({
                         title: "操作",
                         key: "action",
                         align: "center",
@@ -377,10 +394,10 @@
                     );
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-                    if(this.historyData.length < this.searchForm.pageSize){
+                    if (this.historyData.length < this.searchForm.pageSize) {
                         this.data = this.historyData;
-                    }else{
-                        this.data = this.historyData.slice(0,this.searchForm.pageSize);
+                    } else {
+                        this.data = this.historyData.slice(0, this.searchForm.pageSize);
                     }
                     this.total = this.historyData.length;
                     this.loading = false;
@@ -394,7 +411,7 @@
             audit() {
                 this.currView = "audit";
             },
-            change () {
+            change() {
                 this.currView = "change";
             },
             edit(v) {
@@ -443,7 +460,7 @@
                     }
                 });
             },
-            handleDropdown (name) {
+            handleDropdown(name) {
                 if (name == "refresh") {
                     this.getUserList();
                 } else if (name == "reset") {
@@ -479,7 +496,7 @@
                     loading: true,
                     onOk: () => {
                         let ids = "";
-                        this.selectList.forEach(function(e) {
+                        this.selectList.forEach(function (e) {
                             ids += e.id + ",";
                         });
                         ids = ids.substring(0, ids.length - 1);
