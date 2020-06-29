@@ -43,6 +43,7 @@
                                   <Select
                                           v-model="form.type"
                                           placeholder="请选择"
+                                          style="width: 320px"
                                   >
                                     <Option :value="0">普通外科病区</Option>
                                     <Option :value="1">呼吸科</Option>
@@ -136,15 +137,15 @@
                               </Col>
                               <Col span="12">
                                 <FormItem label="出差类型" prop="type">
-                                  <Select v-model="form.type2" >
+                                  <Select v-model="form.type2" style="width: 320px">
                                     <Option value="1">考察调研</Option>
                                   </Select>
                                 </FormItem>
                               </Col>
                               <Col span="12">
                                <FormItem label="出差起止地点" prop="type">
-                                  <al-selector v-model="resArr" :level="1" />
-                                </FormItem>                               
+                                  <al-selector v-model="resArr" :level="1" class="area-select" style="width: 320px"/>
+                                </FormItem>
                               </Col>
                               <Col span="24">
                                 <FormItem label="预算指标" prop="name">
@@ -158,7 +159,7 @@
                                   <Input v-model="form.name" style="width: 320px"/>
                                 </FormItem>
                               </Col>
-                              
+
                               <Col span="12">
                                 <FormItem label="拟参与人数" prop="name">
                                   <Input v-model="form.name" style="width: 320px"/>
@@ -187,7 +188,7 @@
                                 </FormItem>
                               </Col>
                             </Row>
-                          
+
                             <Form-item class="br">
                                 <Button
                                         @click="handleSubmit"
