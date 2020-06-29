@@ -1,100 +1,100 @@
-{
+[{
   "rootName": "1",
   "id": "1",
-  "name": "海南省人民代表大会常务委员会",
-  "open": true,
+  "title": "海南省人民代表大会常务委员会",
+  "expand": true,
   "children": [
     {
       "id": "11",
-      "name": "办公厅",
-      "open": false,
+      "title": "办公厅",
+      "expand": true,
       "children": [
         {
           "id": "111",
-          "name": "秘书处",
-          "open": false
+          "title": "秘书处",
+          "expand": true
         },
         {
           "id": "112",
-          "name": "行政后勤处",
-          "open": false
+          "title": "行政后勤处",
+          "expand": true
         },
         {
           "id": "113",
-          "name": "海南省人大常委会机关信息中心",
-          "open": false
+          "title": "海南省人大常委会机关信息中心",
+          "expand": true
         },
         {
           "id": "114",
-          "name": "《海南人大》编辑部",
-          "open": false
+          "title": "《海南人大》编辑部",
+          "expand": true
         },
         {
           "id": "115",
-          "name": "《海南人大》编辑部",
-          "open": false
+          "title": "《海南人大》编辑部",
+          "expand": true
         },
         {
           "id": "116",
-          "name": "海南省人大干部培训中心",
-          "open": false
+          "title": "海南省人大干部培训中心",
+          "expand": true
         },
         {
           "id": "117",
-          "name": "法制委员会",
-          "open": false
+          "title": "法制委员会",
+          "expand": true
         },
         {
           "id": "118",
-          "name": "财经委员会",
-          "open": false
+          "title": "财经委员会",
+          "expand": true
         },
         {
           "id": "119",
-          "name": "社会建设委员会",
-          "open": false
+          "title": "社会建设委员会",
+          "expand": true
         },
         {
           "id": "120",
-          "name": "环境资源工作委员会",
-          "open": false
+          "title": "环境资源工作委员会",
+          "expand": true
         },
         {
           "id": "121",
-          "name": "农村工作委员会",
-          "open": false
+          "title": "农村工作委员会",
+          "expand": true
         },
         {
           "id": "122",
-          "name": "教科文卫工作委员会",
-          "open": false
+          "title": "教科文卫工作委员会",
+          "expand": true
         },
         {
           "id": "123",
-          "name": "华侨外事工作委员会",
-          "open": false
+          "title": "华侨外事工作委员会",
+          "expand": true
         },
         {
           "id": "124",
-          "name": "民族宗教工作委员会",
-          "open": false
+          "title": "民族宗教工作委员会",
+          "expand": true
         },
         {
           "id": "125",
-          "name": "财政经济（预算）工作委员会",
-          "open": false
+          "title": "财政经济（预算）工作委员会",
+          "expand": true
         },
         {
           "id": "126",
-          "name": "内务司法工作委员会",
-          "open": false
+          "title": "内务司法工作委员会",
+          "expand": true
         },
         {
           "id": "127",
-          "name": "法制工作委员会",
-          "open": false
+          "title": "法制工作委员会",
+          "expand": true
         }
       ]
     }
   ]
-}
+}]
