@@ -884,7 +884,7 @@
         "type": 0,
         "title": "承办会议申请",
         "path": "meeting-application",
-        "component": "expenditure/beforehand/meeting-application/index",
+        "component": "chengbanhuiyishenqing/list",
         "icon": "ios-menu",
         "url": null,
         "buttonType": "",
