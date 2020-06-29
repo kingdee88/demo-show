@@ -1986,7 +1986,7 @@
         "type": 0,
         "title": "合同拟定",
         "path": "contract-preparation",
-        "component": "contract/conclude/1/contract-preparation",
+        "component": "hetongniding/list",
         "icon": "ios-menu",
         "url": "",
         "buttonType": "",
