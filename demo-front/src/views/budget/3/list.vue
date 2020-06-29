@@ -8,69 +8,49 @@
                     v-show="openSearch"
                     @keydown.enter.native="handleSearch"
             >
-                <Form
-                        ref="searchForm"
-                        :model="searchForm"
-                        inline
-                        :label-width="70"
-                >
-                    <Form-item
-                            label="预算年度"
-                            prop="sex"
+                <div style="display: flex;justify-content: space-between;">
+                    <Form>
+                        <Form-item class="br" label="">
+                            <Button icon="md-cloud-download" type="primary">导出</Button>
+                            <Button icon="md-close-circle" type="primary">关闭预算编制</Button>
+                        </Form-item>
+                    </Form>
+                    <Form
+                            ref="searchForm"
+                            :model="searchForm"
+                            inline
+                            :label-width="70"
                     >
-                        <Select
-                                v-model="searchForm.year"
-                                placeholder="预算年度"
-                                clearable
-                                style="width: 200px"
+                        <Form-item
+                                label="预算年度"
+                                prop="sex"
                         >
-                            <Option value="0">2020</Option>
-                            <Option value="1">2019</Option>
-                            <Option value="2">2020</Option>
-                        </Select>
-                    </Form-item>
-                    <Form-item
-                            label="项目名称"
-                            prop="mobile"
-                    >
-                        <Input
-                                type="text"
-                                v-model="searchForm.mobile"
-                                clearable
-                                placeholder=""
-                                style="width: 200px"
-                        />
-                    </Form-item>
-                    <Form-item
-                            label="目标类别"
-                            prop="sex"
-                    >
-                        <Select
-                                v-model="searchForm.type"
-                                placeholder="请选择"
-                                clearable
-                                style="width: 200px"
+                            <Select
+                                    v-model="searchForm.year"
+                                    placeholder="预算年度"
+                                    clearable
+                                    style="width: 200px"
+                            >
+                                <Option value="0">2020</Option>
+                                <Option value="1">2019</Option>
+                                <Option value="2">2020</Option>
+                            </Select>
+                        </Form-item>
+                        <Form-item
+                                style="margin-left:-35px;"
+                                class="br"
                         >
-                            <Option value="">请选择</Option>
-                            <Option value="1">收入类</Option>
-                            <Option value="2">支出类</Option>
-                            <Option value="3">工作量类</Option>
-                        </Select>
-                    </Form-item>
-                    <Form-item
-                            style="margin-left:-35px;"
-                            class="br"
-                    >
-                        <Button
-                                @click="handleSearch"
-                                type="primary"
-                                icon="ios-search"
-                        >搜索
-                        </Button>
-                        <Button @click="handleReset">重置</Button>
-                        <Button icon="md-refresh">刷新</Button>
-                    </Form-item>
-                </Form>
+                            <Button
+                                    @click="handleSearch"
+                                    type="primary"
+                                    icon="ios-search"
+                            >搜索
+                            </Button>
+                            <Button @click="handleReset">重置</Button>
+                            <Button icon="md-refresh">刷新</Button>
+                        </Form-item>
+                    </Form>
+                </div>
             </Row>
             <!--      <Row class="operation">
                     <Button
@@ -103,62 +83,15 @@
             </Row>
             <Row>
                 <Table
+                        row-key="ID"
                         :loading="loading"
                         border
                         :columns="columns"
                         :data="data"
                         sortable="custom"
-                        @on-sort-change="changeSort"
-                        @on-selection-change="showSelect"
                         ref="table"
                 >
-                    <template slot-scope="{ row, index }" slot="mbz">
-                        <Input
-                                :value="row.PLAN_VALUE"
-                                :clearable="false"
-                                :disabled=" false"
-                                placeholder="请输入"/>
-                    </template>
-                    <template slot-scope="{ row, index }" slot="qtb">
-                        <Input
-                                :value="row.mbz"
-                                :clearable="false"
-                                :disabled=" true"
-                                placeholder="请输入"/>
-                    </template>
-                    <template slot-scope="{ row, index }" slot="desc">
-                        <Input
-                                :value="row.desc"
-                                :clearable="false"
-                                :disabled="false"
-                                placeholder="请输入"/>
-                    </template>
                 </Table>
-                <Table
-                        :columns="exportColumns"
-                        :data="exportData"
-                        ref="exportTable"
-                        style="display:none"
-                >
-                </Table>
-            </Row>
-            <Row
-                    type="flex"
-                    justify="end"
-                    class="page"
-            >
-                <Page
-                        :current="searchForm.pageNumber"
-                        :total="total"
-                        :page-size="searchForm.pageSize"
-                        @on-change="changePage"
-                        @on-page-size-change="changePageSize"
-                        :page-size-opts="[10,20,50]"
-                        size="small"
-                        show-total
-                        show-elevator
-                        show-sizer
-                ></Page>
             </Row>
         </Card>
 
@@ -187,299 +120,201 @@
         getAllUserData,
         resetUserPass
     } from "@/api/index";
+    import util from "@/libs/util.js";
     import departmentChoose from "../../my-components/xboot/department-choose";
     import checkPassword from "@/views/my-components/xboot/check-password";
 
-    const data =  [{
-        "ID": "00000000000000000000000000000020171123101720029ti78qmsv8w2ji",
-        "BUDGET_YEAR": 2020,
-        "PLAN_VALUE": 9.11,
-        "TARGET_DESC": null,
-        "TARGET_CODE": "001",
-        "TARGET_NAME": "医疗收入增长率",
-        "DISPLAY_UNIT": "10%",
-        "TARGET_TYPE": "1",
-        "CALC_FORMULA": null,
-        "2017PLAN": 14.0,
-        "2017RATE_DIB": 0.0,
-        "2017ACTUAL": 0.0
-    },
-        {
-            "ID": "00000000000000000000000000000020171123101720039dei45id5i2oej",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 200.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "004",
-            "TARGET_NAME": "实际开放床位",
-            "DISPLAY_UNIT": "张",
-            "TARGET_TYPE": "1",
-            "CALC_FORMULA": null,
-            "2017PLAN": 5555.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720049qajp9aufclacj",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 65.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "005",
-            "TARGET_NAME": "床位使用率",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "1",
-            "CALC_FORMULA": "",
-            "2017PLAN": 21.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720049kh1wm55q2d70l",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 601.34,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "006",
-            "TARGET_NAME": "平均床日费",
-            "DISPLAY_UNIT": "元",
-            "TARGET_TYPE": "1",
-            "CALC_FORMULA": "",
-            "2017PLAN": 345.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720059q8vu4dd9d25fj",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 31.2,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "009",
-            "TARGET_NAME": "医疗服务收入占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "1",
-            "CALC_FORMULA": "",
-            "2017PLAN": 31.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720059l6sp8uidq8m4m",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 294180.98,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "010",
-            "TARGET_NAME": "人均收入",
-            "DISPLAY_UNIT": "元",
-            "TARGET_TYPE": "1",
-            "CALC_FORMULA": "",
-            "2017PLAN": 341.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720059ctqadr2o03a2h",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 29418.78,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "011",
-            "TARGET_NAME": "医疗总成本",
-            "DISPLAY_UNIT": "元",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": null,
-            "2017PLAN": 2.3123123E7,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720059n133fv12jj4oh",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 0.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "012",
-            "TARGET_NAME": "财政补贴",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720070b8t7wr15de14n",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 993.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "013",
-            "TARGET_NAME": "人均办公经费",
-            "DISPLAY_UNIT": "元",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 2444.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720070f14761ik6or5l",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 15.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "014",
-            "TARGET_NAME": "材料费占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 31.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720070c26b9v4mfrcpj",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 29.1,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "015",
-            "TARGET_NAME": "药品费占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 30.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "000000000000000000000000000000201711231017200806jm0mnrvtri7k",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 8.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "016",
-            "TARGET_NAME": "购置设备占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 26.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "000000000000000000000000000000201711231017200801hr1lcjtvniti",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 13.4,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "017",
-            "TARGET_NAME": "其他费用占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 21.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171123101720090r5avi3sk7635h",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 34.5,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "018",
-            "TARGET_NAME": "人员经费占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "",
-            "2017PLAN": 41.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "0000000000000000000000000000002017121318472536113oldi37awv7h",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 28.6,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "101",
-            "TARGET_NAME": "药占比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "3",
-            "CALC_FORMULA": null,
-            "2017PLAN": 25.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171213184725363bpi4bqw7fcwfk",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 4229.7,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "102",
-            "TARGET_NAME": "住院均次费用",
-            "DISPLAY_UNIT": "元",
-            "TARGET_TYPE": "3",
-            "CALC_FORMULA": null,
-            "2017PLAN": 342.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171213184725366s4n60e9v3sfbi",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 6800.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "103",
-            "TARGET_NAME": "住院工作量",
-            "DISPLAY_UNIT": "次",
-            "TARGET_TYPE": "3",
-            "CALC_FORMULA": null,
-            "2017PLAN": 651000.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171213184725369bd1rs12664ajm",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 8.2,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "104",
-            "TARGET_NAME": "计划耗材比",
-            "DISPLAY_UNIT": "%",
-            "TARGET_TYPE": "3",
-            "CALC_FORMULA": null,
-            "2017PLAN": 16.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "00000000000000000000000000000020171213184725372f5rcjen6s0ukn",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 310.25,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "105",
-            "TARGET_NAME": "门诊均次费用",
-            "DISPLAY_UNIT": "元",
-            "TARGET_TYPE": "3",
-            "CALC_FORMULA": null,
-            "2017PLAN": 430.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "0000000000000000000000000000002017121318472538203clr3d0ttufi",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": 210000.0,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "106",
-            "TARGET_NAME": "门诊工作量",
-            "DISPLAY_UNIT": "次",
-            "TARGET_TYPE": "3",
-            "CALC_FORMULA": null,
-            "2017PLAN": 65000.0,
-            "2017RATE_DIB": 0.0,
-            "2017ACTUAL": 0.0
-        },
-        {
-            "ID": "111",
-            "BUDGET_YEAR": 2020,
-            "PLAN_VALUE": null,
-            "TARGET_DESC": null,
-            "TARGET_CODE": "111",
-            "TARGET_NAME": "材料费",
-            "DISPLAY_UNIT": "1",
-            "TARGET_TYPE": "2",
-            "CALC_FORMULA": "{\"TEXT\":[\"医疗总成本\",\"*\",\"材料费占比\"],\"VALUE\":[\"TARGET_011_TARGET\",\"*\",\"TARGET_014_TARGET\"]}"
-        }];
+    const data = [{
+        "ID": "1002",
+        "PAY_ITEM_CODE": "1002",
+        "PAY_ITEM_NAME": "购置商品支出",
+        "IS_LEAF": "0",
+        "PAY_ITEM_TYPE": "1",
+        "PAY_ITEM_DESC": null,
+        "BUDGET_DECLARE_WAY": null,
+        "PARENT_ID": "0",
+        "BUDGET_DEPT_NAME": "普通外科病区",
+        "BUDGET_AMOUNT": 507.04,
+        "2020PLAN": 790751.39,
+        "2020ACTUAL": 790751.39,
+        "2020RATE_DIB": 100,
+        "children": [
+            {
+                "ID": "100201",
+                "PAY_ITEM_CODE": "100201",
+                "PAY_ITEM_NAME": "卫生材料费",
+                "IS_LEAF": "0",
+                "PAY_ITEM_TYPE": "1",
+                "PAY_ITEM_DESC": null,
+                "BUDGET_DECLARE_WAY": null,
+                "PARENT_ID": "1002",
+                "BUDGET_DEPT_NAME": "普通外科病区",
+                "BUDGET_AMOUNT": 21.41,
+                "2020PLAN": 48083.4,
+                "2020ACTUAL": 48083.4,
+                "2020RATE_DIB": 100,
+                "children": [
+                    {
+                        "ID": "00000000000000000000000000000020180725090352221dd3e7qwj82dom",
+                        "PAY_ITEM_CODE": "10020101",
+                        "PAY_ITEM_NAME": "血费",
+                        "IS_LEAF": "1",
+                        "PAY_ITEM_TYPE": "1",
+                        "PAY_ITEM_DESC": null,
+                        "BUDGET_DECLARE_WAY": null,
+                        "PARENT_ID": "100201",
+                        "BUDGET_TYPE": "1",
+                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
+                        "BUDGET_AMOUNT": 9.41,
+                        "CALCULATION_DESC": "",
+                        "APPROVAL_STEP": "2",
+                        "APPROVAL_RESULT": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391936430v441u3suton",
+                        "PAY_DETAIL": "1",
+                        "BUDGET_DETAIL": "B",
+                        "IS_MANAGE_DEPT_DECLARE": "0",
+                        "IS_PUR_PAY": "0",
+                        "PARENT_PAY_ITEM_CODE": "",
+                        "BUDGET_DEPT_NAME": "普通外科病区",
+                        "MANAGE_DEPT_NAME": "医务科",
+                        "2020PLAN": 21132,
+                        "2020RATE_DIB": 100,
+                        "2020ACTUAL": 21132,
+
+                    }, {
+                        "ID": "00000000000000000000000000000020180725090352160pv2w5j6pwv76n",
+                        "PAY_ITEM_CODE": "10020102",
+                        "PAY_ITEM_NAME": "氧气费",
+                        "IS_LEAF": "1",
+                        "PAY_ITEM_TYPE": "1",
+                        "PAY_ITEM_DESC": null,
+                        "BUDGET_DECLARE_WAY": null,
+                        "PARENT_ID": "100201",
+                        "BUDGET_TYPE": "1",
+                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
+                        "BUDGET_AMOUNT": 0,
+                        "CALCULATION_DESC": "",
+                        "APPROVAL_STEP": "2",
+                        "APPROVAL_RESULT": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
+                        "PAY_DETAIL": "1",
+                        "BUDGET_DETAIL": "1",
+                        "IS_MANAGE_DEPT_DECLARE": "0",
+                        "IS_PUR_PAY": "0",
+                        "PARENT_PAY_ITEM_CODE": "",
+                        "BUDGET_DEPT_NAME": "普通外科病区",
+                        "MANAGE_DEPT_NAME": "药剂科",
+                        "2020PLAN": 0,
+                        "2020ACTUAL": 0,
+
+                    }, {
+                        "ID": "00000000000000000000000000000020180725090352167c02m0s2h9k4um",
+                        "PAY_ITEM_CODE": "10020103",
+                        "PAY_ITEM_NAME": "放射材料",
+                        "IS_LEAF": "1",
+                        "PAY_ITEM_TYPE": "1",
+                        "PAY_ITEM_DESC": null,
+                        "BUDGET_DECLARE_WAY": null,
+                        "PARENT_ID": "100201",
+                        "BUDGET_TYPE": "1",
+                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
+                        "BUDGET_AMOUNT": 0,
+                        "CALCULATION_DESC": "",
+                        "APPROVAL_STEP": "2",
+                        "APPROVAL_RESULT": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
+                        "PAY_DETAIL": "1",
+                        "BUDGET_DETAIL": "1",
+                        "IS_MANAGE_DEPT_DECLARE": "0",
+                        "IS_PUR_PAY": "0",
+                        "PARENT_PAY_ITEM_CODE": "",
+                        "BUDGET_DEPT_NAME": "普通外科病区",
+                        "MANAGE_DEPT_NAME": "药剂科",
+                        "2020PLAN": 0,
+                        "2020ACTUAL": 0,
+
+                    }, {
+                        "ID": "000000000000000000000000000000201807250903521881uprevvocf8sh",
+                        "PAY_ITEM_CODE": "10020104",
+                        "PAY_ITEM_NAME": "化验材料",
+                        "IS_LEAF": "1",
+                        "PAY_ITEM_TYPE": "1",
+                        "PAY_ITEM_DESC": null,
+                        "BUDGET_DECLARE_WAY": null,
+                        "PARENT_ID": "100201",
+                        "BUDGET_TYPE": "1",
+                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
+                        "BUDGET_AMOUNT": 0,
+                        "CALCULATION_DESC": "",
+                        "APPROVAL_STEP": "2",
+                        "APPROVAL_RESULT": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
+                        "PAY_DETAIL": "1",
+                        "BUDGET_DETAIL": "1",
+                        "IS_MANAGE_DEPT_DECLARE": "0",
+                        "IS_PUR_PAY": "0",
+                        "PARENT_PAY_ITEM_CODE": "",
+                        "BUDGET_DEPT_NAME": "普通外科病区",
+                        "MANAGE_DEPT_NAME": "药剂科",
+                        "2020PLAN": 0,
+                        "2020ACTUAL": 0,
+
+                    }, {
+                        "ID": "00000000000000000000000000000020180725090352208sofal3oh3i2ul",
+                        "PAY_ITEM_CODE": "10020105",
+                        "PAY_ITEM_NAME": "口腔材料",
+                        "IS_LEAF": "1",
+                        "PAY_ITEM_TYPE": "1",
+                        "PAY_ITEM_DESC": null,
+                        "BUDGET_DECLARE_WAY": null,
+                        "PARENT_ID": "100201",
+                        "BUDGET_TYPE": "1",
+                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
+                        "BUDGET_AMOUNT": 0,
+                        "CALCULATION_DESC": "",
+                        "APPROVAL_STEP": "2",
+                        "APPROVAL_RESULT": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
+                        "PAY_DETAIL": "1",
+                        "BUDGET_DETAIL": "1",
+                        "IS_MANAGE_DEPT_DECLARE": "0",
+                        "IS_PUR_PAY": "0",
+                        "PARENT_PAY_ITEM_CODE": "",
+                        "BUDGET_DEPT_NAME": "普通外科病区",
+                        "MANAGE_DEPT_NAME": "药剂科",
+                        "2020PLAN": 0,
+                        "2020ACTUAL": 0,
+
+                    }, {
+                        "ID": "00000000000000000000000000000020180725090352235qim0tmf5lnjbm",
+                        "PAY_ITEM_CODE": "10020109",
+                        "PAY_ITEM_NAME": "其他卫生材料",
+                        "IS_LEAF": "1",
+                        "PAY_ITEM_TYPE": "1",
+                        "PAY_ITEM_DESC": null,
+                        "BUDGET_DECLARE_WAY": null,
+                        "PARENT_ID": "100201",
+                        "BUDGET_TYPE": "1",
+                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
+                        "BUDGET_AMOUNT": 12,
+                        "CALCULATION_DESC": "",
+                        "APPROVAL_STEP": "2",
+                        "APPROVAL_RESULT": "1",
+                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
+                        "PAY_DETAIL": "1",
+                        "BUDGET_DETAIL": "1",
+                        "IS_MANAGE_DEPT_DECLARE": "0",
+                        "IS_PUR_PAY": "0",
+                        "PARENT_PAY_ITEM_CODE": "",
+                        "BUDGET_DEPT_NAME": "普通外科病区",
+                        "MANAGE_DEPT_NAME": "药剂科",
+                        "2020PLAN": 26951.4,
+                        "2020RATE_DIB": 100,
+                        "2020ACTUAL": 26951.4,
+
+                    }]
+            }]
+    }];
     export default {
         name: "user-manage",
         components: {
@@ -524,57 +359,67 @@
                 form: {},
                 columns: [
                     {
-                        title: "预算年度",
-                        key: "BUDGET_YEAR",
+                        type: "selection",
+                        width: 60,
+                        align: "center",
+                        fixed: "left"
+                    },
+                    {
+                        title: "编制部门",
+                        key: "BUDGET_DEPT_NAME",
                         minWidth: 125
                     },
                     {
-                        title: "目标编码",
-                        key: "TARGET_CODE",
-                        minWidth: 125
+                        title: "支出预算事项",
+                        key: "PAY_ITEM_NAME",
+                        width: 180,
+                        tree: true
                     },
                     {
-                        title: "目标名称",
-                        key: "TARGET_NAME",
+                        title: "归口代编",
+                        key: "PAY_ITEM_CODE",
                         minWidth: 140
                     },
                     {
-                        title: "单位",
-                        key: "DISPLAY_UNIT",
+                        title: "归口管理部门",
+                        key: "MANAGE_DEPT_NAME",
                         minWidth: 125
                     },
                     {
-                        title: "2019预算值",
-                        key: "2017PLAN",
+                        title: "事项定义",
+                        key: "PARENT_PAY_ITEM_COD",
                         minWidth: 125
                     },
                     {
-                        title: "2019执行值",
-                        key: "TARGET_DESC",
-                        minWidth: 160
-                    },
-                    {
-                        title: "2019执行率",
+                        title: "控制数额（元）",
                         key: "TARGET_DESCE",
+                        width: 160
+                    },
+                    {
+                        title: "2020预算值（元）",
+                        key: "2020PLAN",
+                        width: 160
+                    },
+                    {
+                        title: "2020执行值（元）",
+                        key: "2020ACTUAL",
+                        width: 160
+                    },
+                    {
+                        title: "2020执行率（%）",
+                        key: "2020RATE_DIB",
+                        width: 160
+                    },
+                    {
+                        title: "预算额（元）",
+                        key: "username",
                         minWidth: 125
                     },
                     {
-                        title: "2020目标值",
-                        key: "PLAN_VALUE",
-                        minWidth: 125,
-                        slot: 'mbz'
-                    },
-                    {
-                        title: "去年执行同比",
+                        title: "附件",
                         key: "username",
-                        minWidth: 125,
-                        slot: 'qtb'
+                        minWidth: 125
                     },
-                    {
-                        title: "目标说明",
-                        slot: 'desc',
-                        minWidth: 225,
-                    }
                 ],
                 exportColumns: [
                     {
@@ -635,6 +480,7 @@
         },
         methods: {
             init() {
+                // util.arrayToTree(data, {id: 'ID', pid: 'PARENT_ID'})
                 this.getUserList();
             },
             handleSelectDepTree(v) {
@@ -654,14 +500,8 @@
                 this.loading = true;
                 getUserListData(this.searchForm).then(res => {
                     this.loading = false;
-                    this.historyData = data;
-                    // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-                    if (this.historyData.length < this.searchForm.pageSize) {
-                        this.data = this.historyData;
-                    } else {
-                        this.data = this.historyData.slice(0, this.searchForm.pageSize);
-                    }
-                    this.total = this.historyData.length;
+                    this.data = data;
+                    this.total = this.data.length;
                 });
             },
             handleSearch() {
