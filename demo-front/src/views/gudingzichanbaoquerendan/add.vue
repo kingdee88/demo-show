@@ -26,7 +26,7 @@
                                 <Col span="24">
                                     <FormItem label="申请单号" prop="name">
                                         <Input v-model="apply.name" style="width: 320px; margin-right: 10px;"/>
-                                        <Button type="primary">选择</Button>
+                                        <Button type="primary" @click="selectApply">选择</Button>
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
@@ -147,6 +147,21 @@
                     </Col>
                 </Row>
             </Card>
+            <Modal title="维保申请单" v-model="applyModel" :styles="{top: '20px', width: '1000px'}">
+                <Table border
+                        :columns="columns"
+                        :data="data"
+                        width="960"
+                        sortable="custom"
+                        ref="table">
+                    <template slot-scope="{ row, index }" slot="action">
+                        <Button type="primary" size="small" style="margin-right: 5px" @click="actionSelect()">
+                            选择
+                        </Button>
+                    </template>
+                </Table>
+                <p slot="footer"></p>
+            </Modal>
         </Card>
     </div>
 </template>
@@ -157,7 +172,23 @@
         data() {
             return {
                 submitLoading: false, // 表单提交状态
-                apply: {}
+                apply: {},
+                applyModel: false,
+                data: [
+                    {
+                        manasset: '琼AA2765B', mantype: '更换机油', mantime: '2020-06-12',
+                        manuser: 'test1', manmobile: '13109908777', pamount: '980'
+                    }
+                ],
+                columns: [
+                    {title: "维保资产", key: "manasset"},
+                    {title: "维保类型", key: "mantype"},
+                    {title: "维保时间", key: "mantime"},
+                    {title: "维护人", key: "manuser"},
+                    {title: "联系电话", key: "manmobile"},
+                    {title: "预估金额(元)", key: "pamount"},
+                    {title: '操作', slot: 'action', width: 150, align: 'center'}
+                ]
             };
         },
         methods: {
@@ -183,6 +214,18 @@
             },
             submited() {
                 this.$emit("submited", true);
+            },
+            selectApply(){
+                this.applyModel = true;
+            },
+            actionSelect(){
+                this.applyModel = false;
+                this.apply = {
+                    atype: 2, checkuser: 'test1', cdepartment: '部门1',
+                    manasset: '琼AA2765B', mantype: 10, mantime: '2020-06-12',
+                    supplier: '大陆保养店', manuser: 'test1', manmobile: '13109908777', pamount: '980',
+                    bindex: 1, ibalance: 256489, ckmeter: 23378, lkmeter: 13579
+                };
             }
         },
         mounted() {
