@@ -1,0 +1,100 @@
+[{
+  "rootName": "1",
+  "id": "1",
+  "title": "海南省人民代表大会常务委员会",
+  "expand": true,
+  "children": [
+    {
+      "id": "11",
+      "title": "办公厅",
+      "expand": true,
+      "children": [
+        {
+          "id": "111",
+          "title": "秘书处",
+          "expand": true
+        },
+        {
+          "id": "112",
+          "title": "行政后勤处",
+          "expand": true
+        },
+        {
+          "id": "113",
+          "title": "海南省人大常委会机关信息中心",
+          "expand": true
+        },
+        {
+          "id": "114",
+          "title": "《海南人大》编辑部",
+          "expand": true
+        },
+        {
+          "id": "115",
+          "title": "《海南人大》编辑部",
+          "expand": true
+        },
+        {
+          "id": "116",
+          "title": "海南省人大干部培训中心",
+          "expand": true
+        },
+        {
+          "id": "117",
+          "title": "法制委员会",
+          "expand": true
+        },
+        {
+          "id": "118",
+          "title": "财经委员会",
+          "expand": true
+        },
+        {
+          "id": "119",
+          "title": "社会建设委员会",
+          "expand": true
+        },
+        {
+          "id": "120",
+          "title": "环境资源工作委员会",
+          "expand": true
+        },
+        {
+          "id": "121",
+          "title": "农村工作委员会",
+          "expand": true
+        },
+        {
+          "id": "122",
+          "title": "教科文卫工作委员会",
+          "expand": true
+        },
+        {
+          "id": "123",
+          "title": "华侨外事工作委员会",
+          "expand": true
+        },
+        {
+          "id": "124",
+          "title": "民族宗教工作委员会",
+          "expand": true
+        },
+        {
+          "id": "125",
+          "title": "财政经济（预算）工作委员会",
+          "expand": true
+        },
+        {
+          "id": "126",
+          "title": "内务司法工作委员会",
+          "expand": true
+        },
+        {
+          "id": "127",
+          "title": "法制工作委员会",
+          "expand": true
+        }
+      ]
+    }
+  ]
+}]

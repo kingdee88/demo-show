@@ -10,7 +10,7 @@
                         <Icon type="ios-arrow-back"/>
                         返回
                     </a>
-                    <div class="head-name">部门</div>
+                    <div class="head-name">部门业务经费配置</div>
                     <span></span>
                     <a @click="close" class="window-close">
                         <Icon type="ios-close" size="31" class="ivu-icon-ios-close"/>
@@ -24,9 +24,9 @@
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
                             <Row :gutter="24">
                                 <Col span="12">
-                                    <FormItem label="支出事项分类" prop="name">
-                                      <Input v-model="form.name" style="width: 320px">
-                                        <Button slot="append" icon="ios-bookmarks"></Button>
+                                    <FormItem label="支出事项分类" prop="itemName">
+                                      <Input v-model="form.itemName" style="width: 320px">
+                                      
                                       </Input>
                                     </FormItem>
                                 </Col>
@@ -120,7 +120,7 @@
                 submitLoading: false, // 表单提交状态
                 form: {
                     id: "",
-                    name: "",
+                    itemName: "支出事项分类",
                     money:1,
                     parentItemName:"院办经费",
                     departmentName:"普通外科病区"

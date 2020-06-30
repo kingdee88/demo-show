@@ -9,7 +9,7 @@
           <a @click="close" class="back-title">
             <Icon type="ios-arrow-back" />返回
           </a>
-          <div class="head-name">出国费</div>
+          <div class="head-name">一般经费</div>
           <span></span>
           <a @click="close" class="window-close">
             <Icon type="ios-close" size="31" class="ivu-icon-ios-close" />
@@ -17,9 +17,9 @@
         </div>
       </div>
       <Card>
-        <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：送审后自动生成</p>
+        <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：{{form.APPLY_FORM_NO}}</p>
         <Row type="flex" justify="space-between" :gutter="32">
-          <Col span="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
+          <Col :xl="21" :xxl="16" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
             <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
               <h4 class="h4-title">申请基本信息</h4>
               <Row :gutter="32">
@@ -39,14 +39,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="申请部门" prop="name">
-                    <Select
-                            v-model="form.type"
-                            placeholder="请选择"
-                    >
-                        <Option :value="0">普通外科病区</Option>
-                        <Option :value="1">呼吸科</Option>
-                        <Option :value="2">泌尿科</Option>
-                     </Select>
+                    <Input v-model="form.APPLY_DEPT_NAME" style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
@@ -106,90 +99,7 @@
                   </FormItem>
                 </Col>
               </Row>
-                <h4 class="h4-title">行程信息</h4>
-                <Row :gutter="32">
-                    <Col span="12">
-                    <FormItem label="出国起止时间" prop="name">
-                        <DatePicker
-                            v-model="form.date"
-                            type="date"
-                            format="yyyy-MM-dd"
-                            clearable
-                            placeholder="选择开始时间"
-                            style="width: 320px"
-                        ></DatePicker>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="至" prop="name">
-                        <DatePicker
-                            v-model="form.date"
-                            type="date"
-                            format="yyyy-MM-dd"
-                            clearable
-                            placeholder="选择结束时间"
-                            style="width: 320px"
-                        ></DatePicker>
-                    </FormItem>
-                    </Col>
-                    <Col span="24">
-                    <FormItem label="出国天数" prop="name">
-                        <Input style="width: 320px"/>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="出国人员" prop="name">
-                        <Input v-model="form.AGENT_USER_NAME" style="width: 320px">
-                        <Button slot="append" icon="ios-person"></Button>
-                        </Input>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="任务类型" prop="name">
-                        <Select
-                                          v-model="form.type"
-                                          placeholder="请选择"
-                                  >
-                                    <Option :value="0">科技考察</Option>
-                                    <Option :value="1">访问交流</Option>
-                                    <Option :value="2">国际会议</Option>
-                                    <Option :value="2">项目洽谈</Option>
-                                  </Select>
-                    </FormItem>
-                    </Col>
-                    <Col span="24">
-                    <FormItem label="出访国家(地区)" prop="name">
-                        <Input style="width: 320px"/>
-                    </FormItem>
-                    </Col>
-                    <Col span="12">
-                    <FormItem label="交通工具" prop="name">
-                        <Select
-                                          v-model="form.type"
-                                          placeholder="请选择"
-                                  >
-                                    <Option :value="0">火车</Option>
-                                    <Option :value="1">汽车</Option>
-                                    <Option :value="2">飞机</Option>
-                                    <Option :value="2">轮船</Option>
-                                  </Select>
-                    </FormItem>
-                    </Col>
-                    <Col span="24">
-                    <FormItem label="交通工具等级" prop="name">
-                        <Select
-                                          v-model="form.type"
-                                          placeholder="请选择"
-                                  >
-                                    <Option :value="0">省部级</Option>
-                                    <Option :value="1">司局级</Option>
-                                    <Option :value="2">其他</Option>
-                                  </Select>
-                    </FormItem>
-                    </Col>
-                </Row>
-
-              <h4 class="h4-title">出访人员</h4>
+              <h4 class="h4-title">费用预算</h4>
               <Table
                       border
                       :columns="columns"
@@ -198,26 +108,9 @@
                       ref="table"
               >
               </Table>
-              <h4 class="h4-title">费用预算</h4>
-             <Table
-                      border
-                      :columns="columns2"
-                      :data="datas2"
-                      sortable="custom"
-                      ref="table"
-              ></Table>
               <div class="sum-text">
                 申请金额：{{NumberToChinese(datas[0]['c'])}} {{datas[0]['c']}}.00
               </div>
-               <h4 class="h4-title">附件上传</h4>
-                          <Table
-                                  style="margin-bottom: 20px"
-                                  border
-                                  :columns="columns3"
-                                  :data="data3"
-                                  sortable="custom"
-                                  ref="table"
-                          ></Table>
               <Form-item class="br">
                 <Button
                         @click="handleSubmit"
@@ -230,7 +123,7 @@
               </Form-item>
             </Form>
           </Col>
-          <Col span="8">
+          <Col :xl="3" :xxl="8">
             <div class="operation">
               <div class="s-modal">
                 <h4 class="h4-title">风险提示</h4>
@@ -243,13 +136,20 @@
               <div class="s-modal">
                 <h4 class="h4-title">预算指标情况</h4>
                 <div class="content">
-                  无
+                  <p>{{form.INDEX_NAME}}</p>
+                  <Progress :percent="100" :stroke-width="20" text-inside />
                 </div>
               </div>
               <div class="s-modal">
                 <h4 class="h4-title">审批过程</h4>
                 <div class="content">
-                  无
+                  <Timeline>
+                    <TimelineItem>{{form.APPLY_DEPT_NAME}} test11 任务</TimelineItem>
+                    <TimelineItem color="green">
+                      <Icon type="md-checkmark-circle" slot="dot"></Icon>
+                      <span>{{form.APPLY_DEPT_NAME}} 05/18 20:03 任务同意</span>
+                    </TimelineItem>
+                  </Timeline>
                 </div>
               </div>
             </div>
@@ -277,59 +177,20 @@ export default {
       datas: [{
         c: 0
       }],
-      datas2: [
-          {
-              a: 0
-          }
-      ],
-      data3:  [],
-      columns3: [{
-          title:"附件类型",
-          key:"a"
-      },{
-          title:"文件名",
-          key:"b"
-      },{
-          title:"操作",
-          key: "c"
-      }],
-      columns2: [
-            {
-                title: "费用明细",
-                key: "a"
-            },
-            {
-                title: "开支标准",
-                key: "b"
-            },
-            {
-                title: "申请金额",
-                key: "c"
-            },
-            {
-                title: "备注",
-                key: "d"
-            }
-      ],
       columns: [
         {
-          title: "姓名",
+          title: "费用明细",
           key: "a",
           minWidth: 150
         },
         {
-          title: "部门",
+          title: "开支标准",
           key: "b",
           width: 150
         },
         {
-            title: "职务",
-            key: "c",
-            width: 100
-        },
-        {
-          title: "出国天数(元)",
-          key: "d",
+          title: "申请金额(元)",
+          key: "c",
           width: 150,
           render: (h, params) => {
             return h('Input', {
@@ -346,15 +207,8 @@ export default {
           }
         },
         {
-          title: "住宿天数",
-          key: "e"
-        },
-        {
-            title: "交通补助天数",
-            key: "f"
-        },
-        {
-            title: "伙食补助天数",
+          title: "备注",
+          key: "d"
         }
       ],
       // 表单验证规则
