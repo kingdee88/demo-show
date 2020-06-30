@@ -180,8 +180,8 @@
                         <Table
                                 :loading="loading"
                                 border
-                                :columns="columns"
-                                :data="data"
+                                :columns="columns1"
+                                :data="data1"
                                 ref="table"
                                 sortable="custom"
                                 @on-sort-change="changeSort"
@@ -422,7 +422,85 @@
                         u: '网银转账'
                     }
                 ], // 表单数据
-                total: 0 // 表单数据总数
+                total: 0, // 表单数据总数
+                columns1: [
+                    {
+                        title: '借款单号',
+                        key: 'a1',
+                        minWidth: 100
+                    },
+                    {
+                        title: '借款金额',
+                        key: 'a2',
+                        minWidth: 100
+                    },
+                    {
+                        title: '还款金额',
+                        key: 'a3',
+                        minWidth: 100
+                    },
+                    {
+                        title: '借款部门',
+                        key: 'a4',
+                        minWidth: 100
+                    },
+                    {
+                        title: '借款人',
+                        key: 'a5',
+                        minWidth: 100
+                    },
+                    {
+                        title: '经办人',
+                        key: 'a6',
+                        minWidth: 100
+                    },
+                    {
+                        title: '借款日期',
+                        key: 'a7',
+                        minWidth: 100
+                    },
+                    {
+                        title: '详细事由',
+                        key: 'a8',
+                        minWidth: 100
+                    },
+                    {
+                        title: '审核状态',
+                        key: 'a9',
+                        minWidth: 100
+                    },
+                    {
+                        title: '财务处理状态',
+                        key: 'a10',
+                        minWidth: 130
+                    },
+                    {
+                        title: '当前操作环节',
+                        key: 'a11',
+                        minWidth: 130
+                    },
+                    {
+                        title: '当前操作人',
+                        key: 'a12',
+                        minWidth: 130
+                    },
+                    {
+                        title: '最近还款日期',
+                        key: 'a13',
+                        minWidth: 130
+                    },
+                    {
+                        title: '借款状态',
+                        key: 'a14',
+                        minWidth: 100
+                    },
+                    {
+                        title: '操作',
+                        key: 'a15',
+                        minWidth: 100
+                    }
+                ],
+                data1: []
             };
         },
         methods: {
