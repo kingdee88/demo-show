@@ -34,7 +34,7 @@
                                 </Col>
                                 <Col span="12">
                                     <FormItem label="报销部门">
-                                      <Input style="width: 320px">
+                                      <Input style="width: 300px">
                                         <Button slot="append" icon="ios-bookmarks"></Button>
                                       </Input>
                                     </FormItem>
@@ -144,7 +144,7 @@
                                   sortable="custom"
                                   ref="table"
                                 ></Table>
-                            <Form-item class="br">
+                            <Form-item class="br" style="padding-top: 20px;">
                                 <Button
                                         @click="handleSubmit"
                                         :loading="submitLoading"

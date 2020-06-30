@@ -80,7 +80,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="拟参与人数" prop="name">
-                    <Input v-model="form.name" style="width: 320px"/>
+                    <Input v-model="form.name" style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">

@@ -34,7 +34,7 @@
                                 </Col>
                                 <Col span="12">
                                     <FormItem label="关联行政申请">
-                                      <Input style="width: 320px">
+                                      <Input style="width: 300px">
                                         <Button slot="append" icon="ios-bookmarks"></Button>
                                       </Input>
                                     </FormItem>
@@ -48,7 +48,7 @@
                                 </Col>
                                 <Col span="12">
                                     <FormItem label="报销部门">
-                                      <Input style="width: 320px">
+                                      <Input style="width: 300px">
                                         <Button slot="append" icon="ios-bookmarks"></Button>
                                       </Input>
                                     </FormItem>
