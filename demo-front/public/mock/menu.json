@@ -1593,7 +1593,7 @@
             "type": 0,
             "title": "车辆加油记录",
             "path": "vehicle-refueling-record",
-            "component": "cheliangjiyoujilu/list",
+            "component": "cheliangjiayoujilu/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",
