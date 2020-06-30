@@ -160,6 +160,10 @@
                                     </FormItem>
                                 </Col>
                             </Row>
+                            <div class="table" style="margin-bottom: 20px">
+                                <Button class="button" @click="addTable" style="margin-bottom: 15px" type="primary">新增</Button>
+                                <Table :columns="columns1" :data="datas" class="table-fixbug"></Table>
+                            </div>
                             <Form-item class="br">
                                 <Button type="dashed" @click="close">取消</Button>
                                 <Button @click="handleSubmit" :loading="submitLoading" type="primary">
@@ -170,22 +174,22 @@
                     </Col>
                 </Row>
             </Card>
-            <Modal title="维保申请单" v-model="applyModel" :styles="{top: '20px', width: '1000px'}">
-                <Table border
-                       :columns="columns"
-                       :data="data"
-                       width="960"
-                       sortable="custom"
-                       ref="table">
-                    <template slot-scope="{ row, index }" slot="action">
-                        <Button type="primary" size="small" style="margin-right: 5px" @click="actionSelect()">
-                            选择
-                        </Button>
-                    </template>
-                </Table>
-                <p slot="footer"></p>
-            </Modal>
         </Card>
+        <Modal title="维保申请单" v-model="applyModel" :styles="{top: '20px', width: '1000px'}">
+            <Table border
+                   :columns="columns"
+                   :data="data"
+                   width="960"
+                   sortable="custom"
+                   ref="table">
+                <template slot-scope="{ row, index }" slot="action">
+                    <Button type="primary" size="small" style="margin-right: 5px" @click="actionSelect()">
+                        选择
+                    </Button>
+                </template>
+            </Table>
+            <p slot="footer"></p>
+        </Modal>
     </div>
 </template>
 
@@ -197,12 +201,10 @@
                 submitLoading: false, // 表单提交状态
                 apply: {},
                 applyModel: false,
-                data: [
-                    {
-                        manasset: '琼AA2765B', mantype: '更换机油', mantime: '2020-06-12',
-                        manuser: 'test1', manmobile: '13109908777', pamount: '980'
-                    }
-                ],
+                data: [{
+                    manasset: '琼AA2765B', mantype: '更换机油', mantime: '2020-06-12',
+                    manuser: 'test1', manmobile: '13109908777', pamount: '980'
+                }],
                 columns: [
                     {title: "维保资产", key: "manasset"},
                     {title: "维保类型", key: "mantype"},
@@ -211,11 +213,126 @@
                     {title: "联系电话", key: "manmobile"},
                     {title: "预估金额(元)", key: "pamount"},
                     {title: '操作', slot: 'action', width: 150, align: 'center'}
-                ]
+                ],
+                columns1: [
+                    {
+                        title: "发票类型",
+                        key: "name",
+                        render: (h, { row, index }) => {
+                            return h("Input", {
+                                props: {
+                                    value: row.name
+                                },
+                                on: {
+                                    input: val => {
+                                        this.data[index].name = val;
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    {
+                        title: "发票代码",
+                        key: "hobby",
+                        render: (h, { row, index }) => {
+                            return h("Input", {
+                                props: {
+                                    value: row.hobby
+                                },
+                                on: {
+                                    input: val => {
+                                        this.data[index].hobby = val;
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    {
+                        title: "发票号码",
+                        key: "job",
+                        render: (h, { row, index }) => {
+                            return h("Input", {
+                                props: {
+                                    value: row.job
+                                },
+                                on: {
+                                    input: val => {
+                                        this.data[index].job = val;
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    {
+                        title: "发票金额(元)",
+                        key: "sss",
+                        render: (h, { row, index }) => {
+                            return h("Input", {
+                                props: {
+                                    value: row.sss
+                                },
+                                on: {
+                                    input: val => {
+                                        this.data[index].sss = val;
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    {
+                        title: "附件",
+                        key: "operation",
+                        render: (h, { row, index }) => {
+                            return h(
+                                "Button",
+                                {
+                                    props: {
+                                        icon: 'ios-cloud-upload-outline'
+                                    },
+                                },
+                                "上传附件"
+                            );
+                        }
+                    },
+                    {
+                        title: "操作",
+                        key: "operation",
+                        render: (h, { row, index }) => {
+                            return h(
+                                "a",
+                                {
+                                    on: {
+                                        click: () => {
+                                            this.data.splice(index, 1);
+                                        }
+                                    }
+                                },
+                                "删除"
+                            );
+                        }
+                    }
+                ],
+                datas: [
+                    {
+                        name: "电子发票",
+                        hobby: "031001900511",
+                        job: "17195241",
+                        sss: 968
+                    }
+                ],
+                options:['电影','游戏','看书']
             };
         },
         methods: {
             init() {
+            },
+            addTable() {
+                const addData = {
+                    name: "",
+                    hobby: "",
+                    job: ""
+                };
+                this.datas.push(addData);
             },
             handleReset() {
                 this.$refs.form.resetFields();
@@ -241,7 +358,7 @@
             selectApply(){
                 this.applyModel = true;
             },
-            actionSelect(){
+            actionSelect() {
                 this.applyModel = false;
                 this.apply = {
                     atype: 2, checkuser: 'test1', cdepartment: '部门1',
