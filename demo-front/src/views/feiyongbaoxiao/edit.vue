@@ -42,7 +42,7 @@
                                 </Col>
                                 <Col span="12">
                                     <FormItem label="报销部门">
-                                        <Input style="width: 320px" v-model="form.k" readonly>
+                                        <Input style="width: 280px" v-model="form.k" readonly>
                                         </Input>
                                     </FormItem>
                                 </Col>

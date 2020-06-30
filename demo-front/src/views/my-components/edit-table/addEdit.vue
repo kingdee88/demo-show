@@ -747,12 +747,33 @@
                 },
                 roleList: [],
                 columns: [
-                    // {
-                    //     type: "selection",
-                    //     width: 60,
-                    //     align: "center",
-                    //     fixed: "left"
-                    // },
+                    {
+                        title: '请选择',
+                        align: 'center',
+                        key: 'checkBox',
+                        width: 80,
+                        render: (h, params) => {
+                            let _self = this;
+                            return h('div', [
+                                h('Checkbox', {
+                                    props: {
+                                        value: params.row.checkBox
+                                    },
+                                    on: {
+                                        'on-change': (e)=> {
+                                            if (e == false) {
+                                                _self.disabled = true
+                                            }
+                                            this.tData.forEach((items) => {  //先取消所有对象的勾选，checkBox设置为false
+                                                _self.$set(items, 'checkBox', false)
+                                            });
+                                            _self.tData[params.index].checkBox = e;  //再将勾选的对象的checkBox设置为true
+                                        }
+                                    }
+                                })
+                            ])
+                        }
+                    },
                     {
                         title: "指标名称",
                         key: "PAY_ITEM_NAME",
@@ -845,9 +866,14 @@
                 this.form.birth = v;
             },
             submit() {
-                this.$Message.success("操作成功");
-                this.$emit("on-submit", true);
-                this.visible = false;
+                if (this.tData.filter(res => res.checkBox).length > 0) {
+                    this.$Message.success("操作成功");
+                    this.$emit("on-submit", this.tData.filter(res => res.checkBox));
+                    this.visible = false;
+                } else {
+                    this.$Message.warning("请选择");
+                }
+
             },
             setCurrentValue(value) {
                 if (value === this.visible) {

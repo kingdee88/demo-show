@@ -80,7 +80,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="拟参与人数" prop="name">
-                    <Input v-model="form.name" style="width: 320px"/>
+                    <Input v-model="form.name" style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
@@ -128,7 +128,7 @@
                             format="yyyy-MM-dd"
                             clearable
                             placeholder="选择结束时间"
-                            style="width: 320px"
+                            style="width: 300px"
                         ></DatePicker>
                     </FormItem>
                     </Col>
@@ -177,9 +177,9 @@
                     </Col>
                     <Col span="24">
                     <FormItem label="交通工具等级" prop="name">
-                        <Select
-                                          v-model="form.type"
+                        <Select  v-model="form.type"
                                           placeholder="请选择"
+                                          style="width: 320px"
                                   >
                                     <Option :value="0">省部级</Option>
                                     <Option :value="1">司局级</Option>
