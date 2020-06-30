@@ -1,5 +1,5 @@
 <style lang="less">
-    @import "../../../styles/single-common.less";
+    @import "../../styles/single-common.less";
 </style>
 <template>
     <div>
@@ -10,7 +10,7 @@
                         <Icon type="ios-arrow-back"/>
                         返回
                     </a>
-                    <div class="head-name">事前申请变更</div>
+                    <div class="head-name">事前申请审核</div>
                     <span></span>
                     <a @click="close" class="window-close">
                         <Icon type="ios-close" size="31" class="ivu-icon-ios-close"/>
@@ -20,6 +20,14 @@
 
             <Card>
                 <Row class="operation">
+                    <Button
+                            @click="delAll"
+                            icon="ios-checkmark-circle"
+                    >批量同意</Button>
+                    <Button
+                            @click="delAll"
+                            icon="md-close-circle"
+                    >批量不同意</Button>
                     <Button icon="md-refresh">刷新</Button>
                     <Button
                             type="dashed"
@@ -27,55 +35,55 @@
                     >{{openSearch ? "关闭搜索" : "开启搜索"}}</Button>
                 </Row>
                 <Row class="operation">
-                    <Row
-                            v-show="openSearch"
-                            @keydown.enter.native="handleSearch"
+                <Row
+                        v-show="openSearch"
+                        @keydown.enter.native="handleSearch"
+                >
+
+                    <Form
+                            ref="searchForm"
+                            :model="searchForm"
+                            inline
+                            :label-width="70"
                     >
-
-                        <Form
-                                ref="searchForm"
-                                :model="searchForm"
-                                inline
-                                :label-width="70"
+                        <Form-item
+                                label="申请单号"
+                                prop="nickname"
                         >
-                            <Form-item
-                                    label="申请单号"
-                                    prop="nickname"
-                            >
-                                <Input
-                                        type="text"
-                                        v-model="searchForm.nickname"
-                                        clearable
-                                        placeholder="请输入用户名"
-                                        style="width: 200px"
-                                />
-                            </Form-item>
+                            <Input
+                                    type="text"
+                                    v-model="searchForm.nickname"
+                                    clearable
+                                    placeholder="请输入用户名"
+                                    style="width: 200px"
+                            />
+                        </Form-item>
 
-                            <Form-item
-                                    label="预算指标"
-                                    prop="mobile"
-                            >
-                                <Input
-                                        type="text"
-                                        v-model="searchForm.mobile"
-                                        clearable
-                                        placeholder=""
-                                        style="width: 200px"
-                                />
-                            </Form-item>
-                            <Form-item
-                                    label="支出事项"
-                                    prop="email"
-                            >
-                                <Input
-                                        type="text"
-                                        v-model="searchForm.email"
-                                        clearable
-                                        placeholder=""
-                                        style="width: 200px"
-                                />
-                            </Form-item>
-                            <span v-if="drop">
+                        <Form-item
+                                label="预算指标"
+                                prop="mobile"
+                        >
+                            <Input
+                                    type="text"
+                                    v-model="searchForm.mobile"
+                                    clearable
+                                    placeholder=""
+                                    style="width: 200px"
+                            />
+                        </Form-item>
+                        <Form-item
+                                label="支出事项"
+                                prop="email"
+                        >
+                            <Input
+                                    type="text"
+                                    v-model="searchForm.email"
+                                    clearable
+                                    placeholder=""
+                                    style="width: 200px"
+                            />
+                        </Form-item>
+                        <span v-if="drop">
            <Form-item
                    label="申请类型"
                    prop="sex"
@@ -128,60 +136,60 @@
                               />
             </Form-item>
                         </span>
-                            <Form-item
-                                    style="margin-left:-35px;"
-                                    class="br"
-                            >
-                                <Button
-                                        @click="handleSearch"
-                                        type="primary"
-                                        icon="ios-search"
-                                >搜索
-                                </Button>
-                                <Button @click="handleReset">重置</Button>
-                            </Form-item>
+                        <Form-item
+                                style="margin-left:-35px;"
+                                class="br"
+                        >
+                            <Button
+                                    @click="handleSearch"
+                                    type="primary"
+                                    icon="ios-search"
+                            >搜索
+                            </Button>
+                            <Button @click="handleReset">重置</Button>
+                        </Form-item>
 
-                            <Form-item
-                                    style="margin-left:-35px;"
-                                    class="br"
+                        <Form-item
+                                style="margin-left:-35px;"
+                                class="br"
+                        >
+                            <a
+                                    class="drop-down"
+                                    @click="dropDown"
                             >
-                                <a
-                                        class="drop-down"
-                                        @click="dropDown"
-                                >
-                                    {{dropDownContent}}
-                                    <Icon :type="dropDownIcon"></Icon>
-                                </a>
-                            </Form-item>
+                                {{dropDownContent}}
+                                <Icon :type="dropDownIcon"></Icon>
+                            </a>
+                        </Form-item>
 
-                        </Form>
-                    </Row>
-                    <Row>
-                        <Table
-                                :loading="loading"
-                                border
-                                :columns="columns"
-                                :data="data"
-                                ref="table"
-                                sortable="custom"
-                                @on-sort-change="changeSort"
-                                @on-selection-change="changeSelect"
-                        ></Table>
-                    </Row>
-                    <Row type="flex" justify="end" class="page">
-                        <Page
-                                :current="searchForm.pageNumber"
-                                :total="total"
-                                :page-size="searchForm.pageSize"
-                                @on-change="changePage"
-                                @on-page-size-change="changePageSize"
-                                :page-size-opts="[10,20,50]"
-                                size="small"
-                                show-total
-                                show-elevator
-                                show-sizer
-                        ></Page>
-                    </Row>
+                    </Form>
+                </Row>
+                <Row>
+                    <Table
+                            :loading="loading"
+                            border
+                            :columns="columns"
+                            :data="data"
+                            ref="table"
+                            sortable="custom"
+                            @on-sort-change="changeSort"
+                            @on-selection-change="changeSelect"
+                    ></Table>
+                </Row>
+                <Row type="flex" justify="end" class="page">
+                    <Page
+                            :current="searchForm.pageNumber"
+                            :total="total"
+                            :page-size="searchForm.pageSize"
+                            @on-change="changePage"
+                            @on-page-size-change="changePageSize"
+                            :page-size-opts="[10,20,50]"
+                            size="small"
+                            show-total
+                            show-elevator
+                            show-sizer
+                    ></Page>
+                </Row>
                 </Row>
             </Card>
         </Card>
@@ -228,6 +236,12 @@
                 data: [],
                 columns: [
                     {
+                        type: "selection",
+                        width: 60,
+                        align: "center",
+                        fixed: "left"
+                    },
+                    {
                         title: "申请单号",
                         key: "title",
                         minWidth: 150
@@ -238,27 +252,17 @@
                         width: 150
                     },
                     {
-                        title: "指标来源",
+                        title: "支出事项",
                         key: "value",
                         width: 150
                     },
                     {
-                        title: "支出事项",
-                        key: "description",
-                        width: 150
-                    },
-                    {
-                        title: "申请日期",
-                        key: "description",
-                        width: 150
-                    },
-                    {
-                        title: "事由摘要",
-                        key: "description",
-                        width: 150
-                    },
-                    {
                         title: "申请金额",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请类型",
                         key: "description",
                         width: 150
                     },
@@ -273,7 +277,32 @@
                         width: 150
                     },
                     {
+                        title: "经办人",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请事由",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "申请日期",
+                        key: "description",
+                        width: 150
+                    },
+                    {
                         title: "申请状态",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "当前操作环节",
+                        key: "description",
+                        width: 150
+                    },
+                    {
+                        title: "当前操作人",
                         key: "description",
                         width: 150
                     },
