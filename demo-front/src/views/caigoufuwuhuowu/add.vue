@@ -23,17 +23,13 @@
               <h4 class="h4-title">申请基本信息</h4>
               <Row :gutter="32">
                 <Col span="12">
-                  <FormItem label="采购需求申请号" prop="name">
+                  <FormItem label="采购需求申请号">
                       送审后自动生成
-                    <!-- <Input v-model="form.name" style="width: 320px"> -->
-                      <!-- <Button slot="append" icon="ios-bookmarks"></Button> -->
-                    <!-- </Input> -->
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="采购分类" prop="name">
+                  <FormItem label="采购分类">
                     <Select
-                            v-model="form.type"
                             placeholder="请选择"
                     >
                         <Option :value="0">工程</Option>
@@ -43,14 +39,13 @@
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="申请人" prop="name">
-                    <Input v-model="form.MOBILE" style="width: 320px"/>
+                  <FormItem label="申请人" >
+                    <Input style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="申请部门" prop="name">
                     <Select
-                            v-model="form.type"
                             placeholder="请选择"
                     >
                         <Option :value="0">普通外科病区</Option>
@@ -61,12 +56,12 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="负责人电话" prop="name">
-                    <Input v-model="form.MOBILE" style="width: 320px"/>
+                    <Input style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="预算指标" prop="name">
-                    <Input v-model="form.ITEM_PAY_ITEM_NAME" style="width: 320px">
+                    <Input style="width: 300px">
                       <Button slot="append" icon="ios-pricetag"></Button>
                     </Input>
                   </FormItem>
@@ -99,20 +94,19 @@
                             format="yyyy-MM-dd"
                             clearable
                             placeholder="选择开始时间"
-                            style="width: 320px"
+                            style="width: 280px"
                         ></DatePicker>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="交付地点" prop="name">
-                    <Input v-model="form.REASON_DIGEST" style="width: 320px" placeholder="请输入至少5个字符"/>
+                    <Input style="width: 320px" placeholder="请输入至少5个字符"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
                   <FormItem label="采购说明" prop="name">
                     <Input
                             type="textarea"
-                            v-model="form.description"
                             :rows="4"
                     />
                   </FormItem>

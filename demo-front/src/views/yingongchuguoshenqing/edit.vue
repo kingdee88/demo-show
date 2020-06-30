@@ -80,7 +80,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="拟参与人数" prop="name">
-                    <Input v-model="form.name" style="width: 320px"/>
+                    <Input v-model="form.name" style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
@@ -128,7 +128,7 @@
                             format="yyyy-MM-dd"
                             clearable
                             placeholder="选择结束时间"
-                            style="width: 320px"
+                            style="width: 300px"
                         ></DatePicker>
                     </FormItem>
                     </Col>

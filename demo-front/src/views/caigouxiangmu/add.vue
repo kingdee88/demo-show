@@ -23,16 +23,14 @@
               <h4 class="h4-title">申请基本信息</h4>
               <Row :gutter="32">
                 <Col span="12">
-                  <FormItem label="采购需求申请号" prop="name">
+                  <FormItem label="采购需求申请号">
                       送审后自动生成
-                    <!-- <Input v-model="form.name" style="width: 320px"> -->
-                      <!-- <Button slot="append" icon="ios-bookmarks"></Button> -->
-                    <!-- </Input> -->
+                   
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="项目名称" prop="name">
-                    <Input v-model="form.name" style="width: 320px"></Input>
+                    <Input style="width: 300px"></Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -63,19 +61,19 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="预算指标" prop="name">
-                    <Input v-model="form.ITEM_PAY_ITEM_NAME" style="width: 320px">
+                    <Input style="width: 320px">
                       <Button slot="append" icon="ios-pricetag"></Button>
                     </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="支出事项" prop="name">
-                    <Input v-model="form.APPLY_AMOUNT" style="width: 320px"/>
+                    <Input style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
                   <FormItem label="指标可用金额" prop="name">
-                    <Input v-model="form.APPLY_AMOUNT" style="width: 320px"/>
+                    <Input style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -112,7 +110,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="联系人电话" prop="name">
-                    <Input v-model="form.ITEM_PAY_ITEM_NAME" style="width: 320px"/>
+                    <Input v-model="form.ITEM_PAY_ITEM_NAME" style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
@@ -175,17 +173,17 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="采购预算金额" prop="name">
-                    <Input style="width: 320px"/>
+                    <Input style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="控制价" prop="name">
-                    <Input style="width: 320px"/>
+                    <Input style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="项目执行结果" prop="name">
-                    <Input style="width: 320px"/>
+                    <Input style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -196,7 +194,7 @@
                             format="yyyy-MM-dd"
                             clearable
                             placeholder="选择时间"
-                            style="width: 320px"
+                            style="width: 300px"
                         ></DatePicker>
                   </FormItem>
                 </Col>
@@ -210,7 +208,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="采购编号" prop="name">
-                    <Input style="width: 320px"/>
+                    <Input style="width: 300px"/>
                   </FormItem>
                 </Col>
               </Row>
@@ -285,9 +283,7 @@ export default {
         c: 0
       }],
       datas2: [
-          {
-              a: 0
-          }
+         
       ],
       columns2: [
             {
