@@ -17,59 +17,65 @@
         </div>
       </div>
       <Card>
-        <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：送审后自动生成</p>
+        <p class="show-info">经办人部门：行政后勤处   经办人：test11   申请日期：2020-07-01   申请单号：送审后自动生成</p>
         <Row type="flex" justify="space-between" :gutter="32">
           <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
             <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
               <h4 class="h4-title">申请基本信息</h4>
               <Row :gutter="32">
                 <Col span="24">
-                  <FormItem label="关联行政申请" prop="name">
-                    <Input v-model="form.name" style="width: 320px">
+                  <FormItem label="关联行政申请">
+                    <Input style="width: 320px">
                       <Button slot="append" icon="ios-bookmarks"></Button>
                     </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="申请人" prop="name">
-                    <Input v-model="form.AGENT_USER_NAME" style="width: 320px">
+                  <FormItem label="申请人" >
+                    <Input value="演示用户" style="width: 320px">
                       <Button slot="append" icon="ios-person"></Button>
                     </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
-                  <FormItem label="申请部门" prop="name">
+                  <FormItem label="申请部门" >
                     <Select
-                            v-model="form.type"
+                            :value="0"
                             placeholder="请选择"
                     >
-                        <Option :value="0">普通外科病区</Option>
-                        <Option :value="1">呼吸科</Option>
-                        <Option :value="2">泌尿科</Option>
+                        <Option selected :value="0">行政后勤处</Option>
                      </Select>
                   </FormItem>
                 </Col>
                 <Col span="24">
-                  <FormItem label="申请人电话" prop="name">
-                    <Input v-model="form.MOBILE" style="width: 320px"/>
+                  <FormItem label="申请人电话" >
+                    <Input style="width: 320px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
-                  <FormItem label="预算指标" prop="name">
-                    <Input v-model="form.ITEM_PAY_ITEM_NAME" style="width: 320px">
-                      <Button slot="append" icon="ios-pricetag"></Button>
-                    </Input>
+                  <FormItem label="预算指标" >
+                    <Select
+                            placeholder="请选择"
+                             style="width: 320px"
+                            @on-change="change2"
+                    >
+                        <Option :value="0">公务用车{{form.c}}</Option>
+                     </Select>
                   </FormItem>
                 </Col>
                 <Col span="24">
-                  <FormItem label="指标可用金额" prop="name">
-                    <Input v-model="form.APPLY_AMOUNT" style="width: 320px"/>
+                  <FormItem label="指标可用金额" >
+                    <template v-if="form.c != ''">
+                      <Input value="34632" disabled style="width: 320px"/>
+                    </template>
+                    <template v-else>
+                      <Input style="width: 320px"/>
+                    </template>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="拟安排时间" prop="name">
                     <DatePicker
-                            v-model="form.date"
                             type="daterange"
                             format="yyyy-MM-dd"
                             clearable
@@ -80,12 +86,12 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="拟参与人数" prop="name">
-                    <Input v-model="form.name" style="width: 300px"/>
+                    <Input style="width: 300px"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
                   <FormItem label="是否需借款" prop="name">
-                    <RadioGroup v-model="form.IS_LOAN">
+                    <RadioGroup>
                       <Radio  :label="'0'">否</Radio>
                       <Radio  :label="'1'">是</Radio>
                     </RadioGroup>
@@ -93,14 +99,13 @@
                 </Col>
                 <Col span="24">
                   <FormItem label="事由摘要" prop="name">
-                    <Input v-model="form.REASON_DIGEST" style="width: 320px" placeholder="请输入至少5个字符"/>
+                    <Input style="width: 320px" placeholder="请输入至少5个字符"/>
                   </FormItem>
                 </Col>
                 <Col span="24">
                   <FormItem label="申请事务" prop="name">
                     <Input
                             type="textarea"
-                            v-model="form.description"
                             :rows="4"
                     />
                   </FormItem>
@@ -115,9 +120,9 @@
                       sortable="custom"
                       ref="table"
               ></Table>
-              <div class="sum-text">
+              <!-- <div class="sum-text">
                 申请金额：{{NumberToChinese(datas[0]['p'])}} {{datas[0]['p']}}.00
-              </div>
+              </div> -->
                <h4 class="h4-title">附件上传</h4>
                           <Table
                                   style="margin-bottom: 20px"
@@ -181,7 +186,8 @@ export default {
       submitLoading: false, // 表单提交状态
       form: {
         id: "",
-        name: ""
+        name: "",
+        c: ""
       },
       datas: [{
         p:0,
@@ -202,12 +208,40 @@ export default {
         {
           title: "车牌号",
           key: "a",
-          minWidth: 150
+          render: (h, params) => {
+            return h('Select', {
+              props: {
+                transfer: true,
+                type: 'text',
+                value: this.datas[params.index].c,
+              }
+            },[
+              h('Option', {
+                props: {
+                    value: '1'
+                }
+              }, '琼AA2765B')
+            ]);
+          }
         },
         {
           title: "车辆类型",
           key: "b",
-          width: 150
+          render: (h, params) => {
+            return h('Select', {
+              props: {
+                transfer: true,
+                type: 'text',
+                value: this.datas[params.index].c,
+              }
+            },[
+              h('Option', {
+                props: {
+                  value: '1'
+                }
+              }, '轿车')
+            ])
+          }
         },
         {
             title: "备注",
@@ -230,11 +264,11 @@ export default {
   methods: {
     init() {
       this.handleReset();
-      this.form = this.data;
+      // this.form = this.data;
       this.datas = [{
-        a: this.form.ITEM_PAY_ITEM_NAME,
+        // a: this.form.ITEM_PAY_ITEM_NAME,
         b: '据实列支',
-        c: this.form.APPLY_AMOUNT,
+        // c: this.form.APPLY_AMOUNT,
         d: ''
       }]
     },
@@ -263,6 +297,10 @@ export default {
     },
     submited() {
       this.$emit("submited", true);
+    },
+    change2(value){
+      this.form.c = "34632";
+      console.log(this.form.c);
     },
     toDx(n) {   //阿拉伯数字转换函数
       switch (n) {

@@ -3,18 +3,21 @@
 </style>
 <template>
     <div class="search">
-        <audit v-if="currView=='audit'" @close="currView='index'" :data="formData" @submited="submited"/>
-        <detail v-if="currView=='detail'" @close="currView='index'" :data="formData" @submited="submited1"/>
-        <Card v-show="currView=='index'">
+        <Card>
+            <Row
+                    v-show="openSearch"
+                    @keydown.enter.native="handleSearch"
+            >
+                <div style="display: flex;justify-content: space-between;">
+                    <Col span="12">
+                        <visit-separation/>
+                    </Col>
+                    <Col span="12">
+                        <visit-separation1/>
+                    </Col>
+                </div>
+            </Row>
             <Row>
-                <Tabs value="6" @on-click="handleChange">
-                    <TabPane label="一月份(已核查)" name="1"></TabPane>
-                    <TabPane label="二月份(已核查)" name="2"></TabPane>
-                    <TabPane label="三月份(已核查)" name="3"></TabPane>
-                    <TabPane label="四月份(已核查)" name="4"></TabPane>
-                    <TabPane label="五月份(已核查)" name="5"></TabPane>
-                    <TabPane label="六月份(待核查)" name="6"></TabPane>
-                </Tabs>
                 <Table
                         row-key="ID"
                         :loading="loading"
@@ -27,6 +30,49 @@
                 </Table>
             </Row>
         </Card>
+
+        <Modal
+                v-model="modalExportAll"
+                title="确认导出"
+                :loading="loadingExport"
+                @on-ok="exportAll"
+        >
+            <p>您确认要导出全部 {{total}} 条数据？</p>
+        </Modal>
+
+        <check-password
+                ref="checkPass"
+                @on-success="resetPass"
+        />
+        <Modal :title="modalTitle" v-model="modalVisible" :mask-closable="false" :width="500">
+            <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
+                <FormItem label="加油卡卡号：">
+                    <Input v-model="form.a"  v-if="modalType == 0"/>
+                    <span v-else>{{form.a}}</span>
+                </FormItem>
+                <FormItem label="车牌号：">
+                    <Input v-model="form.b" v-if="modalType == 0" />
+                    <span v-else>{{form.b}}</span>
+                </FormItem>
+                <FormItem label="充值金额：" v-if="modalType == 1">
+                    <Input v-model="form.je"  style="width: 260px" />
+                </FormItem>
+                <FormItem label="充值时间：" v-if="modalType == 1">
+                    <DatePicker
+                            style="width: 260px"
+                            v-model="form.date"
+                            type="date"
+                            format="yyyy-MM-dd"
+                            clearable
+                            placeholder="选择时间"
+                    ></DatePicker>
+                </FormItem>
+            </Form>
+            <div slot="footer">
+                <Button type="text" @click="handleCancel">取消</Button>
+                <Button type="primary" @click="handleSubmit">提交</Button>
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -39,23 +85,54 @@
         getAllUserData,
         resetUserPass
     } from "@/api/index";
-    import audit from "./audit.vue";
-    import detail from "./detail.vue";
+    import departmentChoose from "../my-components/xboot/department-choose";
+    import checkPassword from "@/views/my-components/xboot/check-password";
+    import visitSeparation from "./visitSeparation.vue";
+    import visitSeparation1 from "./visitSeparation1.vue";
 
-    const data = [];
+    const data = [{
+        a: '琼AA2765B',
+        b: 8.6,
+        c: 9.1,
+        d: 8.5,
+        e: 10.1,
+        f: 8.8,
+        g: 9.1,
+        h: 9.3,
+        i: 10.4
+    },
+        {
+            a: '琼AA2788F',
+            b: 9.2,
+            c: 9.3,
+            d: 9.7,
+            e: 9.3,
+            f: 9.8,
+            g: 9.9,
+            h: 11.2,
+            i: 12.6
+        }];
     export default {
         name: "user-manage",
         components: {
-            audit,
-            detail
+            departmentChoose,
+            checkPassword,
+            visitSeparation,
+            visitSeparation1
         },
         data() {
             return {
-                tabName: '1',
+                modalType: 0, // 添加或充值标识
+                modalVisible: false, // 添加或充值显示
+                modalTitle: "", // 添加或充值标题
+                // 表单验证规则
+                formValidate: {
+                    name: [{ required: true, message: "不能为空", trigger: "blur" }]
+                },
                 height: 510,
                 showUser: false,
                 showType: "0",
-                loading: false,
+                loading: true,
                 openSearch: true,
                 openTip: false,
                 operationLoading: false,
@@ -68,180 +145,138 @@
                 selectList: [],
                 dataDep: [],
                 searchKey: "",
-                formData: {},
-                currView: 'index',
+                searchForm: {
+                    id: "",
+                    year: '0',
+                    username: "",
+                    departmentId: "",
+                    mobile: "",
+                    email: "",
+                    sex: "",
+                    type: "",
+                    status: "",
+                    pageNumber: 1,
+                    pageSize: 15,
+                    sort: "createTime",
+                    order: "desc",
+                    startDate: "",
+                    endDate: ""
+                },
+                form: {},
                 columns: [
+                    // {
+                    //     type: "selection",
+                    //     width: 60,
+                    //     align: "center",
+                    //     fixed: "left"
+                    // },
                     {
-                        title: "车牌号",
+                        title: "车牌",
                         key: "a",
                         minWidth: 125
                     },
                     {
-                        title: "月初里程(公里)",
+                        title: "设定油耗",
                         key: "b",
                         width: 180
                     },
                     {
-                        title: "月末里程(公里)",
+                        title: "历史平均油耗",
                         key: "c",
-                        width: 180
-                    },
-                    {
-                        title: "行驶里程(公里)",
-                        key: "d",
                         minWidth: 140
                     },
                     {
-                        title: "加油次数",
+                        title: "1月平均油耗",
+                        key: "d",
+                        minWidth: 125
+                    },
+                    {
+                        title: "2月平均油耗",
                         key: "e",
                         minWidth: 125
                     },
                     {
-                        title: "加油量合计(升)",
+                        title: "3月平均油耗",
                         key: "f",
                         minWidth: 125
                     },
                     {
-                        title: "平均油耗(升/百公里)",
+                        title: "4月平均油耗",
                         key: "g",
-                        width: 180
+                        minWidth: 125
                     },
                     {
-                        title: "操作",
+                        title: "5月平均油耗",
                         key: "h",
-                        minWidth: 125,
-                        render: (h, params) => {
-                            return h("div", [
-                                params.row.h === 1 ? h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "primary",
-                                            size: "small",
-                                            icon: "md-eye"
-                                        },
-                                        style: {
-                                            marginRight: "5px"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.view(params.row);
-                                            }
-                                        }
-                                    },
-                                    "查看"
-                                ) : h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "info",
-                                            size: "small",
-                                            icon: "ios-create-outline"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.audit(params.row);
-                                            }
-                                        }
-                                    },
-                                    "核查"
-                                )
-                            ]);
-                        }
+                        minWidth: 125
                     },
+                    {
+                        title: "6月平均油耗",
+                        key: "i",
+                        minWidth: 125
+                    }
+                ],
+                exportColumns: [
+                    {
+                        title: "用户名",
+                        key: "username"
+                    },
+                    {
+                        title: "头像",
+                        key: "avatar"
+                    },
+                    {
+                        title: "所属部门ID",
+                        key: "departmentId"
+                    },
+                    {
+                        title: "所属部门",
+                        key: "departmentTitle"
+                    },
+                    {
+                        title: "手机",
+                        key: "mobile"
+                    },
+                    {
+                        title: "邮箱",
+                        key: "email"
+                    },
+                    {
+                        title: "性别",
+                        key: "sex"
+                    },
+                    {
+                        title: "用户类型",
+                        key: "type"
+                    },
+                    {
+                        title: "状态",
+                        key: "status"
+                    },
+                    {
+                        title: "删除标志",
+                        key: "delFlag"
+                    },
+                    {
+                        title: "创建时间",
+                        key: "createTime"
+                    },
+                    {
+                        title: "更新时间",
+                        key: "updateTime"
+                    }
                 ],
                 data: [],
-                mockData: [
-                    {
-                        data: [{
-                            a: '琼AA2765B',
-                            b: 34567,
-                            c: 37098,
-                            d: 2531,
-                            e: 4,
-                            f: 242.97,
-                            g: 9.4,
-                            h: 1
-                        }]
-                    },
-                    {
-                        data: [{
-                            a: '琼AA2765B',
-                            b: 37098,
-                            c: 39776,
-                            d: 2678,
-                            e: 4,
-                            f: 242.97,
-                            g: 9.8,
-                            h: 1
-                        }]
-                    },
-                    {
-                        data: [{
-                            a: '琼AA2765B',
-                            b: 39776,
-                            c: 42983,
-                            d: 3207,
-                            e: 4,
-                            f: 242.97,
-                            g: 9.2,
-                            h: 1
-                        }]
-                    },
-                    {
-                        data: [{
-                            a: '琼AA2765B',
-                            b: 42983,
-                            c: 45848,
-                            d: 2865,
-                            e: 4,
-                            f: 242.97,
-                            g: 9.9,
-                            h: 1
-                        }]
-                    },
-                    {
-                        data: [{
-                            a: '琼AA2765B',
-                            b: 45848,
-                            c: 49035,
-                            d: 3187,
-                            e: 4,
-                            f: 242.97,
-                            g: 9.7,
-                            h: 1
-                        }]
-                    },
-                    {
-                        data: [{
-                            a: '琼AA2765B',
-                            b: 49035,
-                            c: 51322,
-                            d: 2287,
-                            e: 4,
-                            f: 242.97,
-                            g: 9.6,
-                            h: 1
-                        },{
-                            a: '琼AA10F33',
-                            b: '',
-                            c: '',
-                            d: '',
-                            e: '',
-                            f: '',
-                            g: '',
-                            h: 2
-                        }]
-                    }
-                ]
+                historyData: [],
+                exportData: [],
+                total: 0,
+                dictSex: this.$store.state.dict.sex
             };
         },
         methods: {
             init() {
+                // util.arrayToTree(data, {id: 'ID', pid: 'PARENT_ID'})
                 this.getUserList();
-            },
-            handleChange (name) {
-                this.data = this.mockData[name - 1]['data'];
             },
             handleSelectDepTree(v) {
                 this.form.departmentId = v;
@@ -256,7 +291,13 @@
                 }
             },
             getUserList() {
-               this.data = this.mockData[5]['data'];
+                // 多条件搜索用户列表
+                this.loading = true;
+                getUserListData(this.searchForm).then(res => {
+                    this.loading = false;
+                    this.data = data;
+                    this.total = this.data.length;
+                });
             },
             handleSearch() {
                 this.searchForm.pageNumber = 1;
@@ -374,32 +415,16 @@
                 this.showUser = true;
             },
             add() {
-                this.showType = "2";
-                this.showUser = true;
-            },
-            audit (v) {
-                for (let attr in v) {
-                    if (v[attr] == null) {
-                        v[attr] = "";
-                    }
-                }
-                let str = JSON.stringify(v);
-                let data = JSON.parse(str);
-                this.formData = data;
-                this.currView = 'audit'
-            },
-            view (v) {
-                for (let attr in v) {
-                    if (v[attr] == null) {
-                        v[attr] = "";
-                    }
-                }
-                let str = JSON.stringify(v);
-                let data = JSON.parse(str);
-                this.formData = data;
-                this.currView = 'detail';
+                this.modalType = 0;
+                this.modalTitle = "添加";
+                this.$refs.form.resetFields();
+                delete this.form.id;
+                this.modalVisible = true;
             },
             edit(v) {
+                this.modalType = 1;
+                this.modalTitle = "充值";
+                this.$refs.form.resetFields();
                 // 转换null为""
                 for (let attr in v) {
                     if (v[attr] == null) {
@@ -409,8 +434,7 @@
                 let str = JSON.stringify(v);
                 let data = JSON.parse(str);
                 this.form = data;
-                this.showType = "1";
-                this.showUser = true;
+                this.modalVisible = true;
             },
             enable(v) {
                 this.$Modal.confirm({
@@ -516,6 +540,48 @@
                 let _start = (this.searchForm.pageNumber - 1) * v;
                 let _end = this.searchForm.pageNumber * v;
                 this.data = this.historyData.slice(_start, _end);
+            },
+            handleCancel() {
+                this.modalVisible = false;
+            },
+            handleSubmit() {
+                this.$refs.form.validate(valid => {
+                    if (valid) {
+                        this.submitLoading = true;
+                        if (this.modalType == 0) {
+                            // 添加 避免充值后传入id等数据 记得删除
+                            delete this.form.id;
+                            // this.postRequest("请求地址", this.form).then(res => {
+                            //   this.submitLoading = false;
+                            //   if (res.success) {
+                            //     this.$Message.success("操作成功");
+                            //     this.getDataList();
+                            //     this.modalVisible = false;
+                            //   }
+                            // });
+                            // 模拟请求成功
+                            this.submitLoading = false;
+                            this.$Message.success("操作成功");
+                            this.getDataList();
+                            this.modalVisible = false;
+                        } else {
+                            // 充值
+                            // this.postRequest("请求地址", this.form).then(res => {
+                            //   this.submitLoading = false;
+                            //   if (res.success) {
+                            //     this.$Message.success("操作成功");
+                            //     this.getDataList();
+                            //     this.modalVisible = false;
+                            //   }
+                            // });
+                            // 模拟请求成功
+                            this.submitLoading = false;
+                            this.$Message.success("操作成功");
+                            this.getDataList();
+                            this.modalVisible = false;
+                        }
+                    }
+                });
             },
         },
         mounted() {
