@@ -3,8 +3,18 @@
 </style>
 <template>
     <div class="search">
-        <Card>
+        <audit v-if="currView=='audit'" @close="currView='index'" :data="formData" @submited="submited"/>
+        <detail v-if="currView=='detail'" @close="currView='index'" :data="formData" @submited="submited1"/>
+        <Card v-show="currView=='index'">
             <Row>
+                <Tabs value="6" @on-click="handleChange">
+                    <TabPane label="一月份(已核查)" name="1"></TabPane>
+                    <TabPane label="二月份(已核查)" name="2"></TabPane>
+                    <TabPane label="三月份(已核查)" name="3"></TabPane>
+                    <TabPane label="四月份(已核查)" name="4"></TabPane>
+                    <TabPane label="五月份(已核查)" name="5"></TabPane>
+                    <TabPane label="六月份(待核查)" name="6"></TabPane>
+                </Tabs>
                 <Table
                         row-key="ID"
                         :loading="loading"
@@ -29,208 +39,23 @@
         getAllUserData,
         resetUserPass
     } from "@/api/index";
+    import audit from "./audit.vue";
+    import detail from "./detail.vue";
 
-    const data = [{
-        "ID": "1002",
-        "PAY_ITEM_CODE": "1002",
-        "PAY_ITEM_NAME": "购置商品支出",
-        "IS_LEAF": "0",
-        "PAY_ITEM_TYPE": "1",
-        "PAY_ITEM_DESC": null,
-        "BUDGET_DECLARE_WAY": null,
-        "PARENT_ID": "0",
-        "BUDGET_DEPT_NAME": "普通外科病区",
-        "BUDGET_AMOUNT": 507.04,
-        "2020PLAN": 790751.39,
-        "2020ACTUAL": 790751.39,
-        "2020RATE_DIB": 100,
-        "children": [
-            {
-                "ID": "100201",
-                "PAY_ITEM_CODE": "100201",
-                "PAY_ITEM_NAME": "卫生材料费",
-                "IS_LEAF": "0",
-                "PAY_ITEM_TYPE": "1",
-                "PAY_ITEM_DESC": null,
-                "BUDGET_DECLARE_WAY": null,
-                "PARENT_ID": "1002",
-                "BUDGET_DEPT_NAME": "普通外科病区",
-                "BUDGET_AMOUNT": 21.41,
-                "2020PLAN": 48083.4,
-                "2020ACTUAL": 48083.4,
-                "2020RATE_DIB": 100,
-                "children": [
-                    {
-                        "ID": "00000000000000000000000000000020180725090352221dd3e7qwj82dom",
-                        "PAY_ITEM_CODE": "10020101",
-                        "PAY_ITEM_NAME": "血费",
-                        "IS_LEAF": "1",
-                        "PAY_ITEM_TYPE": "1",
-                        "PAY_ITEM_DESC": null,
-                        "BUDGET_DECLARE_WAY": null,
-                        "PARENT_ID": "100201",
-                        "BUDGET_TYPE": "1",
-                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
-                        "BUDGET_AMOUNT": 9.41,
-                        "CALCULATION_DESC": "",
-                        "APPROVAL_STEP": "2",
-                        "APPROVAL_RESULT": "1",
-                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391936430v441u3suton",
-                        "PAY_DETAIL": "1",
-                        "BUDGET_DETAIL": "B",
-                        "IS_MANAGE_DEPT_DECLARE": "0",
-                        "IS_PUR_PAY": "0",
-                        "PARENT_PAY_ITEM_CODE": "",
-                        "BUDGET_DEPT_NAME": "普通外科病区",
-                        "MANAGE_DEPT_NAME": "医务科",
-                        "2020PLAN": 21132,
-                        "2020RATE_DIB": 100,
-                        "2020ACTUAL": 21132,
-
-                    }, {
-                        "ID": "00000000000000000000000000000020180725090352160pv2w5j6pwv76n",
-                        "PAY_ITEM_CODE": "10020102",
-                        "PAY_ITEM_NAME": "氧气费",
-                        "IS_LEAF": "1",
-                        "PAY_ITEM_TYPE": "1",
-                        "PAY_ITEM_DESC": null,
-                        "BUDGET_DECLARE_WAY": null,
-                        "PARENT_ID": "100201",
-                        "BUDGET_TYPE": "1",
-                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
-                        "BUDGET_AMOUNT": 0,
-                        "CALCULATION_DESC": "",
-                        "APPROVAL_STEP": "2",
-                        "APPROVAL_RESULT": "1",
-                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
-                        "PAY_DETAIL": "1",
-                        "BUDGET_DETAIL": "1",
-                        "IS_MANAGE_DEPT_DECLARE": "0",
-                        "IS_PUR_PAY": "0",
-                        "PARENT_PAY_ITEM_CODE": "",
-                        "BUDGET_DEPT_NAME": "普通外科病区",
-                        "MANAGE_DEPT_NAME": "药剂科",
-                        "2020PLAN": 0,
-                        "2020ACTUAL": 0,
-
-                    }, {
-                        "ID": "00000000000000000000000000000020180725090352167c02m0s2h9k4um",
-                        "PAY_ITEM_CODE": "10020103",
-                        "PAY_ITEM_NAME": "放射材料",
-                        "IS_LEAF": "1",
-                        "PAY_ITEM_TYPE": "1",
-                        "PAY_ITEM_DESC": null,
-                        "BUDGET_DECLARE_WAY": null,
-                        "PARENT_ID": "100201",
-                        "BUDGET_TYPE": "1",
-                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
-                        "BUDGET_AMOUNT": 0,
-                        "CALCULATION_DESC": "",
-                        "APPROVAL_STEP": "2",
-                        "APPROVAL_RESULT": "1",
-                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
-                        "PAY_DETAIL": "1",
-                        "BUDGET_DETAIL": "1",
-                        "IS_MANAGE_DEPT_DECLARE": "0",
-                        "IS_PUR_PAY": "0",
-                        "PARENT_PAY_ITEM_CODE": "",
-                        "BUDGET_DEPT_NAME": "普通外科病区",
-                        "MANAGE_DEPT_NAME": "药剂科",
-                        "2020PLAN": 0,
-                        "2020ACTUAL": 0,
-
-                    }, {
-                        "ID": "000000000000000000000000000000201807250903521881uprevvocf8sh",
-                        "PAY_ITEM_CODE": "10020104",
-                        "PAY_ITEM_NAME": "化验材料",
-                        "IS_LEAF": "1",
-                        "PAY_ITEM_TYPE": "1",
-                        "PAY_ITEM_DESC": null,
-                        "BUDGET_DECLARE_WAY": null,
-                        "PARENT_ID": "100201",
-                        "BUDGET_TYPE": "1",
-                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
-                        "BUDGET_AMOUNT": 0,
-                        "CALCULATION_DESC": "",
-                        "APPROVAL_STEP": "2",
-                        "APPROVAL_RESULT": "1",
-                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
-                        "PAY_DETAIL": "1",
-                        "BUDGET_DETAIL": "1",
-                        "IS_MANAGE_DEPT_DECLARE": "0",
-                        "IS_PUR_PAY": "0",
-                        "PARENT_PAY_ITEM_CODE": "",
-                        "BUDGET_DEPT_NAME": "普通外科病区",
-                        "MANAGE_DEPT_NAME": "药剂科",
-                        "2020PLAN": 0,
-                        "2020ACTUAL": 0,
-
-                    }, {
-                        "ID": "00000000000000000000000000000020180725090352208sofal3oh3i2ul",
-                        "PAY_ITEM_CODE": "10020105",
-                        "PAY_ITEM_NAME": "口腔材料",
-                        "IS_LEAF": "1",
-                        "PAY_ITEM_TYPE": "1",
-                        "PAY_ITEM_DESC": null,
-                        "BUDGET_DECLARE_WAY": null,
-                        "PARENT_ID": "100201",
-                        "BUDGET_TYPE": "1",
-                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
-                        "BUDGET_AMOUNT": 0,
-                        "CALCULATION_DESC": "",
-                        "APPROVAL_STEP": "2",
-                        "APPROVAL_RESULT": "1",
-                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
-                        "PAY_DETAIL": "1",
-                        "BUDGET_DETAIL": "1",
-                        "IS_MANAGE_DEPT_DECLARE": "0",
-                        "IS_PUR_PAY": "0",
-                        "PARENT_PAY_ITEM_CODE": "",
-                        "BUDGET_DEPT_NAME": "普通外科病区",
-                        "MANAGE_DEPT_NAME": "药剂科",
-                        "2020PLAN": 0,
-                        "2020ACTUAL": 0,
-
-                    }, {
-                        "ID": "00000000000000000000000000000020180725090352235qim0tmf5lnjbm",
-                        "PAY_ITEM_CODE": "10020109",
-                        "PAY_ITEM_NAME": "其他卫生材料",
-                        "IS_LEAF": "1",
-                        "PAY_ITEM_TYPE": "1",
-                        "PAY_ITEM_DESC": null,
-                        "BUDGET_DECLARE_WAY": null,
-                        "PARENT_ID": "100201",
-                        "BUDGET_TYPE": "1",
-                        "BUDGET_DEPT_ID": "0000000000000000000000000000002020112018391787987fwp711ns2ih",
-                        "BUDGET_AMOUNT": 12,
-                        "CALCULATION_DESC": "",
-                        "APPROVAL_STEP": "2",
-                        "APPROVAL_RESULT": "1",
-                        "MANAGE_DEPT_ID": "0000000000000000000000000000002020112018391910786q36pk20w60n",
-                        "PAY_DETAIL": "1",
-                        "BUDGET_DETAIL": "1",
-                        "IS_MANAGE_DEPT_DECLARE": "0",
-                        "IS_PUR_PAY": "0",
-                        "PARENT_PAY_ITEM_CODE": "",
-                        "BUDGET_DEPT_NAME": "普通外科病区",
-                        "MANAGE_DEPT_NAME": "药剂科",
-                        "2020PLAN": 26951.4,
-                        "2020RATE_DIB": 100,
-                        "2020ACTUAL": 26951.4,
-
-                    }]
-            }]
-    }];
+    const data = [];
     export default {
         name: "user-manage",
         components: {
+            audit,
+            detail
         },
         data() {
             return {
+                tabName: '1',
                 height: 510,
                 showUser: false,
                 showType: "0",
-                loading: true,
+                loading: false,
                 openSearch: true,
                 openTip: false,
                 operationLoading: false,
@@ -243,77 +68,180 @@
                 selectList: [],
                 dataDep: [],
                 searchKey: "",
-                form: {},
+                formData: {},
+                currView: 'index',
                 columns: [
                     {
-                        type: "selection",
-                        width: 60,
-                        align: "center",
-                        fixed: "left"
-                    },
-                    {
-                        title: "编制部门",
-                        key: "BUDGET_DEPT_NAME",
+                        title: "车牌号",
+                        key: "a",
                         minWidth: 125
                     },
                     {
-                        title: "支出预算事项",
-                        key: "PAY_ITEM_NAME",
-                        width: 180,
-                        tree: true
+                        title: "月初里程(公里)",
+                        key: "b",
+                        width: 180
                     },
                     {
-                        title: "归口代编",
-                        key: "PAY_ITEM_CODE",
+                        title: "月末里程(公里)",
+                        key: "c",
+                        width: 180
+                    },
+                    {
+                        title: "行驶里程(公里)",
+                        key: "d",
                         minWidth: 140
                     },
                     {
-                        title: "归口管理部门",
-                        key: "MANAGE_DEPT_NAME",
+                        title: "加油次数",
+                        key: "e",
                         minWidth: 125
                     },
                     {
-                        title: "事项定义",
-                        key: "PARENT_PAY_ITEM_COD",
+                        title: "加油量合计(升)",
+                        key: "f",
                         minWidth: 125
                     },
                     {
-                        title: "控制数额（元）",
-                        key: "TARGET_DESCE",
-                        width: 160
+                        title: "平均油耗(升/百公里)",
+                        key: "g",
+                        width: 180
                     },
                     {
-                        title: "2020预算值（元）",
-                        key: "2020PLAN",
-                        width: 160
-                    },
-                    {
-                        title: "2020执行值（元）",
-                        key: "2020ACTUAL",
-                        width: 160
-                    },
-                    {
-                        title: "2020执行率（%）",
-                        key: "2020RATE_DIB",
-                        width: 160
-                    },
-                    {
-                        title: "预算额（元）",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "附件",
-                        key: "username",
-                        minWidth: 125
+                        title: "操作",
+                        key: "h",
+                        minWidth: 125,
+                        render: (h, params) => {
+                            return h("div", [
+                                params.row.h === 1 ? h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "primary",
+                                            size: "small",
+                                            icon: "md-eye"
+                                        },
+                                        style: {
+                                            marginRight: "5px"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.view(params.row);
+                                            }
+                                        }
+                                    },
+                                    "查看"
+                                ) : h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "info",
+                                            size: "small",
+                                            icon: "ios-create-outline"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.audit(params.row);
+                                            }
+                                        }
+                                    },
+                                    "核查"
+                                )
+                            ]);
+                        }
                     },
                 ],
-                data: []
+                data: [],
+                mockData: [
+                    {
+                        data: [{
+                            a: '琼AA2765B',
+                            b: 34567,
+                            c: 37098,
+                            d: 2531,
+                            e: 4,
+                            f: 242.97,
+                            g: 9.4,
+                            h: 1
+                        }]
+                    },
+                    {
+                        data: [{
+                            a: '琼AA2765B',
+                            b: 37098,
+                            c: 39776,
+                            d: 2678,
+                            e: 4,
+                            f: 242.97,
+                            g: 9.8,
+                            h: 1
+                        }]
+                    },
+                    {
+                        data: [{
+                            a: '琼AA2765B',
+                            b: 39776,
+                            c: 42983,
+                            d: 3207,
+                            e: 4,
+                            f: 242.97,
+                            g: 9.2,
+                            h: 1
+                        }]
+                    },
+                    {
+                        data: [{
+                            a: '琼AA2765B',
+                            b: 42983,
+                            c: 45848,
+                            d: 2865,
+                            e: 4,
+                            f: 242.97,
+                            g: 9.9,
+                            h: 1
+                        }]
+                    },
+                    {
+                        data: [{
+                            a: '琼AA2765B',
+                            b: 45848,
+                            c: 49035,
+                            d: 3187,
+                            e: 4,
+                            f: 242.97,
+                            g: 9.7,
+                            h: 1
+                        }]
+                    },
+                    {
+                        data: [{
+                            a: '琼AA2765B',
+                            b: 49035,
+                            c: 51322,
+                            d: 2287,
+                            e: 4,
+                            f: 242.97,
+                            g: 9.6,
+                            h: 1
+                        },{
+                            a: '琼AA10F33',
+                            b: '',
+                            c: '',
+                            d: '',
+                            e: '',
+                            f: '',
+                            g: '',
+                            h: 2
+                        }]
+                    }
+                ]
             };
         },
         methods: {
             init() {
                 this.getUserList();
+            },
+            handleChange (name) {
+                this.data = this.mockData[name - 1]['data'];
             },
             handleSelectDepTree(v) {
                 this.form.departmentId = v;
@@ -328,13 +256,7 @@
                 }
             },
             getUserList() {
-                // 多条件搜索用户列表
-                this.loading = true;
-                getUserListData(this.searchForm).then(res => {
-                    this.loading = false;
-                    this.data = data;
-                    this.total = this.data.length;
-                });
+               this.data = this.mockData[5]['data'];
             },
             handleSearch() {
                 this.searchForm.pageNumber = 1;
@@ -454,6 +376,28 @@
             add() {
                 this.showType = "2";
                 this.showUser = true;
+            },
+            audit (v) {
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
+                this.currView = 'audit'
+            },
+            view (v) {
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
+                this.currView = 'detail';
             },
             edit(v) {
                 // 转换null为""
