@@ -69,7 +69,7 @@
                                 <Col span="12">
                                     <FormItem label="取得方式" prop="method">
                                         <Select v-model="assets.method" placeholder="请选择" style="width: 320px">
-                                            <Option :value="buy" selected="selected">购入</Option>
+                                            <Option :value="1">购入</Option>
                                         </Select>
                                     </FormItem>
                                 </Col>
@@ -87,7 +87,7 @@
                                 <Col span="12">
                                     <FormItem label="归属部门" prop="department">
                                         <Input v-model="assets.department" style="width: 320px">
-                                            <Button slot="append" icon="ios-bookmarks"></Button>
+                                            <Button slot="append" icon="ios-home"></Button>
                                         </Input>
                                     </FormItem>
                                 </Col>
@@ -133,7 +133,7 @@
                                 <Col span="12">
                                     <FormItem label="使用方向" prop="udirection">
                                         <Select v-model="assets.udirection" placeholder="请选择" style="width: 320px">
-                                            <Option :value="self">自用</Option>
+                                            <Option :value="1">自用</Option>
                                         </Select>
                                     </FormItem>
                                 </Col>
@@ -146,7 +146,7 @@
                                 </Col>
                                 <Col span="24">
                                     <FormItem label="存放地点" prop="saddress">
-                                        <Input v-model="assets.saddress" style="width: 320px"/>
+                                        <Input v-model="assets.saddress"/>
                                     </FormItem>
                                 </Col>
                                 <Col span="24">
@@ -167,7 +167,7 @@
                                 <Col span="12">
                                     <FormItem label="价值类型" prop="vtype">
                                         <Select v-model="assets.vtype" placeholder="请选择" style="width: 320px">
-                                            <Option :value="market">市场价值</Option>
+                                            <Option :value="1">市场价值</Option>
                                         </Select>
                                     </FormItem>
                                 </Col>
@@ -287,11 +287,27 @@
             return {
                 submitLoading: false, // 表单提交状态
                 assets: {
-                    id: "", name: "", qty: 1, method: "buy"
+                    id: "", name: "", qty: 1, method: 1, udirection: 1, morigin: 0,
+                    vtype: 1, depreciation: 0, astate: 0
                 },
                 // 表单验证规则
                 formValidate: {
-                    name: [{required: true, message: "不能为空", trigger: "blur"}]
+                    name: [{required: true, message: "不能为空", trigger: "blur"}],
+                    dictionary: [{required: true, message: "不能为空", trigger: "blur"}],
+                    uom: [{required: true, message: "不能为空", trigger: "blur"}],
+                    qty: [{required: true, message: "不能为空", trigger: "blur"}],
+                    acdate: [{required: true, message: "不能为空", trigger: "blur"}],
+                    department: [{required: true, message: "不能为空", trigger: "blur"}],
+                    handler: [{required: true, message: "不能为空", trigger: "blur"}],
+                    stdate: [{required: true, message: "不能为空", trigger: "blur"}],
+                    udirection: [{required: true, message: "不能为空", trigger: "blur"}],
+                    saddress: [{required: true, message: "不能为空", trigger: "blur"}],
+                    morigin: [{required: true, message: "不能为空", trigger: "blur"}],
+                    vtype: [{required: true, message: "不能为空", trigger: "blur"}],
+                    avalue: [{required: true, message: "不能为空", trigger: "blur"}],
+                    depreciation: [{required: true, message: "不能为空", trigger: "blur"}],
+                    depmonth: [{required: true, message: "不能为空", trigger: "blur"}],
+                    astate: [{required: true, message: "不能为空", trigger: "blur"}]
                 }
             };
         },
