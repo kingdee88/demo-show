@@ -3,11 +3,29 @@
 </style>
 <template>
     <div class="search">
-        <Card>
+        <add v-if="currView=='add'" @close="currView='index'" @submited="submited"/>
+        <edit v-if="currView=='edit'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <detail v-if="currView=='detail'" @close="currView='index'" @submited="submited" :data="formData"/>
+        <audit v-if="currView=='audit'" @close="currView='index'" @submited="submited"/>
+        <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
+        <Card v-show="currView=='index'">
+            <Row class="operation">
+                <Button @click="add" type="primary" icon="md-add">新增</Button>
+                <Button @click="getDataList" icon="md-refresh">刷新</Button>
+                <!--                <Button type="dashed" @click="openTip=!openTip">{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
+            </Row>
+            <Row v-show="openTip">
+                <Alert show-icon>
+                    已选择
+                    <span class="select-count">{{selectCount}}</span> 项
+                    <a class="select-clear" @click="clearSelectAll">清空</a>
+                </Alert>
+            </Row>
             <Row
                     v-show="openSearch"
                     @keydown.enter.native="handleSearch"
             >
+
                 <Form
                         ref="searchForm"
                         :model="searchForm"
@@ -15,20 +33,107 @@
                         :label-width="70"
                 >
                     <Form-item
-                            label="预算年度"
-                            prop="sex"
+                            label="申请单号"
+                            prop="nickname"
                     >
-                        <Select
-                                v-model="searchForm.sex"
-                                placeholder="预算年度"
+                        <Input
+                                type="text"
+                                v-model="searchForm.nickname"
                                 clearable
+                                placeholder="请输入用户名"
                                 style="width: 200px"
-                        >
-                            <Option value="0">2018</Option>
-                            <Option value="1">2019</Option>
-                            <Option value="2">2020</Option>
-                        </Select>
+                        />
                     </Form-item>
+
+                    <Form-item
+                            label="预算指标"
+                            prop="mobile"
+                    >
+                        <Input
+                                type="text"
+                                v-model="searchForm.mobile"
+                                clearable
+                                placeholder=""
+                                style="width: 200px"
+                        />
+                    </Form-item>
+                    <Form-item
+                            label="支出事项"
+                            prop="email"
+                    >
+                        <Input
+                                type="text"
+                                v-model="searchForm.email"
+                                clearable
+                                placeholder=""
+                                style="width: 200px"
+                        />
+                    </Form-item>
+                    <span v-if="drop">
+            <Form-item
+                    label="事由摘要"
+                    prop="username"
+            >
+              <Input
+                      type="text"
+                      v-model="searchForm.username"
+                      clearable
+                      placeholder=""
+                      style="width: 200px"
+              />
+            </Form-item>
+           <Form-item
+                   label="申请类型"
+                   prop="sex"
+           >
+              <Select
+                      v-model="searchForm.sex"
+                      placeholder="申请类型"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+                      <Option value="1">一般经费</Option>
+                      <Option value="2">差旅费</Option>
+                      <Option value="3">国内接待费</Option>
+                      <Option value="4">会议费</Option>
+                      <Option value="5">培训费</Option>
+                      <Option value="6">出国费</Option>
+                      <Option value="10">劳务费</Option>
+                      <Option value="13">外宾接待费</Option>
+              </Select>
+            </Form-item>
+                         <Form-item
+                                 label="申请人"
+                                 prop="username"
+                         >
+              <Input
+                      type="text"
+                      v-model="searchForm.username"
+                      clearable
+                      placeholder=""
+                      style="width: 200px"
+              />
+            </Form-item>
+                              <Form-item
+                                      label="审核状态"
+                                      prop="sex"
+                              >
+              <Select
+                      v-model="searchForm.sex"
+                      placeholder="审核状态"
+                      clearable
+                      style="width: 200px"
+              >
+                  <Option value="">-请选择-</Option>
+                      <Option value="0">草稿</Option>
+                      <Option value="1">待审批</Option>
+                      <Option value="2">已审批</Option>
+                      <Option value="3">已驳回</Option>
+                      <Option value="4">已终止</Option>
+              </Select>
+            </Form-item>
+                        </span>
                     <Form-item
                             style="margin-left:-35px;"
                             class="br"
@@ -37,39 +142,18 @@
                                 @click="handleSearch"
                                 type="primary"
                                 icon="ios-search"
-                        >搜索</Button>
+                        >搜索
+                        </Button>
                         <Button @click="handleReset">重置</Button>
+                        <a
+                                class="drop-down"
+                                @click="dropDown"
+                        >
+                            {{dropDownContent}}
+                            <Icon :type="dropDownIcon"></Icon>
+                        </a>
                     </Form-item>
                 </Form>
-            </Row>
-            <Row class="operation">
-                <Button
-                        @click="add"
-                        type="primary"
-                        icon="md-add"
-                >添加</Button>
-                <Button
-                        @click="delAll"
-                        icon="md-trash"
-                >批量删除</Button>
-                <Button
-                        type="dashed"
-                        @click="openSearch=!openSearch"
-                >{{openSearch ? "关闭搜索" : "开启搜索"}}</Button>
-                <!-- <Button
-                   type="dashed"
-                   @click="openTip=!openTip"
-                 >{{openTip ? "关闭提示" : "开启提示"}}</Button>-->
-            </Row>
-            <Row v-show="openTip">
-                <Alert show-icon>
-                    已选择
-                    <span class="select-count">{{selectCount}}</span> 项
-                    <a
-                            class="select-clear"
-                            @click="clearSelectAll"
-                    >清空</a>
-                </Alert>
             </Row>
             <Row>
                 <Table
@@ -77,23 +161,13 @@
                         border
                         :columns="columns"
                         :data="data"
+                        ref="table"
                         sortable="custom"
                         @on-sort-change="changeSort"
-                        @on-selection-change="showSelect"
-                        ref="table"
-                ></Table>
-                <Table
-                        :columns="exportColumns"
-                        :data="exportData"
-                        ref="exportTable"
-                        style="display:none"
+                        @on-selection-change="changeSelect"
                 ></Table>
             </Row>
-            <Row
-                    type="flex"
-                    justify="end"
-                    class="page"
-            >
+            <Row type="flex" justify="end" class="page">
                 <Page
                         :current="searchForm.pageNumber"
                         :total="total"
@@ -108,276 +182,71 @@
                 ></Page>
             </Row>
         </Card>
-
-        <Modal
-                v-model="modalExportAll"
-                title="确认导出"
-                :loading="loadingExport"
-                @on-ok="exportAll"
-        >
-            <p>您确认要导出全部 {{total}} 条数据？</p>
-        </Modal>
-
-        <check-password
-                ref="checkPass"
-                @on-success="resetPass"
-        />
-
-        <addEdit
-                :data="form"
-                :type="showType"
-                v-model="showUser"
-                @on-submit="getUserList"
-        />
     </div>
 </template>
 
 <script>
-    import {
-        getUserListData,
-        enableUser,
-        disableUser,
-        deleteUser,
-        getAllUserData,
-        resetUserPass
-    } from "@/api/index";
-    import { validateMobile } from "@/libs/validate";
-    import departmentChoose from "../my-components/xboot/department-choose";
-    import checkPassword from "@/views/my-components/xboot/check-password";
-    import addEdit from "./addEdit.vue";
+    import axios from 'axios';
+    import add from "./add.vue";
+    import edit from "./edit.vue";
+    import audit from "./audit";
+    import change from "./change";
+    import detail from "./detail";
     export default {
-        name: "user-manage",
+        name: "xiangmushenbaojihua",
         components: {
-            departmentChoose,
-            checkPassword,
-            addEdit
+            add,
+            edit,
+            audit,
+            change,
+            detail
         },
-        data () {
+        data() {
             return {
-                height: 510,
-                showUser: false,
-                showType: "0",
-                loading: true,
+                openTip: false, // 显示提示
                 openSearch: true,
-                openTip: false,
-                operationLoading: false,
-                loadingExport: true,
-                modalExportAll: false,
                 drop: false,
-                dropDownContent: "展开",
+                dropDownContent: "展开查询",
                 dropDownIcon: "ios-arrow-down",
-                selectCount: 0,
-                selectList: [],
-                dataDep: [],
-                searchKey: "",
+                formData: {},
+                currView: "index",
+                loading: true, // 表单加载状态
                 searchForm: {
-                    id: "",
-                    nickname: "",
-                    username: "",
-                    departmentId: "",
-                    mobile: "",
-                    email: "",
-                    sex: "",
-                    type: "",
-                    status: "",
-                    pageNumber: 1,
-                    pageSize: 10,
-                    sort: "createTime",
-                    order: "desc",
-                    startDate: "",
-                    endDate: ""
+                    // 搜索框对应data对象
+                    pageNumber: 1, // 当前页数
+                    pageSize: 15, // 页面大小
+                    sort: "createTime", // 默认排序字段
+                    order: "desc" // 默认排序方式
                 },
-                form: {},
-                columns: [
-                    {
-                        type: "selection",
-                        width: 60,
-                        align: "center",
-                        fixed: "left"
-                    },
-                    {
-                        title: "拟购资产",
-                        key: "username",
-                        minWidth: 125,
-                        fixed: "left"
-                    },
-                    {
-                        title: "资产字典编码",
-                        key: "nickname",
-                        minWidth: 125
-                    },
-                    {
-                        title: "期初存量",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "本年拟购数量",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "预算单价(元)",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "资产可购置数量",
-                        key: "username",
-                        minWidth: 160
-                    },
-                    {
-                        title: "采购预算(元)",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "资产配置标准",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "计量单位",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "预算单价（元）",
-                        key: "username",
-                        minWidth: 140
-                    },
-                    {
-                        title: "资产可购置数量",
-                        key: "username",
-                        minWidth: 160
-                    },
-                    {
-                        title: "采购预算（元）",
-                        key: "username",
-                        minWidth: 160
-                    },
-                    {
-                        title: "资产配置标准",
-                        key: "username",
-                        minWidth: 125
-                    },
-                    {
-                        title: "单价上限（元）",
-                        key: "username",
-                        minWidth: 160
-                    },
-                    {
-                        title: "核算对象计量单位",
-                        key: "username",
-                        minWidth: 160
-                    },
-                    {
-                        title: "本年核算对象数量",
-                        key: "username",
-                        minWidth: 160
-                    },
-                    {
-                        title: "备注",
-                        key: "departmentTitle",
-                        minWidth: 120
-                    },
-                ],
-                exportColumns: [
-                    {
-                        title: "用户名",
-                        key: "username"
-                    },
-                    {
-                        title: "头像",
-                        key: "avatar"
-                    },
-                    {
-                        title: "所属部门ID",
-                        key: "departmentId"
-                    },
-                    {
-                        title: "所属部门",
-                        key: "departmentTitle"
-                    },
-                    {
-                        title: "手机",
-                        key: "mobile"
-                    },
-                    {
-                        title: "邮箱",
-                        key: "email"
-                    },
-                    {
-                        title: "性别",
-                        key: "sex"
-                    },
-                    {
-                        title: "用户类型",
-                        key: "type"
-                    },
-                    {
-                        title: "状态",
-                        key: "status"
-                    },
-                    {
-                        title: "删除标志",
-                        key: "delFlag"
-                    },
-                    {
-                        title: "创建时间",
-                        key: "createTime"
-                    },
-                    {
-                        title: "更新时间",
-                        key: "updateTime"
-                    }
-                ],
-                data: [],
-                exportData: [],
-                total: 0,
-                dictSex: this.$store.state.dict.sex
+                selectList: [], // 多选数据
+                selectCount: 0, // 多选计数
+                columns: [],
+                historyData: [],
+                data: [], // 表单数据
+                total: 0 // 表单数据总数
             };
         },
         methods: {
-            init () {
-                this.getUserList();
-            },
-            handleSelectDepTree (v) {
-                this.form.departmentId = v;
+            init() {
+                this.getDataList();
             },
             handleSelectDep (v) {
                 this.searchForm.departmentId = v;
             },
-            changePage (v) {
-                this.searchForm.pageNumber = v;
-                this.getUserList();
-                this.clearSelectAll();
-            },
-            changePageSize (v) {
-                this.searchForm.pageSize = v;
-                this.getUserList();
-            },
-            selectDateRange (v) {
-                if (v) {
-                    this.searchForm.startDate = v[0];
-                    this.searchForm.endDate = v[1];
+            dropDown () {
+                if (this.drop) {
+                    this.dropDownContent = "展开查询";
+                    this.dropDownIcon = "ios-arrow-down";
+                } else {
+                    this.dropDownContent = "收起";
+                    this.dropDownIcon = "ios-arrow-up";
                 }
-            },
-            getUserList () {
-                // 多条件搜索用户列表
-                this.loading = true;
-                getUserListData(this.searchForm).then(res => {
-                    this.loading = false;
-                    if (res.success) {
-                        this.data = [];
-                        this.total = 0;
-                    }
-                });
+                this.drop = !this.drop;
             },
             handleSearch () {
                 this.searchForm.pageNumber = 1;
                 this.searchForm.pageSize = 10;
-                this.getUserList();
+                // this.getUserList();
             },
             handleReset () {
                 this.$refs.searchForm.resetFields();
@@ -388,21 +257,183 @@
                 this.searchForm.endDate = "";
                 this.selectDep = [];
                 this.searchForm.departmentId = "";
-                // 重新加载数据
-                this.getUserList();
             },
-            changeSort (e) {
+            submited() {
+                this.currView = "index";
+                this.getDataList();
+            },
+            changePage(v) {
+                this.searchForm.pageNumber = v;
+                this.clearSelectAll();
+                let _start = ( v- 1 ) * this.searchForm.pageSize;
+                let _end = v * this.searchForm.pageSize;
+                this.data = this.historyData.slice(_start,_end);
+            },
+            changePageSize(v) {
+                this.searchForm.pageSize = v;
+                let _start = ( this.searchForm.pageNumber - 1 ) * v;
+                let _end = this.searchForm.pageNumber * v;
+                this.data = this.historyData.slice(_start,_end);
+            },
+            changeSort(e) {
                 this.searchForm.sort = e.key;
                 this.searchForm.order = e.order;
                 if (e.order == "normal") {
                     this.searchForm.order = "";
                 }
-                this.getUserList();
+                this.getDataList();
             },
-            getRoleList () {
-                getAllRoleList().then(res => {
-                    if (res.success) {
-                        this.roleList = res.result;
+            clearSelectAll() {
+                this.$refs.table.selectAll(false);
+            },
+            changeSelect(e) {
+                this.selectList = e;
+                this.selectCount = e.length;
+            },
+            getDataList() {
+                this.loading = true;
+
+                axios.get('/mock/data.json').then(res => {
+                    this.columns = res.headers.map(res => {
+                        return {
+                            title: res,
+                            key: res,
+                            minWidth:200
+                        }
+                    });
+                    this.columns.unshift({
+                        type: "selection",
+                        width: 60,
+                        align: "center",
+                        fixed: "left"
+                    });
+                    this.columns.push( {
+                        title: "操作",
+                        key: "action",
+                        align: "center",
+                        fixed: 'right',
+                        width: 200,
+                        render: (h, params) => {
+                            return h("div", [
+                                h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "primary",
+                                            size: "small",
+                                            icon: "ios-create-outline"
+                                        },
+                                        style: {
+                                            marginRight: "5px"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.edit(params.row);
+                                            }
+                                        }
+                                    },
+                                    "编辑"
+                                ),
+                                h(
+                                    "Button",
+                                    {
+                                        props: {
+                                            type: "error",
+                                            size: "small",
+                                            icon: "md-trash"
+                                        },
+                                        on: {
+                                            click: () => {
+                                                this.remove(params.row);
+                                            }
+                                        }
+                                    },
+                                    "删除"
+                                )
+                            ]);
+                        }
+                    });
+                    this.columns[1] = Object.assign(this.columns[1], {
+                            render: (h, params) => {
+                                return h(
+                                    "a",
+                                    {
+                                        on: {
+                                            click: () => {
+                                                this.showDetail(params.row);
+                                            }
+                                        }
+                                    },
+                                    params.row['项目编码']
+                                );
+                            }
+                        }
+                    );
+                    this.historyData = res.records;
+                    // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
+                    if(this.historyData.length < this.searchForm.pageSize){
+                        this.data = this.historyData;
+                    }else{
+                        this.data = this.historyData.slice(0,this.searchForm.pageSize);
+                    }
+                    this.total = this.historyData.length;
+                    this.loading = false;
+
+
+                });
+            },
+            add() {
+                this.currView = "add";
+            },
+            audit() {
+                this.currView = "audit";
+            },
+            change () {
+                this.currView = "change";
+            },
+            edit(v) {
+                // 转换null为""
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
+                this.currView = "edit";
+            },
+            showDetail(v) {
+                // 转换null为""
+                for (let attr in v) {
+                    if (v[attr] == null) {
+                        v[attr] = "";
+                    }
+                }
+                let str = JSON.stringify(v);
+                let data = JSON.parse(str);
+                this.formData = data;
+                this.currView = "detail";
+            },
+            remove(v) {
+                this.$Modal.confirm({
+                    title: "确认删除",
+                    // 记得确认修改此处
+                    content: "您确认要删除 " + v.APPLY_FORM_NO + " ?",
+                    loading: true,
+                    onOk: () => {
+                        // 删除
+                        // this.deleteRequest("请求地址，如/deleteByIds/" + v.id).then(res => {
+                        //   this.$Modal.remove();
+                        //   if (res.success) {
+                        //     this.$Message.success("操作成功");
+                        //     this.getDataList();
+                        //   }
+                        // });
+                        // 模拟请求成功
+                        this.$Message.success("操作成功");
+                        this.$Modal.remove();
+                        this.getDataList();
                     }
                 });
             },
@@ -424,155 +455,14 @@
                         title: "确认导出",
                         content: "您确认要导出所选 " + this.selectCount + " 条数据?",
                         onOk: () => {
-                            this.$refs.exportTable.exportCsv({
-                                filename: "用户数据"
-                            });
                         }
                     });
                 } else if (name == "exportAll") {
                     this.modalExportAll = true;
                 } else if (name == "importData") {
-                    this.$Modal.info({
-                        title: "请获取完整版",
-                        content: "支付链接: http://xpay.exrick.cn/pay?xboot"
-                    });
                 }
             },
-            exportAll () {
-                getAllUserData().then(res => {
-                    this.modalExportAll = false;
-                    if (res.success) {
-                        this.exportData = res.result;
-                        setTimeout(() => {
-                            this.$refs.exportTable.exportCsv({
-                                filename: "用户全部数据"
-                            });
-                        }, 1000);
-                    }
-                });
-            },
-            resetPass () {
-                this.$Modal.confirm({
-                    title: "确认重置",
-                    content:
-                        "您确认要重置所选的 " +
-                        this.selectCount +
-                        " 条用户数据密码为【123456】?",
-                    loading: true,
-                    onOk: () => {
-                        let ids = "";
-                        this.selectList.forEach(function (e) {
-                            ids += e.id + ",";
-                        });
-                        ids = ids.substring(0, ids.length - 1);
-                        resetUserPass({ ids: ids }).then(res => {
-                            this.$Modal.remove();
-                            if (res.success) {
-                                this.$Message.success("操作成功");
-                                this.clearSelectAll();
-                                this.getUserList();
-                            }
-                        });
-                    }
-                });
-            },
-            showDetail (v) {
-                // 转换null为""
-                for (let attr in v) {
-                    if (v[attr] == null) {
-                        v[attr] = "";
-                    }
-                }
-                let str = JSON.stringify(v);
-                let data = JSON.parse(str);
-                this.form = data;
-                this.showType = "0";
-                this.showUser = true;
-            },
-            add () {
-                this.showType = "2";
-                this.showUser = true;
-            },
-            edit (v) {
-                // 转换null为""
-                for (let attr in v) {
-                    if (v[attr] == null) {
-                        v[attr] = "";
-                    }
-                }
-                let str = JSON.stringify(v);
-                let data = JSON.parse(str);
-                this.form = data;
-                this.showType = "1";
-                this.showUser = true;
-            },
-            enable (v) {
-                this.$Modal.confirm({
-                    title: "确认启用",
-                    content: "您确认要启用用户 " + v.username + " ?",
-                    loading: true,
-                    onOk: () => {
-                        enableUser(v.id).then(res => {
-                            this.$Modal.remove();
-                            if (res.success) {
-                                this.$Message.success("操作成功");
-                                this.getUserList();
-                            }
-                        });
-                    }
-                });
-            },
-            disable (v) {
-                this.$Modal.confirm({
-                    title: "确认禁用",
-                    content: "您确认要禁用用户 " + v.username + " ?",
-                    loading: true,
-                    onOk: () => {
-                        disableUser(v.id).then(res => {
-                            this.$Modal.remove();
-                            if (res.success) {
-                                this.$Message.success("操作成功");
-                                this.getUserList();
-                            }
-                        });
-                    }
-                });
-            },
-            remove (v) {
-                this.$Modal.confirm({
-                    title: "确认删除",
-                    content: "您确认要删除用户 " + v.username + " ?",
-                    loading: true,
-                    onOk: () => {
-                        deleteUser({ ids: v.id }).then(res => {
-                            this.$Modal.remove();
-                            if (res.success) {
-                                this.$Message.success("删除成功");
-                                this.getUserList();
-                            }
-                        });
-                    }
-                });
-            },
-            dropDown () {
-                if (this.drop) {
-                    this.dropDownContent = "展开";
-                    this.dropDownIcon = "ios-arrow-down";
-                } else {
-                    this.dropDownContent = "收起";
-                    this.dropDownIcon = "ios-arrow-up";
-                }
-                this.drop = !this.drop;
-            },
-            showSelect (e) {
-                this.exportData = e;
-                this.selectList = e;
-                this.selectCount = e.length;
-            },
-            clearSelectAll () {
-                this.$refs.table.selectAll(false);
-            },
-            delAll () {
+            delAll() {
                 if (this.selectCount <= 0) {
                     this.$Message.warning("您还未选择要删除的数据");
                     return;
@@ -583,25 +473,29 @@
                     loading: true,
                     onOk: () => {
                         let ids = "";
-                        this.selectList.forEach(function (e) {
+                        this.selectList.forEach(function(e) {
                             ids += e.id + ",";
                         });
                         ids = ids.substring(0, ids.length - 1);
-                        deleteUser({ ids: ids }).then(res => {
-                            this.$Modal.remove();
-                            if (res.success) {
-                                this.$Message.success("删除成功");
-                                this.clearSelectAll();
-                                this.getUserList();
-                            }
-                        });
+                        // 批量删除
+                        // this.deleteRequest("请求地址，如/deleteByIds/" + ids).then(res => {
+                        //   this.$Modal.remove();
+                        //   if (res.success) {
+                        //     this.$Message.success("操作成功");
+                        //     this.clearSelectAll();
+                        //     this.getDataList();
+                        //   }
+                        // });
+                        // 模拟请求成功
+                        this.$Message.success("操作成功");
+                        this.$Modal.remove();
+                        this.clearSelectAll();
+                        this.getDataList();
                     }
                 });
             }
         },
-        mounted () {
-            // 计算高度
-            this.height = Number(document.documentElement.clientHeight - 230);
+        mounted() {
             this.init();
         }
     };
