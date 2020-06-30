@@ -203,8 +203,16 @@
             return {
                 submitLoading: false, // 表单提交状态
                 confirm: {
-                    id: "", name: "送审后自动生成", rorigin: 0,
+                    id: "", name: "送审后自动生成", rorigin: 0, rtype: 0,
                     roperator: 'kwj', rdepartment: '普通外科病区', expired: 0
+                },
+                formValidate: {
+                    applycode: [{required: true, message: "不能为空", trigger: "blur"}],
+                    rstime: [{required: true, message: "不能为空", trigger: "blur"}],
+                    retime: [{required: true, message: "不能为空", trigger: "blur"}],
+                    rtype: [{required: true, message: "不能为空", trigger: "blur"}],
+                    ruser: [{required: true, message: "不能为空", trigger: "blur"}],
+                    aramount: [{required: true, message: "不能为空", trigger: "blur"}]
                 }
             };
         },

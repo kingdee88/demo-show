@@ -17,13 +17,14 @@
                 </div>
             </div>
 
-            <Card>
+            <Card class="detail-app">
+                <p class="show-info">经办人部门：{{picking.APPLY_DEPT_NAME}}   经办人：{{picking.APPLY_USER}}   申请日期：{{picking.TIME_CREATE}}   申请单号：{{picking.APPLY_FORM_NO}}</p>
                 <Row type="flex" justify="space-between" :gutter="32">
                     <Col span="24" style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
-                        <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
+                        <Form ref="form" :model="picking" :label-width="120" :rules="formValidate">
                             <h4 class="h4-title">基本信息</h4>
                             <Row :gutter="32">
-                                <Col span="24">
+                                <Col span="12">
                                     <FormItem label="领用人" prop="user">
                                       <Input v-model="picking.user" style="width: 320px">
                                         <Button slot="append" icon="ios-person"></Button>
@@ -86,11 +87,19 @@
                 submitLoading: false, // 表单提交状态
                 picking: {
                     id: "",
-                    name: ""
+                    name: "",
+                    APPLY_DEPT_NAME: "普通外科病区",
+                    APPLY_USER: "kwj",
+                    TIME_CREATE: new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate(),
+                    APPLY_FORM_NO: "送审后自动生成",
+                    user: "kwj", department: "普通外科病区",
+                    pdate: new Date().getFullYear() + '-' + (new Date().getMonth()+1) + '-' + new Date().getDate()
                 },
                 // 表单验证规则
                 formValidate: {
-                    name: [{required: true, message: "不能为空", trigger: "blur"}]
+                    user: [{required: true, message: "不能为空", trigger: "blur"}],
+                    department: [{required: true, message: "不能为空", trigger: "blur"}],
+                    pdate: [{required: true, message: "不能为空", trigger: "blur"}]
                 },
               data: [],
               columns: [

@@ -176,7 +176,13 @@
                 apply: {
                     id: "", name: "系统自动生成单号",
                     date: new Date().getFullYear() + '-' +(new Date().getMonth()+1) + '-' + new Date().getDate(),
-                    repairer: 'kwj', rdepartment: '普通外科病区', expired: 0
+                    repairer: 'kwj', rdepartment: '普通外科病区', rtype: 0
+                },
+                formValidate: {
+                    acode: [{required: true, message: "不能为空", trigger: "blur"}],
+                    repairer: [{required: true, message: "不能为空", trigger: "blur"}],
+                    rdepartment: [{required: true, message: "不能为空", trigger: "blur"}],
+                    rtype: [{required: true, message: "不能为空", trigger: "blur"}]
                 }
             };
         },
