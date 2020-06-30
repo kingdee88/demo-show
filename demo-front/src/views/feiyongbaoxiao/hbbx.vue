@@ -99,6 +99,10 @@
                     },
                     {
                         title: "指标可用金额"
+                    },
+                    {
+                        title: "操作",
+                        slot: "action"
                     }
                 ],
                 columns1: [

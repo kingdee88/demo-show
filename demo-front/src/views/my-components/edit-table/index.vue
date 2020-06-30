@@ -338,6 +338,9 @@
             add() {
                 this.showType = "2";
                 this.showUser = true;
+            },
+            getUserList (val) {
+                Vue.set(this.editData, this.editIndex, {name: val[0]['PAY_ITEM_NAME']});
             }
         }
     };
