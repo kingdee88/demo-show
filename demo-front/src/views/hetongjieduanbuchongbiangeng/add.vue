@@ -44,17 +44,27 @@
                               </Col>
                               <Col span="12">
                                 <FormItem label="申请日期" prop="name">
-                                  2020-06-24
+                                  <DatePicker
+                            v-model="form.date"
+                            type="date"
+                            format="yyyy-MM-dd"
+                            clearable
+                            placeholder="选择申请日期"
+                            style="width: 280px"
+                        ></DatePicker>
                                 </FormItem>
                               </Col>
                               <Col span="12">
                                 <FormItem label="申请人" prop="name">
-                                  demo
+                                  <Input v-model="form.name" style="width: 320px">
+                                  </Input>
                                 </FormItem>
                               </Col>
                               <Col span="12">
                                 <FormItem label="申请部门" prop="name">
-                                  普通外科病区
+                                  <Select v-model="form.money" style="width: 320px">
+                                    <Option value="1">HT-秘书处</Option>
+                                </Select>
                                 </FormItem>
                               </Col>
                               <Col span="12">
@@ -128,7 +138,8 @@
                 submitLoading: false, // 表单提交状态
                 form: {
                     id: "",
-                    name: ""
+                    name: "",
+                    money:"1"
                 },
                 // 表单验证规则
                 formValidate: {

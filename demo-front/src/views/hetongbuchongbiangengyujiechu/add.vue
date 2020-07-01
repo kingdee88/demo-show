@@ -33,7 +33,14 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="原合同号" prop="name">
-                    <a>HT-00000170</a>
+                    <Select v-model="form.money" style="width: 320px">
+                        <Option value="1">HT-00000170</Option>
+                        <Option value="2">HT-00000171</Option>
+                        <Option value="3">HT-00000172</Option>
+                        <Option value="4">HT-00000173</Option>
+                        <Option value="5">HT-00000174</Option>
+                    </Select>
+                   
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -43,17 +50,26 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="合同名称" prop="name">
-                    单位5月系统维护
+                    <Input v-model="form.name" style="width: 320px">
+                    </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="合同分类" prop="name">
-                    服务合同
+                   <Input v-model="form.name" style="width: 320px">
+                    </Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="申请日期" prop="name">
-                   2020-05-12
+                   <DatePicker
+                            v-model="form.date"
+                            type="date"
+                            format="yyyy-MM-dd"
+                            clearable
+                            placeholder="选择申请日期"
+                            style="width: 280px"
+                        ></DatePicker>
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -64,7 +80,10 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="是否开口合同" prop="name">
-                    否
+                      <RadioGroup v-model="form.money">
+                      <Radio  :label="0">否</Radio>
+                      <Radio  :label="1">是</Radio>
+                    </RadioGroup>
                     </FormItem>
                 </Col>
                 <Col span="12">
@@ -72,9 +91,9 @@
                     <Input v-model="form.name" style="width: 320px" />
                   </FormItem>
                 </Col>
-                <Col span="12">
+                <Col span="24">
                   <FormItem label="采购项目名称" prop="name">
-                    <Input v-model="form.name" style="width: 320px" />
+                    <Input v-model="form.name"  />
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -99,47 +118,70 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="开始日期" prop="name">
-                    2020-05-18
+                    <DatePicker
+                            v-model="form.date"
+                            type="date"
+                            format="yyyy-MM-dd"
+                            clearable
+                            placeholder="选择开始日期"
+                            style="width: 280px"
+                        ></DatePicker>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="结束日期" prop="name">
-                    2020-06-17
+                   <DatePicker
+                            v-model="form.date"
+                            type="date"
+                            format="yyyy-MM-dd"
+                            clearable
+                            placeholder="选择结束日期"
+                            style="width: 280px"
+                        ></DatePicker>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="合同金额(元)" prop="name">
-                    30,000.00
+                   <Input v-model="form.name" style="width: 320px"></Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="合同份数" prop="name">
-                    6
+                    <Input v-model="form.name" style="width: 320px"></Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="已付金额" prop="name">
-                    0
+                    <Input v-model="form.name" style="width: 320px"></Input>
                   </FormItem>
                 </Col>
                  <Col span="12">
                   <FormItem label="未付金额" prop="name">
-                      30,000.00
+                      <Input v-model="form.name" style="width: 320px"></Input>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="是否制式合同" prop="name">
-                   否
+                    <RadioGroup v-model="form.money">
+                      <Radio  :label="0">否</Radio>
+                      <Radio  :label="1">是</Radio>
+                    </RadioGroup>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="是否重大合同" prop="name">
-                    否
+                     <RadioGroup v-model="form.money">
+                      <Radio  :label="0">否</Radio>
+                      <Radio  :label="1">是</Radio>
+                    </RadioGroup>
                   </FormItem>
                 </Col>
                 <Col span="12">
                   <FormItem label="是否需审计" prop="name">
-                   否
+                    <RadioGroup v-model="form.money">
+                      <Radio  :label="0">否</Radio>
+                      <Radio  :label="1">是</Radio>
+                    </RadioGroup>
                   </FormItem>
                 </Col>
                    <Col span="24">
@@ -288,7 +330,8 @@ export default {
       submitLoading: false, // 表单提交状态
       form: {
         id: "",
-        name: ""
+        name: "",
+        money:"1"
       },
       datas: [{
         c: 0

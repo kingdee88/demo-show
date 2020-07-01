@@ -284,25 +284,8 @@
                 <h4 class="h4-title">相关制度</h4>
                 <div class="content">无</div>
               </div>
-              <div class="s-modal">
-                <h4 class="h4-title">预算指标情况</h4>
-                <div class="content">
-                  <p>{{form.INDEX_NAME}}</p>
-                  <Progress :percent="100" :stroke-width="20" text-inside />
-                </div>
-              </div>
-              <div class="s-modal">
-                <h4 class="h4-title">审批过程</h4>
-                <div class="content">
-                  <Timeline>
-                    <TimelineItem>{{form.APPLY_DEPT_NAME}} demo 任务</TimelineItem>
-                    <TimelineItem color="green">
-                      <Icon type="md-checkmark-circle" slot="dot"></Icon>
-                      <span>{{form.APPLY_DEPT_NAME}} 05/18 20:03 任务同意</span>
-                    </TimelineItem>
-                  </Timeline>
-                </div>
-              </div>
+            
+             
             </div>
           </Col>
         </Row>
