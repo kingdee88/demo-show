@@ -68,7 +68,7 @@
                                     <Col
                                             span="16"
                                             class="padding-left-8"
-                                    >{{city}}
+                                    >
                                     </Col>
                                 </Row>
                             </Card>
