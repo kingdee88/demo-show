@@ -235,7 +235,7 @@
             changeManType(){
                 if(this.apply.mantype == 10){
                     this.apply.lkmeter = 38932;
-                }else if(this.apply.mantype == 10){
+                }else if(this.apply.mantype == 11){
                     this.apply.lkmeter = 13900;
                 }else{
                     this.apply.lkmeter = '';
