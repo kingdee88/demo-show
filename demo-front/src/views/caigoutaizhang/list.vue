@@ -87,7 +87,7 @@
                   <Option value="">-请选择-</Option>
               </Select>
             </Form-item>
-                    
+
                         </span>
                     <Form-item
                             style="margin-left:-35px;"
@@ -319,7 +319,7 @@
                                             }
                                         }
                                     },
-                                    params.row['项目编码']
+                                    params.row[this.columns[1]['key']]
                                 );
                             }
                         }
