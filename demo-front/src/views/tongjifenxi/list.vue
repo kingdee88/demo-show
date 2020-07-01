@@ -35,10 +35,10 @@
                         ref="searchForm"
                         :model="searchForm"
                         inline
-                        :label-width="70"
+                        :label-width="90"
                 >
                     <Form-item
-                            label="申请单号"
+                            label="合同名称"
                             prop="nickname"
                     >
                         <Input
@@ -51,7 +51,7 @@
                     </Form-item>
 
                     <Form-item
-                            label="预算指标"
+                            label="合同编号"
                             prop="mobile"
                     >
                         <Input
@@ -63,7 +63,7 @@
                         />
                     </Form-item>
                     <Form-item
-                            label="支出事项"
+                            label="签约方名称"
                             prop="email"
                     >
                         <Input
@@ -76,7 +76,7 @@
                     </Form-item>
                     <span v-if="drop">
             <Form-item
-                    label="事由摘要"
+                    label="合同性质"
                     prop="username"
             >
               <Input
@@ -88,12 +88,12 @@
               />
             </Form-item>
            <Form-item
-                   label="申请类型"
+                   label="合同类型"
                    prop="sex"
            >
               <Select
                       v-model="searchForm.sex"
-                      placeholder="申请类型"
+                      placeholder="合同类型"
                       clearable
                       style="width: 200px"
               >
