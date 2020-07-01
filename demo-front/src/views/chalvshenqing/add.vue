@@ -55,15 +55,20 @@
                                 </FormItem>
                               </Col>
                               <Col span="24">
-                                <FormItem label="预算指标" prop="name">
-                                  <Input v-model="form.name" style="width: 320px">
-                                    <Button slot="append" icon="ios-pricetag"></Button>
-                                  </Input>
+                                <FormItem label="预算指标">
+                                  <Select style="width: 320px" @on-change="zb">
+                                    <Option value="1">差旅</Option>
+                                  </Select>
                                 </FormItem>
                               </Col>
                               <Col span="24">
                                 <FormItem label="指标可用金额" prop="name">
-                                  <Input v-model="form.name" style="width: 320px"/>
+                                  <template v-if="form.c != ''">
+                                    <Input value="34632" disabled style="width: 320px"/>
+                                  </template>
+                                  <template v-else>
+                                    <Input style="width: 320px"/>
+                                  </template>
                                 </FormItem>
                               </Col>
                               <Col span="12">
@@ -240,11 +245,12 @@
                 form: {
                     id: "",
                     name: "",
-                    type2:"1"
+                    type2:"1",
+                    c: ""
                 },
                 // 表单验证规则
                 formValidate: {
-                    name: [{required: true, message: "不能为空", trigger: "blur"}]
+                    // name: [{required: true, message: "不能为空", trigger: "blur"}]
                 },
               data: [],
               cityList: [],
@@ -292,6 +298,10 @@
             },
             handleReset() {
                 this.$refs.form.resetFields();
+            },
+            zb (v) {
+              this.form.c = "187932";
+              console.log(this.form.c);
             },
             jt (v) {
               console.log(v);

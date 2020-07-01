@@ -59,14 +59,14 @@
                              style="width: 320px"
                             @on-change="change2"
                     >
-                        <Option :value="0">公务用车{{form.c}}</Option>
+                        <Option :value="0">公务用车</Option>
                      </Select>
                   </FormItem>
                 </Col>
                 <Col span="24">
                   <FormItem label="指标可用金额" >
                     <template v-if="form.c != ''">
-                      <Input value="34632" disabled style="width: 320px"/>
+                      <Input value="187932" disabled style="width: 320px"/>
                     </template>
                     <template v-else>
                       <Input style="width: 320px"/>
