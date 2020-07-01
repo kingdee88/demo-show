@@ -26,7 +26,7 @@
                     <a class="select-clear" @click="clearSelectAll">清空</a>
                 </Alert>
             </Row>
-            <Row
+            <!--<Row
                     v-show="openSearch"
                     @keydown.enter.native="handleSearch"
             >
@@ -159,7 +159,7 @@
                         </a>
                     </Form-item>
                 </Form>
-            </Row>
+            </Row>-->
             <Row>
                 <Table
                         :loading="loading"
@@ -358,7 +358,7 @@
                             ]);
                         }
                     });
-                    this.columns[1] = Object.assign(this.columns[1], {
+                   /* this.columns[1] = Object.assign(this.columns[1], {
                             render: (h, params) => {
                                 return h(
                                     "a",
@@ -373,14 +373,24 @@
                                 );
                             }
                         }
-                    );
-                    this.historyData = res.records;
-                    // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-                    if(this.historyData.length < this.searchForm.pageSize){
-                        this.data = this.historyData;
-                    }else{
-                        this.data = this.historyData.slice(0,this.searchForm.pageSize);
-                    }
+                    );*/
+                    this.data = [{
+                        '车牌号': '琼AA2765B',
+                        '车辆类型': '轿车',
+                        '状态': '良好'
+                    },
+                        {
+                            '车牌号': '琼AA10F33',
+                            '车辆类型': '轿车',
+                            '状态': '良好'
+                        }];
+                    // this.historyData = res.records;
+                    // // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
+                    // if(this.historyData.length < this.searchForm.pageSize){
+                    //     this.data = this.historyData;
+                    // }else{
+                    //     this.data = this.historyData.slice(0,this.searchForm.pageSize);
+                    // }
                     this.total = this.historyData.length;
                     this.loading = false;
 
