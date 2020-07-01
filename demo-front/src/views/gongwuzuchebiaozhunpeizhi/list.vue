@@ -170,7 +170,25 @@
                         sortable="custom"
                         @on-sort-change="changeSort"
                         @on-selection-change="changeSelect"
-                ></Table>
+                >
+                    <template slot-scope="{ row, index }" slot="mbz">
+                        <Select
+                                v-model="row.b"
+                                placeholder="标准控制"
+                                clearable
+                                style="width: 200px"
+                        >
+                            <Option value="0">受标准控制刚性</Option>
+                        </Select>
+                    </template>
+                    <template slot-scope="{ row, index }" slot="mbz2">
+                        <Input
+                                :value="row.PLAN_VALUE"
+                                :clearable="false"
+                                :disabled=" false"
+                                placeholder="请输入"/>
+                    </template>
+                </Table>
             </Row>
             <Row type="flex" justify="end" class="page">
                 <Page
@@ -358,6 +376,8 @@
                             ]);
                         }
                     });
+                    this.columns[2]['slot'] = 'mbz';
+                    this.columns[3]['slot'] = 'mbz2';
                     this.columns[1] = Object.assign(this.columns[1], {
                             render: (h, params) => {
                                 return h(
@@ -381,6 +401,7 @@
                     }else{
                         this.data = this.historyData.slice(0,this.searchForm.pageSize);
                     }
+                    this.data.forEach(res => res.b = '0');
                     this.total = this.historyData.length;
                     this.loading = false;
 
