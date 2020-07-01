@@ -121,7 +121,7 @@
                       ref="table"
               ></Table>
               <div class="sum-text">
-                申请金额：{{NumberToChinese(datas[0]['p'])}} {{datas[0]['p']}}.00
+                申请金额：{{0}} {{0}}.00
               </div>
                <h4 class="h4-title">附件上传</h4>
                           <Table
@@ -189,8 +189,8 @@ export default {
         name: "",
         c: ""
       },
-      datas: [],
-      data2:[{}],
+      datas:[],
+      data2:[],
       columns2: [{
           title:"附件类型",
           key:"a"
@@ -271,6 +271,9 @@ export default {
     },
     handleReset() {
       this.$refs.form.resetFields();
+    },
+    addt(){
+      this.datas.push({});
     },
     handleSubmit() {
       this.$refs.form.validate(valid => {

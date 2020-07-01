@@ -33,7 +33,7 @@
                                 </Col>
                               <Col span="12">
                                 <FormItem label="申请人" prop="name">
-                                  <Input v-model="form.name" style="width: 320px">
+                                  <Input value="演示用户" style="width: 320px">
                                     <Button slot="append" icon="ios-person"></Button>
                                   </Input>
                                 </FormItem>
@@ -45,15 +45,13 @@
                                           placeholder="请选择"
                                           style="width: 320px"
                                   >
-                                    <Option :value="0">普通外科病区</Option>
-                                    <Option :value="1">呼吸科</Option>
-                                    <Option :value="2">泌尿科</Option>
+                                    <Option :value="0">行政后勤处</Option>
                                   </Select>
                                 </FormItem>
                               </Col>
                               <Col span="24">
                                 <FormItem label="申请人电话" prop="name">
-                                  <Input v-model="form.name" style="width: 320px"/>
+                                  <Input value="13109871234" style="width: 320px"/>
                                 </FormItem>
                               </Col>
                               <Col span="24">
@@ -139,6 +137,10 @@
                                 <FormItem label="出差类型" prop="type">
                                   <Select v-model="form.type2" style="width: 320px">
                                     <Option value="1">考察调研</Option>
+                                    <Option value="2">学校交流</Option>
+                                    <Option value="3">外出会议</Option>
+                                    <Option value="4">外出培训</Option>
+                                    <Option value="5">其他公务</Option>
                                   </Select>
                                 </FormItem>
                               </Col>
@@ -154,15 +156,23 @@
                               </Col>
                               <Col span="12">
                                 <FormItem label="交通工具" prop="type">
-                                  <Select v-model="form.type2" style="width: 320px">
+                                  <Select style="width: 320px" @on-change="jt">
                                     <Option value="1">火车</Option>
+                                    <Option value="2">飞机</Option>
+                                    <Option value="3">轮船</Option>
+                                    <Option value="4">其他交通工具</Option>
+                                    <Option value="5">单位公务用车</Option>
+
                                   </Select>
                                 </FormItem>
                               </Col>
                                <Col span="12">
                                 <FormItem label="交通工具等级" prop="type">
                                   <Select v-model="form.grade" style="width: 320px">
-                                    <Option value="1">火车</Option>
+                                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                                    <!-- <Option value="1">火车软席(软座、软卧)，高铁/动车商务座，全列软席列车一等软座</Option>
+                                    <Option value="2">火车软席(软座、软卧)，高铁/动车一等座，全列软席列车一等软座</Option>
+                                    <Option value="3">火车软席(硬座、硬卧)，高铁/动车二等座，全列软席列车二等软座</Option> -->
                                   </Select>
                                 </FormItem>
                               </Col>
@@ -170,14 +180,17 @@
                               <Col span="12">
                                 <FormItem label="伙食费用安排" prop="type">
                                   <Select v-model="form.grade" style="width: 320px">
-                                    <Option value="1">火车</Option>
+                                    <Option value="1">自行解决</Option>
+                                    <Option value="2">统一安排费用自理</Option>
+                                    <Option value="3">对方统一安排</Option>
                                   </Select>
                                 </FormItem>
                               </Col>
                               <Col span="12">
                                 <FormItem label="住宿费用安排" prop="type">
                                   <Select v-model="form.grade" style="width: 320px">
-                                    <Option value="1">火车</Option>
+                                    <Option value="1">自行解决</Option>
+                                    <Option value="1">对方统一安排</Option>
                                   </Select>
                                 </FormItem>
                               </Col>
@@ -235,6 +248,7 @@
                     name: [{required: true, message: "不能为空", trigger: "blur"}]
                 },
               data: [],
+              cityList: [],
               columns: [
                 {
                   title: "费用明细",
@@ -279,6 +293,69 @@
             },
             handleReset() {
                 this.$refs.form.resetFields();
+            },
+            jt (v) {
+              console.log(v);
+              if(v === '1'){
+                this.cityList = [
+                  {
+                    value : "1",
+                    label : "火车软席(软座、软卧)，高铁/动车商务座，全列软席列车一等软座"
+                  },
+                  {
+                    value: "2",
+                    label: "火车软席(软座、软卧)，高铁/动车一等座，全列软席列车一等软座"
+                  },
+                  {
+                    value: "3",
+                    label: "火车软席(硬座、硬卧)，高铁/动车二等座，全列软席列车二等软座"
+                  }
+                ];
+              }else if(v === '2'){
+                this.cityList = [
+                  {
+                    value : "1",
+                    label : "头等舱"
+                  },
+                  {
+                    value: "2",
+                    label: "商务舱"
+                  },
+                  {
+                    value: "3",
+                    label: "经济舱"
+                  }
+                ];
+              }else if(v === '3'){
+                this.cityList = [
+                  {
+                    value : "1",
+                    label : "一等舱"
+                  },
+                  {
+                    value: "2",
+                    label: "二等舱"
+                  },
+                  {
+                    value: "3",
+                    label: "三等舱"
+                  }
+                ];
+              }else if(v === '4'){
+                this.cityList = [
+                  {
+                    value : "1",
+                    label : "其他"
+                  }
+                ];
+              }else if(v === '5'){
+                this.cityList = [
+                  {
+                    value : "1",
+                    label : "单位公务车辆"
+                  }
+                ];
+              }
             },
             handleSubmit() {
                 this.$refs.form.validate(valid => {
