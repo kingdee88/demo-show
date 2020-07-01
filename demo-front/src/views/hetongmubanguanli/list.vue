@@ -6,12 +6,12 @@
         <Card>
             <Row type="flex" justify="start">
                 <Col :md="6">
-                    <div show-icon>
-                        支出事项分类：
-                        <Select v-model="formData.ywfl" disabled placeholder="支出事项分类" clearable style="width: 200px">
-                            <Option value="0">业务经费</Option>
-                        </Select>
-                    </div>
+<!--                    <div show-icon>-->
+<!--                        支出事项分类：-->
+<!--                        <Select v-model="formData.ywfl" disabled placeholder="支出事项分类" clearable style="width: 200px">-->
+<!--                            <Option value="0">业务经费</Option>-->
+<!--                        </Select>-->
+<!--                    </div>-->
                     <div class="tree-bar" :style="{maxHeight: maxHeight}">
                         <Tree
                                 ref="tree"

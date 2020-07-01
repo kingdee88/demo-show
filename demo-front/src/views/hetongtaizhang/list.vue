@@ -312,6 +312,10 @@
                         align: "center",
                         fixed: "left"
                     });
+                    this.columns[2].width = 180;
+                    this.columns[2].tooltip = true;
+                    this.columns[17].tooltip = true;
+                    this.columns[18].tooltip = true;
                     this.columns.push( {
                         title: "操作",
                         key: "action",
