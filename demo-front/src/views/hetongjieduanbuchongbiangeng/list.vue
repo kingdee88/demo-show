@@ -408,8 +408,9 @@
             },
             getDataList() {
                 this.loading = true;
+                this.data = [];
 
-                this.data =  [
+                /*this.data =  [
                     {
                         "ID": "00000000000000000000000000000020200624112651569288meovrqo76j",
                         "ACCOUNT_SUIT_ID": "00000000000000000000000000000020170407175143cdb3pttp5p2m13to",
@@ -909,7 +910,7 @@
                         "PROCESS_ACTIVE_NAME": null,
                         "PROCESS_EXC_NAME": "",
                         "CATEGORY_NAME": "服务合同"
-                    }]
+                    }]*/
                 this.total = this.data.length;
                 this.loading = false;
             },
