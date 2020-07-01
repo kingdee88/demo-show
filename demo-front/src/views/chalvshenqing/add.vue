@@ -128,7 +128,7 @@
                                 </Col>
                               <Col span="12">
                                 <FormItem label="出差人员" prop="name">
-                                  <Input v-model="form.name" style="width: 320px">
+                                  <Input value="演示用户" style="width: 320px">
                                     <Button slot="append" icon="ios-person"></Button>
                                   </Input>
                                 </FormItem>
@@ -195,7 +195,6 @@
                                 </FormItem>
                               </Col>
 
-                              
                             </Row>
 
                             <Form-item class="br">
