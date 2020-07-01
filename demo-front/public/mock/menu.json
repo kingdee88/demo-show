@@ -530,7 +530,7 @@
             "type": 0,
             "title": "项目预算控制数批复",
             "path": "budget-control-amount",
-            "component": "xiangmuyusuankongzhishupifu/list.vue",
+            "component": "xiangmuyusuankongzhishupifu/list",
             "icon": "ios-menu",
             "url": null,
             "buttonType": "",

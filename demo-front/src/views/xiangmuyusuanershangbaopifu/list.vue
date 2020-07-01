@@ -83,6 +83,7 @@
             </Row>
             <Row>
                 <Table
+                        show-summary
                         row-key="ID"
                         :loading="loading"
                         border
@@ -147,20 +148,20 @@
 
     const data = [
         {
-        "ID": "0000000000000000000000000000002020060214401873467802cv0joclk",
-        "PROJECT_ID": "0000000000000000000000000000002020051312494336632743sf4kbq5h",
-        "BUDGET_AMOUNT": 1000.0,
-        "APPROVAL_AMOUNT": 0.0,
-        "AUDITING_RESULT": "1",
-        "APPROVAL_RESULT": null,
-        "PROJECT_CODE": "P-20200513-0504",
-        "PROJECT_NAME": "项目tese",
-        "BEGIN_YEAR": 2018,
-        "APPLY_DEPT_ID": "00000000000000000000000000000020171120183917350kf63167aospmi",
-        "APPLY_USER_ID": "00000000000000000000000000000020190527094928770987mi865bt6fo",
-        "APPLY_USER_NAME": "刘拾辉",
-        "APPLY_DEPT_NAME": "组织人事处（老干处）"
-    },
+            "ID": "0000000000000000000000000000002020060214401873467802cv0joclk",
+            "PROJECT_ID": "0000000000000000000000000000002020051312494336632743sf4kbq5h",
+            "BUDGET_AMOUNT": 1000.0,
+            "APPROVAL_AMOUNT": 0.0,
+            "AUDITING_RESULT": "1",
+            "APPROVAL_RESULT": null,
+            "PROJECT_CODE": "P-20200513-0504",
+            "PROJECT_NAME": "项目tese",
+            "BEGIN_YEAR": 2018,
+            "APPLY_DEPT_ID": "00000000000000000000000000000020171120183917350kf63167aospmi",
+            "APPLY_USER_ID": "00000000000000000000000000000020190527094928770987mi865bt6fo",
+            "APPLY_USER_NAME": "刘拾辉",
+            "APPLY_DEPT_NAME": "组织人事处（老干处）"
+        },
         {
             "ID": "00000000000000000000000000000020200602144018734673s21ci3rwio",
             "PROJECT_ID": "000000000000000000000000000000202005111931144078961uqnewwepm",
@@ -652,7 +653,7 @@
                 this.loading = true;
                 getUserListData(this.searchForm).then(res => {
                     this.loading = false;
-                    this.data = data;
+                    this.data = [];
                     this.total = this.data.length;
                 });
             },

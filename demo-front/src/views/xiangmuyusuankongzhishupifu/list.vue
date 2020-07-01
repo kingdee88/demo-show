@@ -11,8 +11,7 @@
                 <div style="display: flex;justify-content: space-between;">
                     <Form>
                         <Form-item class="br" label="">
-                            <Button icon="md-cloud-download" type="primary">导出</Button>
-                            <Button  icon="ios-checkmark-circle">批量确认</Button>
+                            <Button icon="md-refresh">刷新</Button>
                         </Form-item>
                     </Form>
                     <Form
@@ -147,20 +146,20 @@
 
     const data = [
         {
-        "ID": "0000000000000000000000000000002020060214401873467802cv0joclk",
-        "PROJECT_ID": "0000000000000000000000000000002020051312494336632743sf4kbq5h",
-        "BUDGET_AMOUNT": 1000.0,
-        "APPROVAL_AMOUNT": 0.0,
-        "AUDITING_RESULT": "1",
-        "APPROVAL_RESULT": null,
-        "PROJECT_CODE": "P-20200513-0504",
-        "PROJECT_NAME": "项目tese",
-        "BEGIN_YEAR": 2018,
-        "APPLY_DEPT_ID": "00000000000000000000000000000020171120183917350kf63167aospmi",
-        "APPLY_USER_ID": "00000000000000000000000000000020190527094928770987mi865bt6fo",
-        "APPLY_USER_NAME": "刘拾辉",
-        "APPLY_DEPT_NAME": "组织人事处（老干处）"
-    },
+            "ID": "0000000000000000000000000000002020060214401873467802cv0joclk",
+            "PROJECT_ID": "0000000000000000000000000000002020051312494336632743sf4kbq5h",
+            "BUDGET_AMOUNT": 1000.0,
+            "APPROVAL_AMOUNT": 0.0,
+            "AUDITING_RESULT": "1",
+            "APPROVAL_RESULT": null,
+            "PROJECT_CODE": "P-20200513-0504",
+            "PROJECT_NAME": "项目tese",
+            "BEGIN_YEAR": 2018,
+            "APPLY_DEPT_ID": "00000000000000000000000000000020171120183917350kf63167aospmi",
+            "APPLY_USER_ID": "00000000000000000000000000000020190527094928770987mi865bt6fo",
+            "APPLY_USER_NAME": "刘拾辉",
+            "APPLY_DEPT_NAME": "组织人事处（老干处）"
+        },
         {
             "ID": "00000000000000000000000000000020200602144018734673s21ci3rwio",
             "PROJECT_ID": "000000000000000000000000000000202005111931144078961uqnewwepm",
@@ -491,136 +490,27 @@
                 },
                 form: {},
                 columns: [
+                    // {
+                    //     type: "selection",
+                    //     width: 60,
+                    //     align: "center",
+                    //     fixed: "left"
+                    // },
                     {
-                        type: "selection",
-                        width: 60,
-                        align: "center",
-                        fixed: "left"
-                    },
-                    {
-                        title: "项目编码",
+                        title: "预算年份",
                         key: "PROJECT_CODE",
                         minWidth: 160
                     },
                     {
-                        title: "项目名称",
+                        title: "预算金额（元）",
                         key: "PROJECT_NAME",
                         width: 180,
                         tree: true
                     },
                     {
-                        title: "预算金额",
+                        title: "下达时间",
                         key: "BUDGET_AMOUNT",
                         minWidth: 140
-                    },
-                    {
-                        title: "开始年份",
-                        key: "BEGIN_YEAR",
-                        minWidth: 125
-                    },
-                    {
-                        title: "申请人",
-                        key: "APPLY_USER_NAME",
-                        minWidth: 125
-                    },
-                    {
-                        title: "申报部门",
-                        key: "APPLY_DEPT_NAME",
-                        width: 180
-                    },
-                    {
-                        title: "确认状态",
-                        key: "2020PLAN",
-                        width: 160,
-                        render: (h, params) => {
-                            return h(
-                                "span",
-                                '待审批'
-                            );
-                        }
-                    },
-                    {
-                        title: "批复状态",
-                        key: "2020ACTUAL",
-                        width: 160
-                    },
-                    {
-                        title: "操作",
-                        key: "username",
-                        minWidth: 125,
-                        render: (h, params) => {
-                            return h("div", [
-                                h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "primary",
-                                            size: "small",
-                                            icon: "ios-create-outline"
-                                        },
-                                        style: {
-                                            marginRight: "5px"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.edit(params.row);
-                                            }
-                                        }
-                                    },
-                                    "审批"
-                                )
-                            ]);
-                        }
-                    },
-                ],
-                exportColumns: [
-                    {
-                        title: "用户名",
-                        key: "username"
-                    },
-                    {
-                        title: "头像",
-                        key: "avatar"
-                    },
-                    {
-                        title: "所属部门ID",
-                        key: "departmentId"
-                    },
-                    {
-                        title: "所属部门",
-                        key: "departmentTitle"
-                    },
-                    {
-                        title: "手机",
-                        key: "mobile"
-                    },
-                    {
-                        title: "邮箱",
-                        key: "email"
-                    },
-                    {
-                        title: "性别",
-                        key: "sex"
-                    },
-                    {
-                        title: "用户类型",
-                        key: "type"
-                    },
-                    {
-                        title: "状态",
-                        key: "status"
-                    },
-                    {
-                        title: "删除标志",
-                        key: "delFlag"
-                    },
-                    {
-                        title: "创建时间",
-                        key: "createTime"
-                    },
-                    {
-                        title: "更新时间",
-                        key: "updateTime"
                     }
                 ],
                 data: [],
@@ -652,7 +542,7 @@
                 this.loading = true;
                 getUserListData(this.searchForm).then(res => {
                     this.loading = false;
-                    this.data = data;
+                    this.data = [];
                     this.total = this.data.length;
                 });
             },
