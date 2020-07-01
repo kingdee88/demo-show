@@ -12,7 +12,7 @@
             <Row class="operation">
                 <Button @click="add" type="primary" icon="md-add">新增</Button>
                 <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>-->
-                <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>
+                
                 <Button @click="delAll" icon="md-trash">批量删除</Button>
                 <Button @click="handleDropdown('exportData')" icon="md-cloud-download">导出所选数据</Button>
                 <Button icon="md-cloud-upload">导入</Button>
