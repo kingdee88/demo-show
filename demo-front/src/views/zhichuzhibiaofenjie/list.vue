@@ -2628,7 +2628,14 @@
                     {
                         title: "是否项目指标",
                         key: "PAY_ITEM_NAME",
-                        width: 180
+                        width: 180,
+                        render: (h, params) => {
+                            let re = "";
+                            if (params.row.PAY_ITEM_TYPE == 1) {
+                                re = "否";
+                            }
+                            return h("div", re);
+                        },
                     },
                     {
                         title: "预算批复金额(元)",
@@ -2643,7 +2650,14 @@
                     {
                         title: "状态",
                         key: "MANAGE_DEPT_NAME",
-                        minWidth: 125
+                        minWidth: 125,
+                        render: (h, params) => {
+                            let re = "";
+                            if (params.row.INDEX_STATUS == 3) {
+                                re = "结账";
+                            }
+                            return h("div", re);
+                        }
                     }
                 ],
                 exportColumns: [
