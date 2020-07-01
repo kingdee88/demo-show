@@ -340,7 +340,7 @@
                                 "span",
                                 {
                                 },
-                                (params.row[this.columns[12]['key']] * 100).toFixed(0)
+                                (params.row[this.columns[12]['key']] * 100).toFixed(0) + '%'
                             );
                         }
                     });
@@ -350,7 +350,7 @@
                                 "span",
                                 {
                                 },
-                                (params.row[this.columns[8]['key']] * 100).toFixed(0)
+                                (params.row[this.columns[8]['key']] * 100).toFixed(0) + '%'
                             );
                         }
                     });
@@ -360,7 +360,7 @@
                                 "span",
                                 {
                                 },
-                                (params.row[this.columns[11]['key']] * 100).toFixed(0)
+                                (params.row[this.columns[11]['key']] * 100).toFixed(0) + '%'
                             );
                         }
                     })

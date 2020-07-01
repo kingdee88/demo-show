@@ -373,7 +373,7 @@
                                 "span",
                                 {
                                 },
-                                (params.row[this.columns[6]['key']] * 100).toFixed(0)
+                                (params.row[this.columns[6]['key']] * 100).toFixed(0) + '%'
                             );
                         }
                     });

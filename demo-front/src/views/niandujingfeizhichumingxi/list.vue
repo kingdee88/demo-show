@@ -374,6 +374,17 @@
                             }
                         }
                     );
+                    this.columns[3] = Object.assign(this.columns[3], {
+                        render: (h, params) => {
+                            return h(
+                                "span",
+                                {
+                                },
+                                (params.row[this.columns[3]['key']] * 100).toFixed(0) + '%'
+                            );
+                        }
+                    })
+
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
                     if(this.historyData.length < this.searchForm.pageSize){
