@@ -170,7 +170,15 @@
                         sortable="custom"
                         @on-sort-change="changeSort"
                         @on-selection-change="changeSelect"
-                ></Table>
+                >
+                    <template slot-scope="{ row, index }" slot="mbz">
+                        <Input
+                                :value="row.PLAN_VALUE"
+                                :clearable="false"
+                                :disabled=" false"
+                                placeholder="请输入"/>
+                    </template>
+                </Table>
             </Row>
             <Row type="flex" justify="end" class="page">
                 <Page
@@ -374,6 +382,7 @@
                             }
                         }
                     );
+                    this.columns[2]['slot'] = 'mbz';
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
                     if(this.historyData.length < this.searchForm.pageSize){

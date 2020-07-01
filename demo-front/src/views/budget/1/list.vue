@@ -190,7 +190,8 @@
     import departmentChoose from "../../my-components/xboot/department-choose";
     import checkPassword from "@/views/my-components/xboot/check-password";
 
-    const data =  [{
+    const data =  [
+        {
         "ID": "00000000000000000000000000000020171123101720029ti78qmsv8w2ji",
         "BUDGET_YEAR": 2020,
         "PLAN_VALUE": 9.11,

@@ -170,7 +170,29 @@
                         sortable="custom"
                         @on-sort-change="changeSort"
                         @on-selection-change="changeSelect"
-                ></Table>
+                >
+                    <template slot-scope="{ row, index }" slot="mbz">
+                        <Input
+                                :value="row.PLAN_VALUE"
+                                :clearable="false"
+                                :disabled=" false"
+                                placeholder="请输入"/>
+                    </template>
+                    <template slot-scope="{ row, index }" slot="qtb">
+                        <Input
+                                :value="row.mbz"
+                                :clearable="false"
+                                :disabled=" true"
+                                placeholder="请输入"/>
+                    </template>
+                    <template slot-scope="{ row, index }" slot="desc">
+                        <Input
+                                :value="row.desc"
+                                :clearable="false"
+                                :disabled="false"
+                                placeholder="请输入"/>
+                    </template>
+                </Table>
             </Row>
             <Row type="flex" justify="end" class="page">
                 <Page

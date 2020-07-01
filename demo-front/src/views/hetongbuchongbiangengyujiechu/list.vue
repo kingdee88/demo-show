@@ -247,64 +247,62 @@
                     {
                         title: "合同编号",
                         key: "CONTRACT_NO",
-                        sortable: true
+                        width: 140
                     },
                       {
                         title: "原合同编号",
                         key: "CONTRACT_NAME",
-                        sortable: true
+                        width: 160
                     },
                     {
                         title: "合同名称",
                         key: "LINK_MAN",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "合同性质",
                         key: "INDEX_NAME",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "合同类型",
                         key: "TIME_CREATE",
-                        sortable: true,
-                        width: 200,
-                        sortType: "desc"
+                        width: 160
                     },
                     {
                         title: "申请人",
                         key: "APPLY_AMOUNT",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "申请部门",
                         key: "APPLY_DEPT_NAME",
-                        sortable: false
+                        width: 160
                     },
                           {
                         title: "申请日期",
                         key: "REASON_DIGEST",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "合同金额",
                         key: "REASON_DIGEST",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "当前操作环节",
                         key: "REASON_DIGEST",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "当前操作人",
                         key: "REASON_DIGEST",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "审批状态",
                         key: "REASON_DIGEST",
-                        sortable: false
+                        width: 160
                     },
                     {
                         title: "操作",

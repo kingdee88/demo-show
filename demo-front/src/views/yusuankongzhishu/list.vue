@@ -170,7 +170,15 @@
                         sortable="custom"
                         @on-sort-change="changeSort"
                         @on-selection-change="changeSelect"
-                ></Table>
+                >
+                    <template slot-scope="{ row, index }" slot="mbz">
+                        <Input
+                                :value="row['控制数（元)']"
+                                :clearable="false"
+                                :disabled=" false"
+                                placeholder="请输入"/>
+                    </template>
+                </Table>
             </Row>
             <Row type="flex" justify="end" class="page">
                 <Page
@@ -358,6 +366,7 @@
                             ]);
                         }
                     });
+                    this.columns[3]['slot'] = 'mbz';
                     this.columns[1] = Object.assign(this.columns[1], {
                             render: (h, params) => {
                                 return h(

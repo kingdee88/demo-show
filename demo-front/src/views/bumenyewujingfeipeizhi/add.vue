@@ -26,7 +26,7 @@
                                 <Col span="12">
                                     <FormItem label="支出事项分类" prop="itemName">
                                       <Input v-model="form.itemName" style="width: 320px">
-                                      
+
                                       </Input>
                                     </FormItem>
                                 </Col>
@@ -122,8 +122,8 @@
                     id: "",
                     itemName: "支出事项分类",
                     money:1,
-                    parentItemName:"院办经费",
-                    departmentName:"普通外科病区"
+                    parentItemName:"",
+                    departmentName:""
                 },
                 // 表单验证规则
                 formValidate: {

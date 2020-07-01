@@ -137,12 +137,32 @@
     import add1 from "./add1.vue";
 
     const data = [{
-        a: 'A001',
+        a: 'JY2020062801',
         b: '琼AA2765B',
-        c: 1500,
-        d: 921,
-        e: 579
-    }];
+        c: '赵强',
+        d: '2020年6月28日',
+        e: 65.17,
+        f: 5.8,
+        g: 378
+    },
+        {
+            a: 'JY2020062301',
+            b: '琼AA2765B',
+            c: '赵强',
+            d: '2020年6月23日',
+            e: 60.34,
+            f: 5.8,
+            g: 350
+        },
+        {
+            a: 'JY2020061901',
+            b: '琼AA2765B',
+            c: '赵强',
+            d: '2020年6月19日',
+            e: 32.93,
+            f: 5.8,
+            g: 191
+        }];
     export default {
         name: "user-manage",
         components: {
@@ -203,58 +223,39 @@
                     //     fixed: "left"
                     // },
                     {
-                        title: "加油卡管理",
+                        title: "加油编号",
                         key: "a",
                         minWidth: 125
                     },
                     {
-                        title: "车牌号",
+                        title: "车牌",
                         key: "b",
                         width: 180
                     },
                     {
-                        title: "累计充值(元)",
-                        key: "c",
+                        title: "司机",
+                        key: "b",
+                        width: 180
+                    },
+                    {
+                        title: "加油时间",
+                        key: "d",
                         minWidth: 140
                     },
                     {
-                        title: "累计加油(元)",
-                        key: "d",
-                        minWidth: 125
-                    },
-                    {
-                        title: "当前余额",
+                        title: "加油量（升）",
                         key: "e",
                         minWidth: 125
                     },
                     {
-                        title: "操作",
-                        key: "action",
-                        align: "center",
-                        width: 250,
-                        render: (h, params) => {
-                            return h("div", [
-                                h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "primary",
-                                            size: "small",
-                                            icon: "ios-create-outline"
-                                        },
-                                        style: {
-                                            marginRight: "5px"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.edit(params.row);
-                                            }
-                                        }
-                                    },
-                                    "充值"
-                                )
-                            ]);
-                        }
+                        title: "单价（元/升）",
+                        key: "f",
+                        minWidth: 125
+                    },
+                    {
+                        title: "总价（元）",
+                        key: "g",
+                        minWidth: 125
                     }
                 ],
                 exportColumns: [

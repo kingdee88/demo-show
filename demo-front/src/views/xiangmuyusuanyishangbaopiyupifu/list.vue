@@ -10,7 +10,7 @@
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-<!--                <Button @click="add" type="primary" icon="md-add">新增</Button>-->
+                <Button @click="add" type="primary" icon="md-add">新增</Button>
                 <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>
                 <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>-->
                 <Button @click="delAll" icon="md-trash">批量删除</Button>
@@ -192,19 +192,19 @@
 
 <script>
     import axios from 'axios';
-    import add from "./add.vue";
-    import edit from "./edit.vue";
-    import audit from "./audit";
-    import change from "./change";
-    import detail from "./detail";
+    // import add from "./add.vue";
+    // import edit from "./edit.vue";
+    // import audit from "./audit";
+    // import change from "./change";
+    // import detail from "./detail";
     export default {
         name: "xiangmushenbaojihua",
         components: {
-            add,
-            edit,
-            audit,
-            change,
-            detail
+            // add,
+            // edit,
+            // audit,
+            // change,
+            // detail
         },
         data() {
             return {
@@ -298,7 +298,7 @@
             getDataList() {
                 this.loading = true;
 
-                axios.get('/mock/hetongtaizhang.json').then(res => {
+                axios.get('/mock/xiangmuyusuanyishangbaopiyupifu.json').then(res => {
                     this.columns = res.headers.map(res => {
                         return {
                             title: res,
@@ -369,7 +369,7 @@
                                             }
                                         }
                                     },
-                                   params.row[this.columns[1]['key']]
+                                    params.row[this.columns[1]['key']]
                                 );
                             }
                         }

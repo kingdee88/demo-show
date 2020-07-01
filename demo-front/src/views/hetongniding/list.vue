@@ -266,19 +266,19 @@
                     },
                     {
                         title: "申请时间",
-                        key: "TIME_CREATE",
+                        key: "APPLY_DATE",
                         sortable: true,
                         width: 200,
                         sortType: "desc"
                     },
                     {
                         title: "事由摘要",
-                        key: "REASON_DIGEST",
+                        key: "CATEGORY_NAME",
                         sortable: false
                     },
                     {
                         title: "申请金额",
-                        key: "APPLY_AMOUNT",
+                        key: "PAY_AMOUNT",
                         sortable: false
                     },
                     {
@@ -478,7 +478,7 @@
                         "BANK_ACCOUNT": "123456789",
                         "AUDIT_ID": "00000000000000000000000000000020200624112810660291bkob3sauik",
                         "APPLY_USER_NAME": "kwj",
-                        "APPLY_DEPT_NAME": "普通外科病区",
+                        "APPLY_DEPT_NAME": "",
                         "PROCESS_STATE": "3",
                         "PROCESS_ACTIVE_NAME": "普通任务",
                         "PROCESS_EXC_NAME": "kwj",
@@ -646,7 +646,7 @@
                         "BANK_ACCOUNT": null,
                         "AUDIT_ID": null,
                         "APPLY_USER_NAME": "夏天",
-                        "APPLY_DEPT_NAME": "演示医院"
+                        "APPLY_DEPT_NAME": ""
                     },
                     {
                         "ID": "00000000000000000000000000000020200513095011090664ne2p3bsu7h",
@@ -894,7 +894,7 @@
                         "BANK_ACCOUNT": "456709876543234567",
                         "AUDIT_ID": "00000000000000000000000000000020200512181017121894viowhb4vnk",
                         "APPLY_USER_NAME": "杨娜",
-                        "APPLY_DEPT_NAME": "演示医院",
+                        "APPLY_DEPT_NAME": "",
                         "PROCESS_STATE": "4",
                         "PROCESS_ACTIVE_NAME": null,
                         "PROCESS_EXC_NAME": "",
