@@ -25,7 +25,7 @@
                 <Col span="12">
                   <FormItem label="采购需求申请号">
                       送审后自动生成
-                   
+
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -35,7 +35,7 @@
                 </Col>
                 <Col span="12">
                   <FormItem label="项目申请人" prop="name">
-                    test11
+                    demo
                   </FormItem>
                 </Col>
                 <Col span="12">
@@ -283,7 +283,7 @@ export default {
         c: 0
       }],
       datas2: [
-         
+
       ],
       columns2: [
             {

@@ -10,7 +10,7 @@
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">新增</Button>
+<!--                <Button @click="add" type="primary" icon="md-add">新增</Button>-->
                 <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>
                 <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>-->
                 <Button @click="delAll" icon="md-trash">批量删除</Button>
@@ -334,68 +334,98 @@
                         align: "center",
                         fixed: "left"
                     });
-                    this.columns.push( {
-                        title: "操作",
-                        key: "action",
-                        align: "center",
-                        fixed: 'right',
-                        width: 200,
+                    this.columns[12] = Object.assign(this.columns[12], {
                         render: (h, params) => {
-                            return h("div", [
-                                h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "primary",
-                                            size: "small",
-                                            icon: "ios-create-outline"
-                                        },
-                                        style: {
-                                            marginRight: "5px"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.edit(params.row);
-                                            }
-                                        }
-                                    },
-                                    "编辑"
-                                ),
-                                h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "error",
-                                            size: "small",
-                                            icon: "md-trash"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.remove(params.row);
-                                            }
-                                        }
-                                    },
-                                    "删除"
-                                )
-                            ]);
+                            return h(
+                                "span",
+                                {
+                                },
+                                (params.row[this.columns[12]['key']] * 100).toFixed(0)
+                            );
                         }
                     });
-                    this.columns[1] = Object.assign(this.columns[1], {
-                            render: (h, params) => {
-                                return h(
-                                    "a",
-                                    {
-                                        on: {
-                                            click: () => {
-                                                this.showDetail(params.row);
-                                            }
-                                        }
-                                    },
-                                   params.row[this.columns[1]['key']]
-                                );
-                            }
+                    this.columns[8] = Object.assign(this.columns[8], {
+                        render: (h, params) => {
+                            return h(
+                                "span",
+                                {
+                                },
+                                (params.row[this.columns[8]['key']] * 100).toFixed(0)
+                            );
                         }
-                    );
+                    });
+                    this.columns[11] = Object.assign(this.columns[11], {
+                        render: (h, params) => {
+                            return h(
+                                "span",
+                                {
+                                },
+                                (params.row[this.columns[11]['key']] * 100).toFixed(0)
+                            );
+                        }
+                    })
+                    // this.columns.push( {
+                    //     title: "操作",
+                    //     key: "action",
+                    //     align: "center",
+                    //     fixed: 'right',
+                    //     width: 200,
+                    //     render: (h, params) => {
+                    //         return h("div", [
+                    //             h(
+                    //                 "Button",
+                    //                 {
+                    //                     props: {
+                    //                         type: "primary",
+                    //                         size: "small",
+                    //                         icon: "ios-create-outline"
+                    //                     },
+                    //                     style: {
+                    //                         marginRight: "5px"
+                    //                     },
+                    //                     on: {
+                    //                         click: () => {
+                    //                             this.edit(params.row);
+                    //                         }
+                    //                     }
+                    //                 },
+                    //                 "编辑"
+                    //             ),
+                    //             h(
+                    //                 "Button",
+                    //                 {
+                    //                     props: {
+                    //                         type: "error",
+                    //                         size: "small",
+                    //                         icon: "md-trash"
+                    //                     },
+                    //                     on: {
+                    //                         click: () => {
+                    //                             this.remove(params.row);
+                    //                         }
+                    //                     }
+                    //                 },
+                    //                 "删除"
+                    //             )
+                    //         ]);
+                    //     }
+                    // });
+                    // this.columns[1] = Object.assign(this.columns[1], {
+                    //         render: (h, params) => {
+                    //             return h(
+                    //                 "a",
+                    //                 {
+                    //                     on: {
+                    //                         click: () => {
+                    //                             this.showDetail(params.row);
+                    //                         }
+                    //                     }
+                    //                 },
+                    //                params.row[this.columns[1]['key']]
+                    //             );
+                    //         }
+                    //     }
+                    // );
                     this.columns[9]['slot'] = 'mbz';
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示

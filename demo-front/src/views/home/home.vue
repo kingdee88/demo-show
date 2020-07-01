@@ -55,7 +55,7 @@
                                         >
                                             <div>
                                                 <b class="card-user-info-name">{{ username }}</b>
-                                                <p>您好，test11 欢迎您的使用</p>
+                                                <p>您好，demo 欢迎您的使用</p>
                                             </div>
                                         </Row>
                                     </Col>
@@ -322,7 +322,7 @@
                 data: [
                     {
                         "category": "预警",
-                        "content": "test11：<br\/>&nbsp;&nbsp;&nbsp;&nbsp;您好！<br\/>&nbsp;&nbsp;&nbsp;&nbsp;合同名称【123】，合同编号【HT-00000174】，付\/收款阶段【验收款】将于2020-07-02到期，请您关注或处理。",
+                        "content": "demo：<br\/>&nbsp;&nbsp;&nbsp;&nbsp;您好！<br\/>&nbsp;&nbsp;&nbsp;&nbsp;合同名称【123】，合同编号【HT-00000174】，付\/收款阶段【验收款】将于2020-07-02到期，请您关注或处理。",
                         "id": "000000000000000000000000000000202006270200000590615ftt8dtdvi",
                         "name": "【合同阶段付\/收款提醒】合同名称：123",
                         "noticeId": "00000000000000000000000000000020200611155914073497p5k02wr3hn",
@@ -333,7 +333,7 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
                         "userSenderName": "系统",
                         "userUpdateId": null,
@@ -341,7 +341,7 @@
                     },
                     {
                         "category": "流程",
-                        "content": "test11：<br\/>&nbsp;&nbsp;&nbsp;&nbsp;您好！<br\/>&nbsp;&nbsp;&nbsp;&nbsp;你有以下任务：项目负责人审核，请及时处理。",
+                        "content": "demo：<br\/>&nbsp;&nbsp;&nbsp;&nbsp;您好！<br\/>&nbsp;&nbsp;&nbsp;&nbsp;你有以下任务：项目负责人审核，请及时处理。",
                         "id": "000000000000000000000000000000202006241126522661594hjiks2fel",
                         "name": "你有以下任务：项目负责人审核，请及时处理。",
                         "noticeId": null,
@@ -352,7 +352,7 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
                         "userSenderName": "系统",
                         "userUpdateId": null,
@@ -360,7 +360,7 @@
                     },
                     {
                         "category": "流程",
-                        "content": "test11：<br\/>&nbsp;&nbsp;&nbsp;&nbsp;您好！<br\/>&nbsp;&nbsp;&nbsp;&nbsp;你有以下任务：项目负责人审核，请及时处理。",
+                        "content": "demo：<br\/>&nbsp;&nbsp;&nbsp;&nbsp;您好！<br\/>&nbsp;&nbsp;&nbsp;&nbsp;你有以下任务：项目负责人审核，请及时处理。",
                         "id": "0000000000000000000000000000002020061115524346147152bkltb18i",
                         "name": "你有以下任务：项目负责人审核，请及时处理。",
                         "noticeId": null,
@@ -371,7 +371,7 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
                         "userSenderName": "系统",
                         "userUpdateId": null,
@@ -390,9 +390,9 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
-                        "userSenderName": "test11",
+                        "userSenderName": "demo",
                         "userUpdateId": null,
                         "userUpdateName": null
                     },
@@ -409,7 +409,7 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
                         "userSenderName": "123456",
                         "userUpdateId": null,
@@ -428,9 +428,9 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
-                        "userSenderName": "test11",
+                        "userSenderName": "demo",
                         "userUpdateId": null,
                         "userUpdateName": null
                     },
@@ -447,9 +447,9 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
-                        "userSenderName": "test11",
+                        "userSenderName": "demo",
                         "userUpdateId": null,
                         "userUpdateName": null
                     },
@@ -466,9 +466,9 @@
                         "userCreateId": null,
                         "userCreateName": null,
                         "userRecipientId": "000000000000000000000000000000201806281223358542duhvhnl6o26o",
-                        "userRecipientName": "test11",
+                        "userRecipientName": "demo",
                         "userSenderId": null,
-                        "userSenderName": "test11",
+                        "userSenderName": "demo",
                         "userUpdateId": null,
                         "userUpdateName": null
                     }],

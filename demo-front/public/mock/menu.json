@@ -3671,7 +3671,7 @@
             "level": 2,
             "type": 0,
             "title": "支出事项设置",
-            "path": "expenditure-item-setting",
+            "path": "expenditure-item-settings",
             "component": "zhichushixiangshezhi/list",
             "icon": "ios-menu",
             "url": null,

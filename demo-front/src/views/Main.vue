@@ -237,7 +237,7 @@ export default {
       } else {
         setTimeout(() => {
           // 清空所有已打开标签
-          this.$store.commit("clearAllTags");
+          // this.$store.commit("clearAllTags");
           // console.log(this.menuList)
           this.$router.push({
             name: this.menuList[0]['children'][0]['name']
@@ -325,6 +325,15 @@ export default {
   },
   watch: {
     $route(to) {
+      if(this.$route.name === 'home_index') {
+        setTimeout(() => {
+          this.shrink = true;
+        }, 200)
+      } else {
+        setTimeout(() => {
+          this.shrink = false;
+        }, 200)
+      }
       this.$store.commit("setCurrentPageName", to.name);
       let pathArr = util.setCurrentPath(this, to.name);
       if (pathArr.length > 2) {
@@ -338,6 +347,11 @@ export default {
     }
   },
   mounted() {
+    if(this.$route.name === 'home_index') {
+      setTimeout(() => {
+        this.shrink = true;
+      }, 200)
+    }
     this.init();
     let that = this;
     this.resize();

@@ -46,7 +46,7 @@
                               </Col>
                                 <Col span="12">
                                 <FormItem label="操作人" prop="name">
-                                  test11
+                                  demo
                                 </FormItem>
                               </Col>
                                <Col span="12">
@@ -54,8 +54,8 @@
                                   2020-06-01
                                 </FormItem>
                               </Col>
-                               
-                              
+
+
                             </Row>
                         </Form>
             </div>

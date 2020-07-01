@@ -17,7 +17,7 @@
                 </div>
             </div>
             <Card class="detail-app">
-                <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：test11   申请日期：{{form.TIME_CREATE}}   申请单号：{{form.APPLY_FORM_NO}}</p>
+                <p class="show-info">经办人部门：{{form.APPLY_DEPT_NAME}}   经办人：demo   申请日期：{{form.TIME_CREATE}}   申请单号：{{form.APPLY_FORM_NO}}</p>
                 <Row type="flex" justify="space-between" :gutter="32">
                     <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
                         <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
@@ -114,7 +114,7 @@
                                 <h4 class="h4-title">审批过程</h4>
                                 <div class="content">
                                     <Timeline>
-                                        <TimelineItem>{{form.APPLY_DEPT_NAME}} test11 任务</TimelineItem>
+                                        <TimelineItem>{{form.APPLY_DEPT_NAME}} demo 任务</TimelineItem>
                                         <TimelineItem color="green">
                                             <Icon type="md-checkmark-circle" slot="dot"></Icon>
                                             <span>{{form.APPLY_DEPT_NAME}} 05/18 20:03 任务同意</span>

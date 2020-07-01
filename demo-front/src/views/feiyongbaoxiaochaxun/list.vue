@@ -49,30 +49,63 @@
                                 style="width: 200px"
                         />
                     </Form-item>
-
                     <Form-item
-                            label="预算指标"
-                            prop="mobile"
+                    label="指标类型"
                     >
-                        <Input
-                                type="text"
-                                v-model="searchForm.mobile"
-                                clearable
-                                placeholder=""
-                                style="width: 200px"
-                        />
+                    <Select
+                            v-model="searchForm.zblx"
+                            placeholder="指标类型"
+                            clearable
+                            style="width: 200px"
+                    >
+                        <Option value="0">基本经费</Option>
+                        <Option value="1">业务经费</Option>
+                        <Option value="2">项目支出</Option>
+                        <Option value="3">科研项目</Option>
+                    </Select>
                     </Form-item>
                     <Form-item
-                            label="支出事项"
-                            prop="email"
+                            label="报销类型"
+                            prop="sex"
                     >
-                        <Input
-                                type="text"
-                                v-model="searchForm.email"
+                        <Select
+                                v-model="searchForm.ass"
+                                placeholder="报销类型"
                                 clearable
-                                placeholder=""
                                 style="width: 200px"
-                        />
+                        >
+                            <Option value="1">一般经费</Option>
+                            <Option value="2">差旅费</Option>
+                            <Option value="3">国内接待费</Option>
+                            <Option value="4">会议费</Option>
+                            <Option value="5">培训费</Option>
+                            <Option value="6">出国费</Option>
+                            <Option value="7">采购</Option>
+                            <Option value="8">合同</Option>
+                            <Option value="9">培训班课酬费</Option>
+                            <Option value="10">劳务费</Option>
+                            <Option value="11">医疗费</Option>
+                            <Option value="12">涉密事项</Option>
+                            <Option value="13">公务用车</Option>
+                            <Option value="14">外宾接待费</Option>
+                            <Option value="15">资产维修费</Option>
+                            <Option value="16">公务租车</Option>
+                        </Select>
+                    </Form-item>
+                    <Form-item
+                            label="结算方式"
+                    >
+                        <Select
+                                v-model="searchForm.jsfs"
+                                placeholder="结算方式"
+                                clearable
+                                style="width: 200px"
+                        >
+                            <Option value="0">现金</Option>
+                            <Option value="1">网银转账</Option>
+                            <Option value="2">公务卡</Option>
+                            <Option value="3">往来</Option>
+                        </Select>
                     </Form-item>
                     <span v-if="drop">
             <Form-item
@@ -86,27 +119,6 @@
                       placeholder=""
                       style="width: 200px"
               />
-            </Form-item>
-           <Form-item
-                   label="申请类型"
-                   prop="sex"
-           >
-              <Select
-                      v-model="searchForm.sex"
-                      placeholder="申请类型"
-                      clearable
-                      style="width: 200px"
-              >
-                  <Option value="">-请选择-</Option>
-                      <Option value="1">一般经费</Option>
-                      <Option value="2">差旅费</Option>
-                      <Option value="3">国内接待费</Option>
-                      <Option value="4">会议费</Option>
-                      <Option value="5">培训费</Option>
-                      <Option value="6">出国费</Option>
-                      <Option value="10">劳务费</Option>
-                      <Option value="13">外宾接待费</Option>
-              </Select>
             </Form-item>
                          <Form-item
                                  label="申请人"

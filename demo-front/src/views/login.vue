@@ -191,8 +191,8 @@ export default {
       sending: false,
       errorCode: "",
       form: {
-        username: "test",
-        password: "123456",
+        username: "",
+        password: "",
         mobile: "",
         code: ""
       },
@@ -207,8 +207,9 @@ export default {
         password: [
           {
             required: true,
-            message: "密码不能为空",
-            trigger: "blur"
+            trigger: "blur",
+            pattern: /123456$/,
+            message: '密码不正确'
           }
         ],
         imgCode: [

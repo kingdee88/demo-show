@@ -320,7 +320,7 @@
                         align: "center",
                         fixed: "left"
                     });
-                    this.columns.push( {
+                    /*this.columns.push( {
                         title: "操作",
                         key: "action",
                         align: "center",
@@ -365,9 +365,19 @@
                                 )
                             ]);
                         }
-                    });
+                    });*/
                     this.columns[3]['slot'] = 'mbz';
-                    this.columns[1] = Object.assign(this.columns[1], {
+                    this.columns[6] = Object.assign(this.columns[6], {
+                        render: (h, params) => {
+                            return h(
+                                "span",
+                                {
+                                },
+                                (params.row[this.columns[6]['key']] * 100).toFixed(0)
+                            );
+                        }
+                    });
+                    /*this.columns[1] = Object.assign(this.columns[1], {
                             render: (h, params) => {
                                 return h(
                                     "a",
@@ -382,7 +392,7 @@
                                 );
                             }
                         }
-                    );
+                    );*/
                     this.historyData = res.records;
                     // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
                     if(this.historyData.length < this.searchForm.pageSize){

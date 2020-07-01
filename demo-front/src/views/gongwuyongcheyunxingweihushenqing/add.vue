@@ -17,7 +17,7 @@
         </div>
       </div>
       <Card>
-        <p class="show-info">经办人部门：行政后勤处   经办人：test11   申请日期：2020-07-01   申请单号：送审后自动生成</p>
+        <p class="show-info">经办人部门：行政后勤处   经办人：demo   申请日期：2020-07-01   申请单号：送审后自动生成</p>
         <Row type="flex" justify="space-between" :gutter="32">
           <Col :xl="21" :xxl="16"  style="border-right: 1px solid rgba(233, 232, 233, 0.6);">
             <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
@@ -112,7 +112,7 @@
                 </Col>
               </Row>
 
-              <h4 class="h4-title">费用预算 <Button @click="addt" type="primary" >添加</Button></h4>  
+              <h4 class="h4-title">费用预算 <Button @click="addt" type="primary" >添加</Button></h4>
              <Table
                       border
                       :columns="columns"

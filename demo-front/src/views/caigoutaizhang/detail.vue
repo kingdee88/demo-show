@@ -34,7 +34,7 @@
                                 </Col>
                                 <Col span="12">
                                     <FormItem label="项目申请人：" prop="name">
-                                        test11
+                                        demo
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
@@ -64,12 +64,12 @@
                                 </Col>
                                 <Col span="24">
                                     <FormItem label="资金来源：" prop="name">
-                                        
+
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
                                     <FormItem label="项目负责人：" prop="name">
-                                        test11
+                                        demo
                                     </FormItem>
                                 </Col>
                                 <Col span="12">
@@ -79,7 +79,7 @@
                                 </Col>
                                   <Col span="24">
                                     <FormItem label="申请事由：" prop="name">
-                                        
+
                                     </FormItem>
                                 </Col>
                             </Row>
@@ -153,7 +153,7 @@
                                 <h4 class="h4-title">审批过程</h4>
                                 <div class="content">
                                     <Timeline>
-                                        <TimelineItem>{{form.APPLY_DEPT_NAME}} test11 任务</TimelineItem>
+                                        <TimelineItem>{{form.APPLY_DEPT_NAME}} demo 任务</TimelineItem>
                                         <TimelineItem color="green">
                                             <Icon type="md-checkmark-circle" slot="dot"></Icon>
                                             <span>{{form.APPLY_DEPT_NAME}} 05/18 20:03 任务同意</span>

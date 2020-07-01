@@ -11,9 +11,10 @@
                     </div>
                     <div class="tree-bar" :style="{maxHeight: maxHeight}">
                         <Tree
+                                @on-select-change="selectTree"
+                                @on-check-change="changeSelect"
                                 ref="tree"
                                 :data="treeData"
-                                show-checkbox
                         ></Tree>
                         <Spin size="large" fix v-if="loading"></Spin>
                     </div>
@@ -85,9 +86,22 @@
                                     :data="data"
                                     ref="table"
                                     sortable="custom"
-                                    @on-sort-change="changeSort"
-                                    @on-selection-change="changeSelect"
-                            ></Table>
+                            >
+                                <template slot-scope="{ row, index }" slot="std">
+                                    <Input
+                                            :value="row['a']"
+                                            :clearable="false"
+                                            :disabled=" false"
+                                            placeholder="请输入"/>
+                                </template>
+                                <template slot-scope="{ row, index }" slot="adc">
+                                    <Input
+                                            :value="row['b']"
+                                            :clearable="false"
+                                            :disabled=" false"
+                                            placeholder="请输入"/>
+                                </template>
+                            </Table>
                         </Row>
                         <Row type="flex" justify="end" class="page">
                             <Page
@@ -154,22 +168,36 @@
                 columns: [
                     {
                         title: "职级",
-                        key: "BUDGET_YEAR",
+                        key: "c",
                         minWidth: 125
                     },
                     {
                         title: "淡季标准（元）",
                         key: "TARGET_CODE",
-                        minWidth: 125
+                        minWidth: 125,
+                        slot: 'std'
                     },
                     {
                         title: "旺季标准（元）",
                         key: "TARGET_CODE",
-                        minWidth: 125
+                        minWidth: 125,
+                        slot: 'adc'
                     }
                 ],
                 historyData: [],
-                data: [], // 表单数据
+                data: [{
+                    a: 1100,
+                    b: 1100,
+                    c: '省级厅'
+                },{
+                    a: 650,
+                    b: 650,
+                    c: '厅局级'
+                },{
+                    a: 500,
+                    b: 500,
+                    c: '其他'
+                }], // 表单数据
                 total: 0, // 表单数据总数
                 treeData: []
             };
@@ -188,7 +216,7 @@
                     this.form = menu;
                     this.editTitle = menu.title;
                 } else {
-                    this.cancelEdit();
+                    // this.cancelEdit();
                 }
             },
             renderContent(h, {root, node, data}) {
@@ -281,6 +309,7 @@
                 this.$refs.table.selectAll(false);
             },
             changeSelect(e) {
+                console.log(e);
                 this.selectList = e;
                 this.selectCount = e.length;
             },

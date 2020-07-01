@@ -10,7 +10,7 @@
         <change v-if="currView=='change'" @close="currView='index'" @submited="submited"/>
         <Card v-show="currView=='index'">
             <Row class="operation">
-                <Button @click="add" type="primary" icon="md-add">新增</Button>
+<!--                <Button @click="add" type="primary" icon="md-add">新增</Button>-->
                 <!--<Button @click="audit" type="primary" icon="ios-checkbox-outline">事前申请审核</Button>
                 <Button @click="change" type="primary" icon="ios-list-box-outline">我的事前申请变更</Button>-->
                 <Button @click="delAll" icon="md-trash">批量删除</Button>
