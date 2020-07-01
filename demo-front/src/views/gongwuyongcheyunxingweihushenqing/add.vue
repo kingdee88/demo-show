@@ -112,7 +112,7 @@
                 </Col>
               </Row>
 
-              <h4 class="h4-title">费用预算</h4>
+              <h4 class="h4-title">费用预算 <Button @click="addt" type="primary" >添加</Button></h4>  
              <Table
                       border
                       :columns="columns"
@@ -120,9 +120,9 @@
                       sortable="custom"
                       ref="table"
               ></Table>
-              <!-- <div class="sum-text">
+              <div class="sum-text">
                 申请金额：{{NumberToChinese(datas[0]['p'])}} {{datas[0]['p']}}.00
-              </div> -->
+              </div>
                <h4 class="h4-title">附件上传</h4>
                           <Table
                                   style="margin-bottom: 20px"
@@ -189,10 +189,7 @@ export default {
         name: "",
         c: ""
       },
-      datas: [{
-        p:0,
-        c: ""
-      }],
+      datas: [],
       data2:[{}],
       columns2: [{
           title:"附件类型",
