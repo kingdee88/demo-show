@@ -14,6 +14,7 @@
 <!--                    </div>-->
                     <div class="tree-bar" :style="{maxHeight: maxHeight}">
                         <Tree
+                                @on-select-change="selectTree"
                                 ref="tree"
                                 :data="treeData"
                         ></Tree>
@@ -169,21 +170,34 @@
                 selectCount: 0, // 多选计数
                 columns: [{
                     title: '文档名称',
-                    key: 'a'
+                    key: 'a',
+                    render: (h, params) => {
+                        return h(
+                            "a",
+                            {
+                                attrs: {
+                                    href: 'https://static.kdcodes.cn/%E5%90%88%E5%90%8C.docx'
+                                },
+                                on: {
+                                    click: () => {
+                                        this.download();
+                                    }
+                                }
+                            },
+                            params.row.a
+                        );
+                    }
                 },{
                     title: '更新时间',
                     key: 'b'
                 }],
                 historyData: [],
                 data: [{
-                    a: '合同法',
-                    b: '2020-05-14 12:51:58'
+                    a: '设备维修合同模板',
+                    b: '2019-06-20 13:53:46'
                 },{
-                    a: '采购管理制度',
-                    b: '2020-05-14 12:50:47'
-                },{
-                    a: '关于下达2019年度预算批复的通知',
-                    b:'2019-12-13 02:48:02'
+                    a: '设备采购合同',
+                    b: '2019-06-20 13:52:51'
                 }], // 表单数据
                 total: 0, // 表单数据总数
                 treeData: []
@@ -191,19 +205,40 @@
         },
         methods: {
             selectTree(v) {
-                if (v.length > 0) {
-                    // 转换null为""
-                    for (let attr in v[0]) {
-                        if (v[0][attr] == null) {
-                            v[0][attr] = "";
-                        }
-                    }
-                    let str = JSON.stringify(v[0]);
-                    let menu = JSON.parse(str);
-                    this.form = menu;
-                    this.editTitle = menu.title;
-                } else {
-                    this.cancelEdit();
+                let id = v[0]['id'];
+                if (id === '11') {
+                    this.data = [{
+                        a: '设备维修合同模板',
+                        b: '2019-06-20 13:53:46'
+                    },{
+                        a: '设备采购合同',
+                        b: '2019-06-20 13:52:51'
+                    }]
+                } else if (id === '12') {
+                    this.data = [{
+                        a: '工程合同模板',
+                        b: '2019-06-20 13:54:36'
+                    }]
+                } else if (id === '13') {
+                    this.data = [{
+                        a: '审计服务合同',
+                        b: '2019-06-20 13:55:27'
+                    },{
+                        a: '后勤服务合同',
+                        b: '2019-06-20 13:55:05'
+                    }]
+                } else if (id === '14') {
+                    this.data = [{
+                        a: '采购管理制度',
+                        b: '2019-06-20 13:50:21'
+                    }]
+                } else if (id === '15') {
+                    this.data = [{
+                        a: '合同法',
+                        b: '2020-05-14 12:51:58'
+                    }]
+                } else if (id === '16') {
+                    this.data = []
                 }
             },
             renderContent(h, {root, node, data}) {
@@ -537,6 +572,9 @@
                     ])
                 ]);
             },
+            download () {
+                // https://static.kdcodes.cn/%E5%90%88%E5%90%8C.docx
+            }
         },
         mounted() {
             this.init();
