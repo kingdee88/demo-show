@@ -3439,6 +3439,22 @@
             "permTypes": []
           },
           {
+            "id": "1276477235517690624",
+            "parentId": "1276476071138693120",
+            "name": "cost-allocation",
+            "showAlways": true,
+            "level": 2,
+            "type": 0,
+            "title": "劳务费配置",
+            "path": "cost-allocation",
+            "component": "laowufeipeizhi/list",
+            "icon": "ios-menu",
+            "url": null,
+            "buttonType": "",
+            "children": null,
+            "permTypes": []
+          },
+          {
             "id": "1276477440130158592",
             "parentId": "1276476071138693120",
             "name": "certificate-type",

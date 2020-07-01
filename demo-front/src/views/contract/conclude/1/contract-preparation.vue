@@ -562,7 +562,7 @@
                         "BANK_ACCOUNT": "1234567888888",
                         "AUDIT_ID": "00000000000000000000000000000020200611155644198511a30prbkbsl",
                         "APPLY_USER_NAME": "王艺霏",
-                        "APPLY_DEPT_NAME": "院办公室",
+                        "APPLY_DEPT_NAME": "秘书处公室",
                         "PROCESS_STATE": "4",
                         "PROCESS_ACTIVE_NAME": null,
                         "PROCESS_EXC_NAME": "",

@@ -312,7 +312,7 @@
                         "PUR_ORDER_ID": null,
                         "INDEX_ID": null,
                         "PAY_ITEM_CODE": null,
-                        "INDEX_NAME": "院办公室",
+                        "INDEX_NAME": "秘书处公室",
                         "CONTRACT_AMOUNT": 1111.0,
                         "PAY_AMOUNT": 0.0,
                         "GUARANTEE_AMOUNT": 0.0,
