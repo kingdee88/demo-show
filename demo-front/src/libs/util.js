@@ -406,6 +406,7 @@ util.arrayToTree = function(nodes, config) {
             jsonTree.push(v);
         }
     });
+    // console.log(JSON.stringify(jsonTree));
     return jsonTree;
 };
 
