@@ -312,6 +312,22 @@
         "buttonType": "",
         "children": [
           {
+            "id": "1276434808162812032",
+            "parentId": "1276434500208955392",
+            "name": "expenditure-i-fenjie",
+            "showAlways": true,
+            "level": 2,
+            "type": 0,
+            "title": "支出指标分解",
+            "path": "expenditure-i-fenjie",
+            "component": "zhichuzhibiaofenjie/list",
+            "icon": "ios-menu",
+            "url": null,
+            "buttonType": "",
+            "children": null,
+            "permTypes": []
+          },
+          {
             "id": "1276434808112812032",
             "parentId": "1276434500208955392",
             "name": "expenditure-i-manage",
