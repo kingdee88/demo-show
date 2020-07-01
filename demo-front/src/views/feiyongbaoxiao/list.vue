@@ -641,7 +641,7 @@
                                             }
                                         }
                                     },
-                                    params.row['项目编码']
+                                   params.row[this.columns[1]['key']]
                                 );
                             }
                         }
