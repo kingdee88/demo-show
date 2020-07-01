@@ -55,14 +55,14 @@
                                    <label>0.00</label>
                                 </FormItem>
                               </Col>
-                             
+
                                  <Col span="12">
                                     <FormItem label="调整说明" prop="note">
                                         <Input type="textarea" v-model="form.note" :rows="4"/>
                                     </FormItem>
                                 </Col>
                             </Row>
-                        
+
                             <Form-item class="br">
                                 <Button
                                         @click="handleSubmit"
@@ -94,7 +94,7 @@
                     public:"0",
                     itemName: "支出事项分类",
                     money:1,
-                    parentItemName:"院办经费",
+                    parentItemName:"秘书处经费",
                     departmentName:"普通外科病区"
                 },
                 // 表单验证规则

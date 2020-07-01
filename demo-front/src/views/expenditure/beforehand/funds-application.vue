@@ -522,7 +522,7 @@
                         "APPROVAL_TYPE": "2",
                         "AGENT_USER_NAME": "kwj",
                         "APPLY_USER_NAME": "kwj",
-                        "APPLY_DEPT_NAME": "院办",
+                        "APPLY_DEPT_NAME": "秘书处",
                         "PROCESS_STATE": "4",
                         "PROCESS_ACTIVE_NAME": null,
                         "PROCESS_EXC_NAME": ""
@@ -876,7 +876,7 @@
                         "APPROVAL_TYPE": "2",
                         "AGENT_USER_NAME": "kwj",
                         "APPLY_USER_NAME": "kwj",
-                        "APPLY_DEPT_NAME": "院办",
+                        "APPLY_DEPT_NAME": "秘书处",
                         "PROCESS_STATE": "6",
                         "PROCESS_ACTIVE_NAME": "任务",
                         "PROCESS_EXC_NAME": "kwj"

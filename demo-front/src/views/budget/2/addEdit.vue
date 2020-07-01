@@ -63,7 +63,7 @@
             "PAY_ITEM_NAME": "岗位工资",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239430803v18t0av3hk",
             "PARENT_NAME": "全国工资",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239430803v18t0av3hk"
@@ -75,7 +75,7 @@
             "PAY_ITEM_NAME": "薪级工资",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "000000000000000000000000000000202006011222394249605fn865o7ml",
             "PARENT_NAME": "全国工资",
             "DATA_SELECTED": "000000000000000000000000000000202006011222394249605fn865o7ml"
@@ -87,7 +87,7 @@
             "PAY_ITEM_NAME": "特区津贴",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239511705mkwbc3f5co",
             "PARENT_NAME": "基础性绩效工资",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239511705mkwbc3f5co"
@@ -99,7 +99,7 @@
             "PAY_ITEM_NAME": "基础津贴",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239515445jmrdip15ii",
             "PARENT_NAME": "基础性绩效工资",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239515445jmrdip15ii"
@@ -111,7 +111,7 @@
             "PAY_ITEM_NAME": "特殊岗位津贴",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239565123pcc7dvjqho",
             "PARENT_NAME": "工资福利支出",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239565123pcc7dvjqho"
@@ -123,7 +123,7 @@
             "PAY_ITEM_NAME": "社会保险缴费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239569483r4jd09092o",
             "PARENT_NAME": "工资福利支出",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239569483r4jd09092o"
@@ -135,7 +135,7 @@
             "PAY_ITEM_NAME": "奖励性绩效工资",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239562626p02hfclcsn",
             "PARENT_NAME": "工资福利支出",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239562626p02hfclcsn"
@@ -147,7 +147,7 @@
             "PAY_ITEM_NAME": "其他工资福利支出",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239572554wskj0hq1nn",
             "PARENT_NAME": "工资福利支出",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239572554wskj0hq1nn"
@@ -159,7 +159,7 @@
             "PAY_ITEM_NAME": "离休费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239294002rn2a0mwu5o",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239294002rn2a0mwu5o"
@@ -171,7 +171,7 @@
             "PAY_ITEM_NAME": "退休费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239272582rw3au5ocpi",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239272582rw3au5ocpi"
@@ -183,7 +183,7 @@
             "PAY_ITEM_NAME": "退职(役)费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239275821os4jhddusj",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239275821os4jhddusj"
@@ -195,7 +195,7 @@
             "PAY_ITEM_NAME": "抚恤金",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239264765cjt998li1o",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239264765cjt998li1o"
@@ -207,7 +207,7 @@
             "PAY_ITEM_NAME": "生活补助",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239269385qj682lnmmj",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239269385qj682lnmmj"
@@ -219,7 +219,7 @@
             "PAY_ITEM_NAME": "救济费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239311330b0loqip5ah",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239311330b0loqip5ah"
@@ -231,7 +231,7 @@
             "PAY_ITEM_NAME": "助学金",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239314259csw8aelleo",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239314259csw8aelleo"
@@ -243,7 +243,7 @@
             "PAY_ITEM_NAME": "奖励金",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239302524o88r6p6i3k",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239302524o88r6p6i3k"
@@ -255,7 +255,7 @@
             "PAY_ITEM_NAME": "生产补贴",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239308411frbroqhsdo",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239308411frbroqhsdo"
@@ -267,7 +267,7 @@
             "PAY_ITEM_NAME": "住房公积金",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239623098c6m1bt8hsi",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239623098c6m1bt8hsi"
@@ -279,7 +279,7 @@
             "PAY_ITEM_NAME": "提租补贴",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239614852ksb47atdum",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239614852ksb47atdum"
@@ -291,7 +291,7 @@
             "PAY_ITEM_NAME": "购房补贴",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239618859l8wfh690wo",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239618859l8wfh690wo"
@@ -303,7 +303,7 @@
             "PAY_ITEM_NAME": "独生子女补助",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239608385esfv8d8v0o",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239608385esfv8d8v0o"
@@ -315,7 +315,7 @@
             "PAY_ITEM_NAME": "计划生育奖",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "000000000000000000000000000000202006011222396117002sahc4hoan",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "000000000000000000000000000000202006011222396117002sahc4hoan"
@@ -327,7 +327,7 @@
             "PAY_ITEM_NAME": "医疗费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239601934u1w67u69do",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239601934u1w67u69do"
@@ -339,7 +339,7 @@
             "PAY_ITEM_NAME": "家属统筹医疗",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239605209vottrne6nn",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239605209vottrne6nn"
@@ -351,7 +351,7 @@
             "PAY_ITEM_NAME": "患者困难补助",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239631565p20r80lbnl",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239631565p20r80lbnl"
@@ -363,7 +363,7 @@
             "PAY_ITEM_NAME": "探亲路费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239634822cq9i30wa5m",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239634822cq9i30wa5m"
@@ -375,7 +375,7 @@
             "PAY_ITEM_NAME": "其他对个人和家庭补助",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239627746ibnaw8lknl",
             "PARENT_NAME": "对个人和家庭补助",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239627746ibnaw8lknl"
@@ -602,7 +602,7 @@
             "PAY_ITEM_NAME": "办公费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239518101f82f65t6tn",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239518101f82f65t6tn"
@@ -626,7 +626,7 @@
             "PAY_ITEM_NAME": "咨询费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "000000000000000000000000000000202006011222394669764hupv7auun",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "000000000000000000000000000000202006011222394669764hupv7auun"
@@ -638,7 +638,7 @@
             "PAY_ITEM_NAME": "手续费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "000000000000000000000000000000202006011222394702856kalmcvhro",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "000000000000000000000000000000202006011222394702856kalmcvhro"
@@ -674,7 +674,7 @@
             "PAY_ITEM_NAME": "邮电费",
             "IS_MANAGE_DEPT_DECLARE": "0",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239496520ihqasjsf5m",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239496520ihqasjsf5m"
@@ -698,7 +698,7 @@
             "PAY_ITEM_NAME": "差旅费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239390413c6i3lmbshm",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239390413c6i3lmbshm"
@@ -710,7 +710,7 @@
             "PAY_ITEM_NAME": "因公出国(境)费用",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239393390417a24fobi",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239393390417a24fobi"
@@ -746,7 +746,7 @@
             "PAY_ITEM_NAME": "会议费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239380070skneurl43i",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239380070skneurl43i"
@@ -770,7 +770,7 @@
             "PAY_ITEM_NAME": "公务接待费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239387326eoi434q9ak",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239387326eoi434q9ak"
@@ -866,7 +866,7 @@
             "PAY_ITEM_NAME": "软件及维护费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239348709crw50f2pol",
             "PARENT_NAME": "委托业务费",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239348709crw50f2pol"
@@ -962,7 +962,7 @@
             "PAY_ITEM_NAME": "工会经费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239413560vt245lkh3o",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239413560vt245lkh3o"
@@ -974,7 +974,7 @@
             "PAY_ITEM_NAME": "福利费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239419317wol8nsd81h",
             "PARENT_NAME": "管理费用",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239419317wol8nsd81h"
@@ -1022,7 +1022,7 @@
             "PAY_ITEM_NAME": "诉讼费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "000000000000000000000000000000202006011222395592463171raa0rj",
             "PARENT_NAME": "其他",
             "DATA_SELECTED": "000000000000000000000000000000202006011222395592463171raa0rj"
@@ -1034,7 +1034,7 @@
             "PAY_ITEM_NAME": "律师费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239555647oa2b375hho",
             "PARENT_NAME": "其他",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239555647oa2b375hho"
@@ -1166,7 +1166,7 @@
             "PAY_ITEM_NAME": "专项业务费",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239582366554flshvlj",
             "PARENT_NAME": "其他",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239582366554flshvlj"
@@ -1178,7 +1178,7 @@
             "PAY_ITEM_NAME": "其他费用",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239592819ml8i29v7nm",
             "PARENT_NAME": "其他",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239592819ml8i29v7nm"
@@ -1262,7 +1262,7 @@
             "PAY_ITEM_NAME": "特别贡献奖金",
             "IS_MANAGE_DEPT_DECLARE": "1",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "00000000000000000000000000000020200601122239402218l2blherewm",
             "PARENT_NAME": "其他支出",
             "DATA_SELECTED": "00000000000000000000000000000020200601122239402218l2blherewm"
@@ -1274,7 +1274,7 @@
             "PAY_ITEM_NAME": "青年基金",
             "IS_MANAGE_DEPT_DECLARE": "0",
             "PAY_ITEM_DESC": null,
-            "MANAGE_DEPT_NAME": "院办",
+            "MANAGE_DEPT_NAME": "秘书处",
             "SELECTED_ID": "000000000000000000000000000000202006011222394041222p2vb77kjk",
             "PARENT_NAME": "其他支出",
             "DATA_SELECTED": "000000000000000000000000000000202006011222394041222p2vb77kjk"
