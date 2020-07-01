@@ -208,14 +208,15 @@ export default {
           render: (h, params) => {
             return h('Select', {
               props: {
+                transfer: true,
                 type: 'text',
                 value: this.datas[params.index].c,
               }
             },[
               h('Option', {
-                props: {  
-                    value: '1'  
-                } 
+                props: {
+                    value: '1'
+                }
               }, '琼AA2765B')
             ]);
           }
@@ -226,6 +227,7 @@ export default {
           render: (h, params) => {
             return h('Select', {
               props: {
+                transfer: true,
                 type: 'text',
                 value: this.datas[params.index].c,
               }

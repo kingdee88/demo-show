@@ -248,7 +248,7 @@
             getDataList() {
                 this.loading = true;
 
-                axios.get('/mock/data.json').then(res => {
+                axios.get('/mock/caigoutaizhang.json').then(res => {
                     this.columns = res.headers.map(res => {
                         return {
                             title: res,
