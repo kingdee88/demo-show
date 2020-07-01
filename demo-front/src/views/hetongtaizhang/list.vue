@@ -321,28 +321,28 @@
                         key: "action",
                         align: "center",
                         fixed: 'right',
-                        width: 200,
+                        width: 100,
                         render: (h, params) => {
                             return h("div", [
-                                h(
-                                    "Button",
-                                    {
-                                        props: {
-                                            type: "primary",
-                                            size: "small",
-                                            icon: "ios-create-outline"
-                                        },
-                                        style: {
-                                            marginRight: "5px"
-                                        },
-                                        on: {
-                                            click: () => {
-                                                this.edit(params.row);
-                                            }
-                                        }
-                                    },
-                                    "编辑"
-                                ),
+                                // h(
+                                //     "Button",
+                                //     {
+                                //         props: {
+                                //             type: "primary",
+                                //             size: "small",
+                                //             icon: "ios-create-outline"
+                                //         },
+                                //         style: {
+                                //             marginRight: "5px"
+                                //         },
+                                //         on: {
+                                //             click: () => {
+                                //                 this.edit(params.row);
+                                //             }
+                                //         }
+                                //     },
+                                //     "编辑"
+                                // ),
                                 h(
                                     "Button",
                                     {
