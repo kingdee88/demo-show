@@ -125,6 +125,19 @@
                 </Col>
             </Row>
         </Card>
+        <Modal :title="modalTitle" v-model="roleModalVisible" :mask-closable="false" :width="500">
+            <Form ref="roleForm" :model="roleForm" :label-width="80" :rules="roleFormValidate">
+                <FormItem label="上传文档" prop="name">
+                    <Upload action="">
+                        <Button icon="ios-cloud-upload-outline">上传文档</Button>
+                    </Upload>
+                </FormItem>
+            </Form>
+            <div slot="footer">
+                <Button type="text" @click="roleModalVisible = false">取消</Button>
+                <Button type="primary" :loading="submitLoading" @click="roleModalVisible = false"">提交</Button>
+            </div>
+        </Modal>
     </div>
 </template>
 
@@ -147,6 +160,9 @@
         },
         data() {
             return {
+                modalTitle: '上传文件',
+                roleModalVisible: false,
+                roleForm: {},
                 strict: true,
                 maxHeight: "500px",
                 openTip: false, // 显示提示
@@ -427,7 +443,7 @@
                 // });
             },
             add() {
-                this.currView = "add";
+                this.roleModalVisible = true;
             },
             audit() {
                 this.currView = "audit";
